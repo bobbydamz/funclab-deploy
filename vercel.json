@@ -1,4 +1,25 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/account", "destination": "/account.html" },
+    { "source": "/cart", "destination": "/cart.html" },
+    { "source": "/all-products", "destination": "/all-products.html" },
+    { "source": "/whey-protein-isolate", "destination": "/whey-protein-isolate.html" },
+    { "source": "/whey-protein-concentrate", "destination": "/whey-protein-concentrate.html" },
+    { "source": "/plant-protein", "destination": "/plant-protein.html" },
+    { "source": "/electrolytes", "destination": "/electrolytes.html" },
+    { "source": "/value-bundles", "destination": "/value-bundles.html" },
+    { "source": "/on-the-go-travel-packs", "destination": "/on-the-go-travel-packs.html" },
+    { "source": "/merchandise", "destination": "/merchandise.html" },
+    { "source": "/ingredients", "destination": "/ingredients.html" },
+    { "source": "/certified", "destination": "/certified.html" },
+    { "source": "/news", "destination": "/news.html" },
+    { "source": "/blogs", "destination": "/blogs.html" },
+    { "source": "/origin-story", "destination": "/origin-story.html" },
+    { "source": "/func-manifesto", "destination": "/func-manifesto.html" },
+    { "source": "/meet-the-founders", "destination": "/meet-the-founders.html" },
+    { "source": "/why-these-formulas", "destination": "/why-these-formulas.html" },
+    { "source": "/thefunclab-replica", "destination": "/thefunclab-replica.html" }
+  ]
 }
 
