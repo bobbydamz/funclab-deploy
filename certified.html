@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certified – The Func. Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;font-size:16px;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+button{cursor:pointer;font-family:inherit;}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#1a1a1a;color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;overflow:hidden;}
+.ann-ticker{display:flex;width:max-content;animation:annTick 25s linear infinite;}
+.ann-ticker:hover{animation-play-state:paused;}
+.ann-seg{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:24px;}
+.ann-seg a{color:#c9a96e;}
+.ann-div{color:#c9a96e;}
+@keyframes annTick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── HEADER ── */
+.site-header{background:#fff;border-bottom:1px solid #e8e4de;position:sticky;top:0;z-index:200;transition:box-shadow .3s;}
+.site-header.shadow{box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.header-wrap{max-width:1440px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:72px;gap:40px;}
+.logo-link img{height:36px;width:auto;}
+.main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
+.main-nav>a,.nav-item>a{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;}
+.main-nav>a:hover,.nav-item>a:hover{color:#666;}
+.main-nav>a.active-page{color:#c9a96e;}
+.nav-item{position:relative;}
+.nav-item>a::after{content:' ▾';font-size:8px;}
+.nav-item:hover .nav-drop{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-drop{position:absolute;top:calc(100%+14px);left:50%;transform:translateX(-50%) translateY(-8px);background:#fff;border:1px solid #e8e4de;min-width:220px;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.1);}
+.nav-drop a{display:block;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #f0ece6;transition:background .15s;}
+.nav-drop a:last-child{border-bottom:none;}
+.nav-drop a:hover{background:#f7f4f0;}
+.nav-drop a.active-page{color:#c9a96e;font-weight:700;}
+.header-right{display:flex;align-items:center;gap:20px;justify-content:flex-end;}
+.hdr-link{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a1a1a;}
+.hdr-icon-btn{background:none;border:none;padding:4px;display:flex;align-items:center;color:#1a1a1a;cursor:pointer;}
+.hdr-icon-btn svg{width:19px;height:19px;}
+.cart-link{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:none;color:#1a1a1a;transition:opacity .2s,transform .2s;}
+.cart-link:hover{opacity:.6;transform:scale(1.08);}
+.cart-link svg{width:22px;height:22px;stroke:#1a1a1a;fill:none;}
+.cart-badge{position:absolute;top:-4px;right:-5px;min-width:16px;height:16px;background:#1a1a1a;color:#fff;font-size:9px;font-weight:700;letter-spacing:0;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;line-height:1;opacity:0;transform:scale(0);transition:opacity .2s,transform .2s;}
+.cart-badge.has-items{opacity:1;transform:scale(1);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
+.hamburger span{width:22px;height:1.5px;background:#1a1a1a;display:block;}
+
+/* ── SEARCH ── */
+.search-overlay{position:fixed;inset:0;background:rgba(255,255,255,.97);z-index:500;display:flex;flex-direction:column;align-items:center;padding-top:140px;opacity:0;visibility:hidden;transition:all .3s;}
+.search-overlay.open{opacity:1;visibility:visible;}
+.search-form{width:100%;max-width:560px;padding:0 24px;position:relative;}
+.search-form label{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#999;margin-bottom:12px;}
+.search-form input{width:100%;border:none;border-bottom:2px solid #1a1a1a;font-family:'Assistant',sans-serif;font-size:32px;font-weight:600;color:#1a1a1a;padding:8px 0;outline:none;background:transparent;}
+.search-form input::placeholder{color:#ccc;}
+.search-close{position:absolute;top:-100px;right:24px;background:none;border:none;font-size:28px;color:#666;cursor:pointer;}
+
+/* ── MOBILE MENU ── */
+.mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:290;opacity:0;visibility:hidden;transition:all .3s;}
+.mob-overlay.open{opacity:1;visibility:visible;}
+.mobile-menu{position:fixed;top:0;left:0;width:300px;height:100vh;background:#fff;z-index:300;transform:translateX(-100%);transition:transform .35s cubic-bezier(.76,0,.24,1);padding:80px 32px 40px;overflow-y:auto;}
+.mobile-menu.open{transform:translateX(0);}
+.mob-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;color:#666;cursor:pointer;}
+.mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;}
+
+/* ── HERO BANNERS ── */
+.hero-banner{width:100%;overflow:hidden;max-height:440px;}
+.hero-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.testing-banner{width:100%;overflow:hidden;max-height:400px;margin-bottom:0;}
+.testing-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+
+/* ── PAGE CONTENT ── */
+.page-content{max-width:1100px;margin:0 auto;padding:64px 40px 80px;}
+
+/* ── TESTING SECTION ── */
+.testing-intro{margin-bottom:40px;}
+.testing-intro h2{font-size:clamp(22px,2.8vw,32px);font-weight:700;margin-bottom:20px;}
+.testing-intro p{font-size:15px;line-height:1.9;color:#444;margin-bottom:16px;}
+.testing-intro ul{list-style:none;margin:12px 0;}
+.testing-intro ul li{font-size:14px;color:#444;padding:4px 0 4px 20px;position:relative;line-height:1.6;}
+.testing-intro ul li::before{content:'•';position:absolute;left:0;color:#c9a96e;font-weight:700;}
+.testing-intro ul li strong{color:#1a1a1a;}
+.highlight-line{font-size:15px;color:#444;line-height:1.9;margin-top:16px;}
+.highlight-line strong{color:#1a1a1a;}
+
+/* ── LAB REPORT TABLE ── */
+.table-wrap{overflow-x:auto;margin:40px 0 64px;}
+.lab-table{width:100%;border-collapse:collapse;font-size:13px;}
+.lab-table thead th{background:#1a1a1a;color:#fff;padding:14px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;}
+.lab-table tbody tr{border-bottom:1px solid #e8e4de;}
+.lab-table tbody tr:nth-child(even){background:#f7f4f0;}
+.lab-table tbody tr:hover{background:#f0ece6;}
+.lab-table td{padding:12px 16px;color:#444;vertical-align:middle;}
+.lab-table td:first-child{font-weight:600;color:#1a1a1a;}
+.lab-table td:nth-child(2){font-family:monospace;font-size:12px;color:#666;}
+.lab-table .view-link{display:inline-flex;align-items:center;gap:5px;background:#1a1a1a;color:#fff;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:background .2s;white-space:nowrap;}
+.lab-table .view-link:hover{background:#333;}
+.lab-table .view-link svg{width:12px;height:12px;}
+
+/* ── CERTIFICATIONS ── */
+.section-heading{text-align:center;margin-bottom:40px;}
+.section-heading h2{font-size:clamp(22px,2.8vw,32px);font-weight:700;}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:64px;}
+.cert-card{border:1px solid #e8e4de;padding:28px 20px;text-align:center;transition:box-shadow .3s,transform .3s;}
+.cert-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px);}
+.cert-card img{width:52px;height:52px;object-fit:contain;margin:0 auto 14px;}
+.cert-name{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
+.cert-desc{font-size:13px;color:#666;line-height:1.6;}
+
+/* ── CERTIFICATE DOCS ── */
+.docs-heading{font-size:clamp(18px,2vw,24px);font-weight:700;margin-bottom:24px;text-align:center;}
+.docs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:72px;}
+.doc-card{border:1px solid #e8e4de;overflow:hidden;cursor:pointer;transition:box-shadow .3s,transform .3s;text-decoration:none;}
+.doc-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px);}
+.doc-thumb{aspect-ratio:3/4;overflow:hidden;background:#f7f4f0;position:relative;}
+.doc-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+.doc-card:hover .doc-thumb img{transform:scale(1.03);}
+.doc-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.doc-card:hover .doc-thumb-overlay{background:rgba(0,0,0,.25);}
+.doc-thumb-overlay svg{opacity:0;transition:opacity .3s;color:#fff;width:32px;height:32px;}
+.doc-card:hover .doc-thumb-overlay svg{opacity:1;}
+.doc-label{padding:10px 12px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;text-align:center;border-top:1px solid #e8e4de;}
+
+/* ── TESTING PROCESS ── */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:72px;}
+.process-card{text-align:center;padding:24px 16px;border:1px solid #e8e4de;transition:box-shadow .25s,transform .25s;}
+.process-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-2px);}
+.process-card img{width:48px;height:48px;object-fit:contain;margin:0 auto 14px;}
+.process-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px;line-height:1.4;}
+.process-desc{font-size:12px;color:#666;line-height:1.6;}
+.process-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff3cd;color:#856404;padding:2px 7px;margin-bottom:6px;border-radius:2px;}
+
+/* ── PROMISE CLOSE ── */
+.promise-close{text-align:center;padding:24px 0 56px;}
+.promise-close h2{font-size:clamp(18px,2.2vw,26px);font-weight:700;color:#1a1a1a;}
+
+/* ── BOTTOM BANNER ── */
+.bottom-banner{width:100%;overflow:hidden;max-height:300px;}
+.bottom-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ── FOOTER ── */
+footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
+.footer-inner{max-width:1440px;margin:0 auto;}
+.footer-logo-row{margin-bottom:48px;}
+.footer-logo-row img{height:40px;width:auto;filter:invert(1);}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;margin-bottom:48px;}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c9a96e;margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:11px;}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.55);transition:color .2s;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35);}
+.footer-bottom a{color:rgba(255,255,255,.35);transition:color .2s;}
+.footer-bottom a:hover{color:#fff;}
+.payment-methods{display:flex;gap:8px;flex-wrap:wrap;}
+.pay-tag{background:rgba(255,255,255,.08);border-radius:3px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,.4);font-weight:600;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){.main-nav{display:none;}.hamburger{display:flex;}.page-content{padding:48px 24px 60px;}.cert-grid{grid-template-columns:repeat(2,1fr);}.docs-grid{grid-template-columns:repeat(3,1fr);}.process-grid{grid-template-columns:repeat(2,1fr);}.header-wrap{padding:0 24px;}}
+@media(max-width:768px){.cert-grid{grid-template-columns:repeat(2,1fr);}.docs-grid{grid-template-columns:repeat(2,1fr);}.process-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:repeat(2,1fr);gap:32px;}.header-wrap{padding:0 20px;}.page-content{padding:40px 20px 60px;}.lab-table{font-size:12px;}.lab-table td,.lab-table th{padding:10px 12px;}}
+@media(max-width:500px){.cert-grid{grid-template-columns:1fr 1fr;}.docs-grid{grid-template-columns:1fr 1fr;}.process-grid{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}}
+
+/* ── GOLD TEXT SELECTION ── */
+::selection{background:#c9a96e;color:#fff;}
+::-moz-selection{background:#c9a96e;color:#fff;}
+
+/* ── GOLD FOCUS / CARET ── */
+input,textarea,select{caret-color:#c9a96e;accent-color:#c9a96e;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#c9a96e !important;}
+a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2px;}
+
+/* ── CART BADGE ── */
+.cart-link{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:none;color:#1a1a1a;transition:opacity .2s,transform .2s;}
+.cart-link:hover{opacity:.6;transform:scale(1.08);}
+.cart-link svg{width:22px;height:22px;stroke:#1a1a1a;fill:none;}
+.cart-badge{position:absolute;top:-4px;right:-5px;min-width:16px;height:16px;background:#1a1a1a;color:#fff;font-size:9px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(0);transition:all .2s;}
+.cart-badge.has-items{opacity:1;transform:scale(1);}
+
+/* ── LOGIN LINK ── */
+.hdr-link{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;white-space:nowrap;position:relative;padding-bottom:2px;}
+.hdr-link::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1.5px;background:#1a1a1a;transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.76,0,.24,1);}
+.hdr-link:hover::after{transform:scaleX(1);}
+
+/* ── MOBILE BASE ── */
+@media(max-width:768px){
+  .main-nav{display:none !important;}
+  .hamburger{display:flex !important;}
+  .header-wrap{padding:0 16px !important;height:60px !important;}
+  .logo-outer{width:160px !important;}
+  .logo-text{font-size:15px !important;}
+  .hdr-link{font-size:11px;}
+}
+@media(max-width:480px){
+  .header-wrap{padding:0 12px !important;}
+  .header-right{gap:12px !important;}
+}
+
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE — all screen sizes
+   ═══════════════════════════════════════════ */
+
+/* ── GLOBAL MOBILE ── */
+@media(max-width:768px){
+  /* Header */
+  .header-wrap{grid-template-columns:1fr auto !important;height:60px !important;padding:0 16px !important;}
+  .main-nav{display:none !important;}
+  .hamburger{display:flex !important;}
+  .header-right{gap:10px !important;}
+  .hdr-link{font-size:11px !important;}
+  .logo-outer{width:150px !important;}
+  .logo-text{font-size:14px !important;}
+
+  /* Page padding */
+  .page-wrap,.content-wrap,.section-inner,
+  section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
+
+  /* Announcement bar */
+  .ann-bar{font-size:10px !important;}
+
+  /* Grids → single column */
+  .products-grid,.product-grid,.grid-4,.grid-3,
+  .grid-2,.two-col,.three-col,.four-col{
+    grid-template-columns:1fr 1fr !important;gap:12px !important;
+  }
+  .hero-grid,.founder-grid,.about-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Hero sections */
+  .hero-title,.page-title,.section-title-lg{font-size:clamp(24px,6vw,40px) !important;}
+  .hero-sub,.hero-desc{font-size:14px !important;}
+
+  /* Footer */
+  footer{padding:40px 16px 24px !important;}
+  .footer-grid{grid-template-columns:1fr 1fr !important;gap:28px !important;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:10px !important;}
+
+  /* Tables */
+  .table-wrap{overflow-x:auto;}
+  table{min-width:500px;}
+
+  /* Buttons */
+  .atc-btn,.btn-primary,.submit-btn,.view-all-btn{width:100% !important;text-align:center;}
+
+  /* Cart badge */
+  .cart-badge{top:-3px;right:-4px;}
+
+  /* Search overlay */
+  .search-overlay-inner,.search-inner{padding:0 16px !important;}
+  .search-input,.search-input-lg{font-size:22px !important;}
+}
+
+/* ── SMALL PHONES ── */
+@media(max-width:480px){
+  .products-grid,.product-grid,.grid-4,.grid-3{
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+  }
+  .footer-grid{grid-template-columns:1fr !important;}
+  .hero-title,.page-title{font-size:clamp(20px,7vw,32px) !important;}
+  .header-wrap{padding:0 12px !important;}
+  .header-right{gap:8px !important;}
+  .hdr-link{display:none;}  /* hide login text on tiny screens, user icon remains */
+}
+
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <div class="ann-ticker">
+    <div class="ann-seg">
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-div">|</span>
+      <a href="all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-div">|</span>
+      <a href="all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+    </div>
+    <div class="ann-seg" aria-hidden="true">
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-div">|</span>
+      <a href="all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-div">|</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-wrap">
+    <a href="thefunclab-replica.html" class="logo-link">
+      <img src="https://thefunclab.com/cdn/shop/files/the-func-lab-logo_1_1.png?height=52&v=1752247592" alt="The Func. Lab">
+    </a>
+    <nav class="main-nav">
+      <a href="thefunclab-replica.html">Home</a>
+      <div class="nav-item">
+        <a href="#">About Us</a>
+        <div class="nav-drop">
+          <a href="origin-story.html">The Origin Story</a>
+          <a href="func-manifesto.html">The Func Manifesto</a>
+          <a href="meet-the-founders.html">Meet The Founders</a>
+          <a href="why-these-formulas.html">Why These Formulas</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="all-products.html">Shop</a>
+        <div class="nav-drop">
+          <a href="all-products.html">All Products</a>
+          <a href="whey-protein-isolate.html">Whey Protein Isolate</a>
+          <a href="whey-protein-concentrate.html">Whey Protein Concentrate</a>
+          <a href="plant-protein.html">Plant Protein</a>
+          <a href="electrolytes.html">Electrolytes</a>
+          <a href="value-bundles.html">Value Bundles</a>
+          <a href="on-the-go-travel-packs.html">On The Go Travel Packs</a>
+          <a href="merchandise.html">Merchandise</a>
+        </div>
+      </div>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="certified.html" class="active-page">Certified</a>
+      <a href="news.html">News</a>
+      <a href="blogs.html">Blogs</a>
+    </nav>
+    <div class="header-right">
+      <button class="hdr-icon-btn" onclick="openSearch()" aria-label="Search">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="account.html" class="hdr-link" id="loginLink">Log in</a>
+      <a href="cart.html" class="cart-link" id="cartBtn" aria-label="Cart"><svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cartCount">0</span></a>
+      <button class="hamburger" onclick="openMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-form">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+    <label>Search our site</label>
+    <input type="search" placeholder="Search…" id="searchInput" autocomplete="off">
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMobileMenu()"></div>
+<nav class="mobile-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMobileMenu()">✕</button>
+  <a href="thefunclab-replica.html">Home</a>
+  <a href="origin-story.html">About Us</a>
+  <a href="all-products.html">All Products</a>
+  <a href="ingredients.html">Ingredients</a>
+  <a href="certified.html">Certified</a>
+  <a href="account.html">Log in</a>
+</nav>
+
+<!-- HERO BANNERS -->
+<div class="hero-banner">
+  <img src="https://thefunclab.com/cdn/shop/files/15_16.png?v=1752214883&width=1920" alt="Certified">
+</div>
+<div class="testing-banner">
+  <img src="https://thefunclab.com/cdn/shop/files/testing-protein_06781a66-d1b7-486c-987c-5345b33544c1.jpg?v=1751712323&width=1920" alt="Testing">
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+
+  <!-- TESTING INTRO -->
+  <div class="testing-intro reveal">
+    <h2>Tested for Purity &amp; Safety</h2>
+    <p>At The Func. Lab, we prioritize product safety and transparency. All our protein powders and electrolytes are third-party lab tested to meet the highest standards of quality, purity, and nutritional accuracy.</p>
+
+    <p><strong>Protein Powders are tested for:</strong></p>
+    <ul>
+      <li><strong>Nutritional Values:</strong> Total fat, carbohydrates, protein (dry basis), total sugar, added sugar, sodium</li>
+      <li><strong>Heavy Metals:</strong> Arsenic, lead, mercury, cadmium, methyl mercury</li>
+      <li><strong>Contaminants:</strong> 200+ pesticide residues, melamine, aflatoxins</li>
+    </ul>
+
+    <p style="margin-top:16px;"><strong>Electrolytes are tested for:</strong></p>
+    <ul>
+      <li><strong>Nutritional Values:</strong> Total sugar, energy, sodium, magnesium, potassium</li>
+      <li><strong>Heavy Metals:</strong> Arsenic, lead, mercury, cadmium</li>
+      <li><strong>Contaminants:</strong> Pesticide residues</li>
+    </ul>
+
+    <p class="highlight-line" style="margin-top:20px;">Every batch is screened for protein, carbs, fats, sugars, heavy metals, and (soon) banned substances — so you get <strong>clean</strong>, <strong>safe</strong>, and genuinely <strong>functional</strong> products you can <strong>trust</strong>.</p>
+  </div>
+
+  <!-- LAB REPORT TABLE -->
+  <div class="table-wrap reveal">
+    <table class="lab-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Unique Lab Report #</th>
+          <th>Report Date</th>
+          <th>Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Plant Protein Chocolate</td><td>TC155462500002792F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003591-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Plant Protein Vanilla</td><td>TC155462500002793F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003589-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Plant Protein Coffee</td><td>TC155462500002795F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Plant_protein_coffee.pdf?v=1752404350" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Plant Protein Unflavored</td><td>TC155462500002799F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003590-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Isolate Chocolate</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003593-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Isolate Vanilla</td><td>TC155462500002800F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003592-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Isolate Coffee</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003588-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Isolate Unflavored</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003594-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Concentrate Chocolate</td><td>TC155462500002803F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003597-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Concentrate Vanilla</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003596-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Concentrate Coffee</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003587-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Whey Protein Concentrate Unflavored</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003595-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Electrolytes Orange (Hydration Mix)</td><td>TC155462500002727F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003124-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Electrolytes Citrus (Hydration Mix)</td><td>TC155462500002725F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003125-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Electrolytes Berry Blast (Hydration Mix)</td><td>TC155462500002726F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003126-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Electrolytes Raspberry (Hydration Mix)</td><td>TC155462500002728F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003127-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+        <tr><td>Electrolytes Pineapple (Hydration Mix)</td><td>TC155462500002729F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003128-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section-heading reveal">
+    <h2>We proudly hold the following certifications</h2>
+  </div>
+
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <img src="https://thefunclab.com/cdn/shop/files/FSSAI_541743fb-c172-4ca6-8a91-b914427a0cd4.svg?v=1745233689&width=50" alt="FSSAI" onerror="this.style.fontSize='28px';this.alt='🏆';this.style.display='block'">
+      <div class="cert-name">FSSAI</div>
+      <div class="cert-desc">Ensuring our products meet India's highest food safety standards.</div>
+    </div>
+    <div class="cert-card">
+      <img src="https://thefunclab.com/cdn/shop/files/GMP_Good_Manufacturing_Practice.svg?v=1745233713&width=50" alt="GMP" onerror="this.style.display='none'">
+      <div class="cert-name">GMP (Good Manufacturing Practice)</div>
+      <div class="cert-desc">Guaranteeing consistent quality and safe production practices.</div>
+    </div>
+    <div class="cert-card">
+      <img src="https://thefunclab.com/cdn/shop/files/BRC_British_Retail_Consortium.svg?v=1745233729&width=50" alt="BRC" onerror="this.style.display='none'">
+      <div class="cert-name">BRC (British Retail Consortium)</div>
+      <div class="cert-desc">Recognized globally for upholding stringent food safety guidelines.</div>
+    </div>
+    <div class="cert-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Ayush_Certification.svg?v=1745233752&width=50" alt="ISO" onerror="this.style.display='none'">
+      <div class="cert-name">ISO Certification</div>
+      <div class="cert-desc">Ensuring our products align with India's trusted standards for holistic wellness.</div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE DOCUMENTS -->
+  <h2 class="docs-heading reveal">&nbsp;</h2>
+  <div class="docs-grid reveal">
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/fssai-func.jpg?v=1752243211" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/fssai-func.jpg?v=1752243211&width=600" alt="FSSAI License" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">FSSAI License</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Renewed_FSSAI_license_-1.pdf?v=1751191898" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/Renewed_FSSAI_license_-1.jpg?v=1751191916&width=600" alt="FSSAI License Renewed" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">FSSAI License</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Factory_Licence_-_2.pdf?v=1751191897" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/Factory_Licence_-_2.jpg?v=1751191916&width=600" alt="Factory License" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">Factory License</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/ISO_CERTIFICATE_-_3.pdf?v=1751191897" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/ISO_CERTIFICATE_-_3.jpg?v=1751191916&width=600" alt="ISO Certificate" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">ISO Certificate</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/GMP_Certificate_-_4.pdf?v=1751191897" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/GMP_Certificate_-_4.jpg?v=1751191916&width=600" alt="GMP Certificate" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">GMP Certificate</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Halal_Certificate_-_5.pdf?v=1751191897" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/Halal_Certificate_-_5.jpg?v=1751191917&width=600" alt="Halal Certificate" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">Halal Certificate</div>
+    </a>
+    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/BRCGS_CERTIFICATE_-_6.pdf?v=1751191897" target="_blank">
+      <div class="doc-thumb">
+        <img src="https://thefunclab.com/cdn/shop/files/BRCGS_CERTIFICATE_-_6.jpg?v=1751191916&width=600" alt="BRCGS Certificate" loading="lazy">
+        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+      </div>
+      <div class="doc-label">BRCGS Certificate</div>
+    </a>
+  </div>
+
+  <!-- TESTING PROCESS -->
+  <div class="section-heading reveal">
+    <h2>Our Testing Process: No Guesswork, Just Results</h2>
+  </div>
+
+  <div class="process-grid reveal">
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Informed_Sports_Certification.svg?v=1745233791&width=50" alt="Informed Sports" onerror="this.style.display='none'">
+      <div class="process-badge">In Progress</div>
+      <div class="process-name">Informed Sports / NFS Certification</div>
+      <div class="process-desc">Globally recognized programs that are trusted by professional athletes worldwide.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Heavy_Metals_Testing_ec9d0e4d-8c4c-44a1-aaf6-a37f642f5469.svg?v=1745233791&width=50" alt="Heavy Metals" onerror="this.style.display='none'">
+      <div class="process-name">Heavy Metals Testing</div>
+      <div class="process-desc">We test for lead, arsenic, mercury, and other contaminants to guarantee clean, safe supplements.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Protein_Content_Verification.svg?v=1745233791&width=50" alt="Protein Content" onerror="this.style.display='none'">
+      <div class="process-name">Protein Content Verification</div>
+      <div class="process-desc">Ensuring that each scoop delivers the precise protein content you're paying for.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Amino_Acid_Profile_Analysis.svg?v=1745233791&width=50" alt="Amino Acid" onerror="this.style.display='none'">
+      <div class="process-name">Amino Acid Profile Analysis</div>
+      <div class="process-desc">To verify the right balance of essential and non-essential amino acids for optimal recovery and muscle support.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Microbiology_Testing_fe8abeb3-0ad1-410a-9cc8-379abcb151cc.svg?v=1745233791&width=50" alt="Microbiology" onerror="this.style.display='none'">
+      <div class="process-name">Microbiology Testing</div>
+      <div class="process-desc">Screening for harmful bacteria and ensuring the highest hygiene standards.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Adulteration_Purity_Testing_d7b21db2-90dc-4a58-a62f-0b05e675cd21.svg?v=1745233791&width=50" alt="Adulteration" onerror="this.style.display='none'">
+      <div class="process-name">Adulteration &amp; Purity Testing</div>
+      <div class="process-desc">Guaranteeing our products are free from contaminants and harmful additives.</div>
+    </div>
+    <div class="process-card">
+      <img src="https://thefunclab.com/cdn/shop/files/Stability_Shelf_Life_Testing_2b8f2a16-a727-4109-90b2-e060b9c766c7.svg?v=1745233792&width=50" alt="Shelf Life" onerror="this.style.display='none'">
+      <div class="process-name">Stability &amp; Shelf Life Testing</div>
+      <div class="process-desc">Ensuring our products remain fresh, potent, and effective for their intended shelf life.</div>
+    </div>
+  </div>
+
+  <!-- PROMISE CLOSE -->
+  <div class="promise-close reveal">
+    <h2>Simple Products. Transparent Ingredients. Real Results.</h2>
+    <p style="font-size:15px;color:#555;margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;">The Func. Lab is your answer to functional, straightforward nutrition, designed to fit into your life, not complicate it.</p>
+  </div>
+
+</div><!-- /page-content -->
+
+<!-- BOTTOM BANNER -->
+<div class="bottom-banner reveal">
+  <img src="https://thefunclab.com/cdn/shop/files/CERTIFIED_BOTTOM_PAGE_BANNER.png?v=1752246841&width=1920" alt="Certified Bottom Banner">
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-row">
+      <img src="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/the-func-lab-logo_1.jpg?v=1749821041" alt="The Func Lab Logo">
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="origin-story.html">About Us</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="certified.html">Certified</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="all-products.html">All products</a></li>
+          <li><a href="whey-protein-isolate.html">Whey Protein Isolate</a></li>
+          <li><a href="whey-protein-concentrate.html">Whey Protein Concentrate</a></li>
+          <li><a href="plant-protein.html">Plant Protein</a></li>
+          <li><a href="electrolytes.html">Electrolytes</a></li>
+          <li><a href="value-bundles.html">Value Bundles</a></li>
+          <li><a href="on-the-go-travel-packs.html">On The Go Travel Packs</a></li>
+          <li><a href="merchandise.html">Merchandise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Refunds &amp; Cancellation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/thefunclab/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/thefunclab" target="_blank">LinkedIn</a></li>
+          <li><a href="https://api.whatsapp.com/send?phone=918291959606" target="_blank">WhatsApp</a></li>
+        </ul>
+        <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:12px;">Follow us on social media!</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026, <a href="thefunclab-replica.html">The Func. Lab</a>. All rights reserved. · <a href="#">Powered by Shopify</a></p>
+      <div class="payment-methods">
+        <span class="pay-tag">Visa</span><span class="pay-tag">Mastercard</span><span class="pay-tag">UPI</span><span class="pay-tag">Razorpay</span><span class="pay-tag">Net Banking</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('siteHeader').classList.toggle('shadow',window.scrollY>30);});
+
+function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),150);}
+function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');}
+document.getElementById('searchOverlay').addEventListener('click',function(e){if(e.target===this)closeSearch();});
+
+function openMobileMenu(){document.getElementById('mobMenu').classList.add('open');document.getElementById('mobOverlay').classList.add('open');}
+function closeMobileMenu(){document.getElementById('mobMenu').classList.remove('open');document.getElementById('mobOverlay').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeMobileMenu();}});
+
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+// ── LIVE LOGIN LABEL + CART COUNT ──────────────────────────────────────────
+(async () => {
+  const API   = 'https://funclab-backend-cwsp.onrender.com';
+  const token = localStorage.getItem('fl_token') || '';
+  const link  = document.getElementById('loginLink');
+  const badge = document.getElementById('cartCount');
+
+  // Update login label
+  if (token && link) {
+    try {
+      const r = await fetch(API + '/api/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (r.ok) {
+        const d = await r.json();
+        const name = (d.user?.name || '').split(' ')[0];
+        if (name) { link.textContent = 'Hi, ' + name; link.href = 'account.html'; }
+      } else {
+        localStorage.removeItem('fl_token');
+      }
+    } catch(e) {}
+  }
+
+  // Cart click: redirect to login if not logged in
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', function(e) {
+      if (!localStorage.getItem('fl_token')) {
+        e.preventDefault();
+        sessionStorage.setItem('fl_redirect_after_login', 'cart.html');
+        window.location.href = 'account.html';
+      }
+    });
+  }
+
+  // Load cart count
+  try {
+    const headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+    const r = await fetch(API + '/api/cart/', { headers, credentials: 'include' });
+    if (r.ok) {
+      const d = await r.json();
+      const count = d.summary?.item_count || 0;
+      if (badge && count > 0) {
+        badge.textContent = count;
+        badge.classList.add('has-items');
+      }
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

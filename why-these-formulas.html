@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why These Formulas – The Func. Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;font-size:16px;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+button{cursor:pointer;font-family:inherit;}
+
+/* ── ANNOUNCEMENT BAR ── */
+.ann-bar{background:#1a1a1a;color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;overflow:hidden;}
+.ann-ticker{display:flex;width:max-content;animation:annTick 25s linear infinite;}
+.ann-ticker:hover{animation-play-state:paused;}
+.ann-seg{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:24px;}
+.ann-seg a{color:#c9a96e;}
+.ann-div{color:#c9a96e;}
+@keyframes annTick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── HEADER ── */
+.site-header{background:#fff;border-bottom:1px solid #e8e4de;position:sticky;top:0;z-index:200;transition:box-shadow .3s;}
+.site-header.shadow{box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.header-wrap{max-width:1440px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:72px;gap:40px;}
+.logo-link{display:flex;align-items:center;}
+.logo-link img{height:36px;width:auto;}
+.main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
+.main-nav>a,.nav-item>a{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;}
+.main-nav>a:hover,.nav-item>a:hover{color:#666;}
+.nav-item{position:relative;}
+.nav-item>a::after{content:' ▾';font-size:8px;}
+.nav-item:hover .nav-drop{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-drop{position:absolute;top:calc(100%+14px);left:50%;transform:translateX(-50%) translateY(-8px);background:#fff;border:1px solid #e8e4de;min-width:220px;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 8px 32px rgba(0,0,0,.1);}
+.nav-drop a{display:block;padding:11px 20px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #f0ece6;transition:background .15s;}
+.nav-drop a:last-child{border-bottom:none;}
+.nav-drop a:hover{background:#f7f4f0;}
+.nav-drop a.active-page{color:#c9a96e;font-weight:700;}
+.header-right{display:flex;align-items:center;gap:20px;justify-content:flex-end;}
+.hdr-link{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;}
+.hdr-link:hover{color:#666;}
+.hdr-icon-btn{background:none;border:none;padding:4px;display:flex;align-items:center;color:#1a1a1a;cursor:pointer;}
+.hdr-icon-btn svg{width:19px;height:19px;}
+.cart-link{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:none;color:#1a1a1a;transition:opacity .2s,transform .2s;}
+.cart-link:hover{opacity:.6;transform:scale(1.08);}
+.cart-link svg{width:22px;height:22px;stroke:#1a1a1a;fill:none;}
+.cart-badge{position:absolute;top:-4px;right:-5px;min-width:16px;height:16px;background:#1a1a1a;color:#fff;font-size:9px;font-weight:700;letter-spacing:0;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;line-height:1;opacity:0;transform:scale(0);transition:opacity .2s,transform .2s;}
+.cart-badge.has-items{opacity:1;transform:scale(1);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
+.hamburger span{width:22px;height:1.5px;background:#1a1a1a;display:block;}
+
+/* ── SEARCH OVERLAY ── */
+.search-overlay{position:fixed;inset:0;background:rgba(255,255,255,.97);z-index:500;display:flex;flex-direction:column;align-items:center;padding-top:140px;opacity:0;visibility:hidden;transition:all .3s;}
+.search-overlay.open{opacity:1;visibility:visible;}
+.search-form{width:100%;max-width:560px;padding:0 24px;position:relative;}
+.search-form label{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#999;margin-bottom:12px;}
+.search-form input{width:100%;border:none;border-bottom:2px solid #1a1a1a;font-family:'Assistant',sans-serif;font-size:32px;font-weight:600;color:#1a1a1a;padding:8px 0;outline:none;background:transparent;}
+.search-form input::placeholder{color:#ccc;}
+.search-close{position:absolute;top:-100px;right:24px;background:none;border:none;font-size:28px;color:#666;transition:color .2s;cursor:pointer;}
+.search-close:hover{color:#1a1a1a;}
+
+/* ── MOBILE MENU ── */
+.mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:290;opacity:0;visibility:hidden;transition:all .3s;}
+.mob-overlay.open{opacity:1;visibility:visible;}
+.mobile-menu{position:fixed;top:0;left:0;width:300px;height:100vh;background:#fff;z-index:300;transform:translateX(-100%);transition:transform .35s cubic-bezier(.76,0,.24,1);padding:80px 32px 40px;overflow-y:auto;}
+.mobile-menu.open{transform:translateX(0);}
+.mob-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;color:#666;cursor:pointer;}
+.mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;transition:color .2s;}
+.mobile-menu a:hover{color:#666;}
+
+/* ══════════════════════════════════════════ */
+/* PAGE-SPECIFIC STYLES                       */
+/* ══════════════════════════════════════════ */
+
+/* ── HERO ── */
+.page-hero{width:100%;overflow:hidden;}
+.page-hero img{width:100%;display:block;}
+
+/* ── PURPOSE BANNER (full-width image with centred heading) ── */
+.purpose-banner{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+}
+.purpose-banner img{width:100%;display:block;}
+.purpose-banner-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.purpose-banner-text{
+  font-size:clamp(28px,4.5vw,64px);
+  font-weight:700;
+  color:#fff;
+  letter-spacing:.01em;
+  text-align:center;
+  text-shadow:0 2px 24px rgba(0,0,0,.35);
+  padding:0 24px;
+}
+
+/* ── INTRO TEXT ── */
+.intro-section{
+  max-width:860px;
+  margin:0 auto;
+  padding:80px 40px;
+}
+.intro-section h2{
+  font-size:clamp(24px,3vw,36px);
+  font-weight:700;
+  margin-bottom:32px;
+  line-height:1.2;
+}
+.intro-section p{
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+  margin-bottom:18px;
+}
+.intro-section p:last-child{margin-bottom:0;}
+.intro-section p strong{color:#1a1a1a;font-weight:700;}
+
+/* ── FORMULA BLOCKS (image + text alternating) ── */
+.formula-block{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:560px;
+  border-top:1px solid #e8e4de;
+}
+.formula-block.reverse{direction:rtl;}
+.formula-block.reverse>*{direction:ltr;}
+
+.formula-img{overflow:hidden;background:#f0ece6;position:relative;}
+.formula-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.formula-block:hover .formula-img img{transform:scale(1.03);}
+
+.formula-text{
+  padding:72px 64px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.formula-text h3{
+  font-size:clamp(20px,2.5vw,30px);
+  font-weight:700;
+  margin-bottom:24px;
+  line-height:1.2;
+}
+.formula-text p{
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+  margin-bottom:16px;
+}
+.formula-text p:last-of-type{margin-bottom:0;}
+.formula-text p strong{color:#1a1a1a;font-weight:700;}
+.formula-tagline{
+  margin-top:28px;
+  padding:20px 24px;
+  background:#f7f4f0;
+  border-left:3px solid #1a1a1a;
+  font-size:15px;
+  font-weight:700;
+  color:#1a1a1a;
+  line-height:1.5;
+}
+
+/* Read more toggle */
+.formula-more{display:none;}
+.formula-more.open{display:block;}
+.read-more-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:24px;
+  background:none;
+  border:none;
+  border-bottom:1px solid #1a1a1a;
+  padding-bottom:2px;
+  font-family:'Assistant',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:#1a1a1a;
+  cursor:pointer;
+  transition:color .2s,border-color .2s;
+}
+.read-more-btn:hover{color:#c9a96e;border-bottom-color:#c9a96e;}
+.read-more-btn .arrow{transition:transform .3s;font-size:16px;line-height:1;}
+.read-more-btn.open .arrow{transform:rotate(180deg);}
+
+/* ── CLOSING SECTION ── */
+.closing-section{
+  max-width:860px;
+  margin:0 auto;
+  padding:80px 40px;
+  text-align:center;
+  border-top:1px solid #e8e4de;
+}
+.closing-section h2{
+  font-size:clamp(24px,3vw,36px);
+  font-weight:700;
+  margin-bottom:24px;
+  line-height:1.2;
+}
+.closing-section p{font-size:15px;line-height:1.9;color:#444;margin-bottom:14px;}
+.closing-section p strong{color:#1a1a1a;font-weight:700;}
+
+/* ── BOTTOM BANNER ── */
+.bottom-banner{width:100%;}
+.bottom-banner img{width:100%;display:block;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal.d1{transition-delay:.1s;}
+.reveal.d2{transition-delay:.2s;}
+
+/* ── FOOTER ── */
+footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
+.footer-inner{max-width:1440px;margin:0 auto;}
+.footer-logo-row{margin-bottom:48px;}
+.footer-logo-row img{height:40px;width:auto;filter:invert(1);}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;margin-bottom:48px;}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#c9a96e;margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:11px;}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.55);transition:color .2s;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.35);}
+.footer-bottom a{color:rgba(255,255,255,.35);transition:color .2s;}
+.footer-bottom a:hover{color:#fff;}
+.payment-methods{display:flex;gap:8px;flex-wrap:wrap;}
+.pay-tag{background:rgba(255,255,255,.08);border-radius:3px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,.4);font-weight:600;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .main-nav{display:none;}
+  .hamburger{display:flex;}
+  .formula-text{padding:56px 48px;}
+}
+@media(max-width:800px){
+  .formula-block,.formula-block.reverse{grid-template-columns:1fr;direction:ltr;min-height:auto;}
+  .formula-img{height:380px;}
+  .formula-text{padding:48px 32px;}
+  .intro-section,.closing-section{padding:56px 24px;}
+  .footer-grid{grid-template-columns:repeat(2,1fr);gap:32px;}
+}
+@media(max-width:500px){
+  .formula-img{height:280px;}
+  .formula-text{padding:40px 24px;}
+  .header-wrap{padding:0 20px;}
+  footer{padding:48px 20px 24px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .purpose-banner-text{font-size:clamp(20px,6vw,36px);}
+}
+
+/* ── GOLD TEXT SELECTION ── */
+::selection{background:#c9a96e;color:#fff;}
+::-moz-selection{background:#c9a96e;color:#fff;}
+
+/* ── GOLD FOCUS / CARET ── */
+input,textarea,select{caret-color:#c9a96e;accent-color:#c9a96e;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#c9a96e !important;}
+a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2px;}
+
+/* ── CART BADGE ── */
+.cart-link{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:none;color:#1a1a1a;transition:opacity .2s,transform .2s;}
+.cart-link:hover{opacity:.6;transform:scale(1.08);}
+.cart-link svg{width:22px;height:22px;stroke:#1a1a1a;fill:none;}
+.cart-badge{position:absolute;top:-4px;right:-5px;min-width:16px;height:16px;background:#1a1a1a;color:#fff;font-size:9px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;opacity:0;transform:scale(0);transition:all .2s;}
+.cart-badge.has-items{opacity:1;transform:scale(1);}
+
+/* ── LOGIN LINK ── */
+.hdr-link{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;white-space:nowrap;position:relative;padding-bottom:2px;}
+.hdr-link::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1.5px;background:#1a1a1a;transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.76,0,.24,1);}
+.hdr-link:hover::after{transform:scaleX(1);}
+
+/* ── MOBILE BASE ── */
+@media(max-width:768px){
+  .main-nav{display:none !important;}
+  .hamburger{display:flex !important;}
+  .header-wrap{padding:0 16px !important;height:60px !important;}
+  .logo-outer{width:160px !important;}
+  .logo-text{font-size:15px !important;}
+  .hdr-link{font-size:11px;}
+}
+@media(max-width:480px){
+  .header-wrap{padding:0 12px !important;}
+  .header-right{gap:12px !important;}
+}
+
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE — all screen sizes
+   ═══════════════════════════════════════════ */
+
+/* ── GLOBAL MOBILE ── */
+@media(max-width:768px){
+  /* Header */
+  .header-wrap{grid-template-columns:1fr auto !important;height:60px !important;padding:0 16px !important;}
+  .main-nav{display:none !important;}
+  .hamburger{display:flex !important;}
+  .header-right{gap:10px !important;}
+  .hdr-link{font-size:11px !important;}
+  .logo-outer{width:150px !important;}
+  .logo-text{font-size:14px !important;}
+
+  /* Page padding */
+  .page-wrap,.content-wrap,.section-inner,
+  section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
+
+  /* Announcement bar */
+  .ann-bar{font-size:10px !important;}
+
+  /* Grids → single column */
+  .products-grid,.product-grid,.grid-4,.grid-3,
+  .grid-2,.two-col,.three-col,.four-col{
+    grid-template-columns:1fr 1fr !important;gap:12px !important;
+  }
+  .hero-grid,.founder-grid,.about-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Hero sections */
+  .hero-title,.page-title,.section-title-lg{font-size:clamp(24px,6vw,40px) !important;}
+  .hero-sub,.hero-desc{font-size:14px !important;}
+
+  /* Footer */
+  footer{padding:40px 16px 24px !important;}
+  .footer-grid{grid-template-columns:1fr 1fr !important;gap:28px !important;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:10px !important;}
+
+  /* Tables */
+  .table-wrap{overflow-x:auto;}
+  table{min-width:500px;}
+
+  /* Buttons */
+  .atc-btn,.btn-primary,.submit-btn,.view-all-btn{width:100% !important;text-align:center;}
+
+  /* Cart badge */
+  .cart-badge{top:-3px;right:-4px;}
+
+  /* Search overlay */
+  .search-overlay-inner,.search-inner{padding:0 16px !important;}
+  .search-input,.search-input-lg{font-size:22px !important;}
+}
+
+/* ── SMALL PHONES ── */
+@media(max-width:480px){
+  .products-grid,.product-grid,.grid-4,.grid-3{
+    grid-template-columns:1fr 1fr !important;
+    gap:10px !important;
+  }
+  .footer-grid{grid-template-columns:1fr !important;}
+  .hero-title,.page-title{font-size:clamp(20px,7vw,32px) !important;}
+  .header-wrap{padding:0 12px !important;}
+  .header-right{gap:8px !important;}
+  .hdr-link{display:none;}  /* hide login text on tiny screens, user icon remains */
+}
+
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <div class="ann-ticker">
+    <div class="ann-seg">
+      <a href="all-products.html">Get up to 30% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+      <a href="all-products.html">Get up to 30% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+    </div>
+    <div class="ann-seg" aria-hidden="true">
+      <a href="all-products.html">Get up to 30% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+      <a href="all-products.html">Get up to 30% off on all orders</a>
+      <span class="ann-div">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-div">|</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-wrap">
+    <a href="thefunclab-replica.html" class="logo-link">
+      <img src="https://thefunclab.com/cdn/shop/files/the-func-lab-logo_1_1.png?height=52&v=1752247592" alt="The Func. Lab">
+    </a>
+
+    <nav class="main-nav">
+      <a href="thefunclab-replica.html">Home</a>
+      <div class="nav-item">
+        <a href="#">About Us</a>
+        <div class="nav-drop">
+          <a href="origin-story.html">The Origin Story</a>
+          <a href="func-manifesto.html">The Func Manifesto</a>
+          <a href="meet-the-founders.html">Meet The Founders</a>
+          <a href="why-these-formulas.html" class="active-page">Why These Formulas</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#">Shop</a>
+        <div class="nav-drop">
+          <a href="all-products.html">All Products</a>
+          <a href="whey-protein-isolate.html">Whey Protein Isolate</a>
+          <a href="whey-protein-concentrate.html">Whey Protein Concentrate</a>
+          <a href="plant-protein.html">Plant Protein</a>
+          <a href="electrolytes.html">Electrolytes</a>
+          <a href="value-bundles.html">Value Bundles</a>
+          <a href="on-the-go-travel-packs.html">On The Go Travel Packs</a>
+          <a href="merchandise.html">Merchandise</a>
+        </div>
+      </div>
+      <a href="ingredients.html">Ingredients</a>
+      <a href="certified.html">Certified</a>
+      <a href="news.html">News</a>
+      <a href="blogs.html">Blogs</a>
+    </nav>
+
+    <div class="header-right">
+      <button class="hdr-icon-btn" onclick="openSearch()" aria-label="Search">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+      <a href="account.html" class="hdr-link" id="loginLink">Log in</a>
+      <a href="cart.html" class="cart-link">Cart</a>
+      <button class="hamburger" onclick="openMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-form">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+    <label>Search our site</label>
+    <input type="search" placeholder="Search…" id="searchInput" autocomplete="off">
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMobileMenu()"></div>
+<nav class="mobile-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMobileMenu()">✕</button>
+  <a href="thefunclab-replica.html">Home</a>
+  <a href="origin-story.html">About Us</a>
+  <a href="#">Shop</a>
+  <a href="ingredients.html">Ingredients</a>
+  <a href="certified.html">Certified</a>
+  <a href="news.html">News</a>
+  <a href="blogs.html">Blogs</a>
+  <a href="account.html">Log in</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HERO IMAGE                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="page-hero">
+  <img src="https://thefunclab.com/cdn/shop/files/13_20.png?v=1752215154&width=1920" alt="Why These Formulas">
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- "EVERY PRODUCT HAS A PURPOSE" FULL-WIDTH BANNER           -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="purpose-banner reveal">
+  <img src="https://thefunclab.com/cdn/shop/files/every_product_has_a_purpose.png?v=1752225928&width=1920" alt="Every product has a purpose">
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- INTRO TEXT                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="intro-section">
+  <div class="reveal">
+    <h2>Every product has a purpose.</h2>
+    <p>When we started The Func. Lab our goal was very simple, produce quality functional products.</p>
+    <p>A protein powder needs to deliver PROTEIN, nothing else. No unnecessary fillers, emulsifiers or bulking agents. We wanted to provide the market with straightforward honest ingredients without any blends of concentrate and isolate, which in our humble opinion, only dilute the product. A single-source protein powder either 100% whey concentrate, 100% whey isolate or 100% plant-based (98% pea and 2% rice for a complete amino profile) is what, we believe, people need. Additionally, we want our protein to be easily digestible, so there are no gut issues in the future.</p>
+    <p>On the other hand an electrolyte needs to deliver HYDRATION. Hydration in the right balance of sodium, potassium, magnesium, and chloride, not just sugar and a little bit of salt.</p>
+    <p>We understand that taste matters, but at The Func. Lab, we're in the business of clean, functional food. That means every product we make will focus on performance first, the rest will sort itself out.</p>
+    <p><strong>Function is non-negotiable for us.</strong></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PROTEIN FORMULA BLOCK — image right, text left            -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="formula-block reverse reveal">
+  <div class="formula-img">
+    <img src="https://thefunclab.com/cdn/shop/files/protein_b11f114c-7ae4-4fd9-9754-806423568942.png?v=1752225929&width=1200" alt="Protein – Fueling Your Body the Right Way">
+  </div>
+  <div class="formula-text">
+    <h3>Protein: Fueling Your Body the Right Way</h3>
+
+    <div class="formula-preview">
+      <p>For years, Sohrab Khushrushahi — founder of SOHFIT — worked with clients from every background: athletes, celebrities, busy professionals, and parents. One question kept coming up: <strong>"Which protein should I take?"</strong></p>
+      <p>He saw the confusion firsthand — overwhelming choices, complicated labels, and brands masking poor-quality protein behind fancy marketing. Many of his clients had been unknowingly consuming supplements filled with artificial additives, gums, and fillers that upset their gut, triggered skin issues, or delivered disappointing results.</p>
+      <p>For Sahil Kukreja, being a former cricketer, he knew the importance of protein in recovery and performance. But trusting local brands felt risky — so he, like many others, turned to expensive international options.</p>
+    </div>
+
+    <div class="formula-more" id="more-protein">
+      <p>For Daneesh Davar, the need was different. As a mother and someone navigating health and fitness in her 40s, she knew women often shy away from protein, fearing weight gain or bloating. The reality? Protein is essential, especially for women as they age.</p>
+      <p><strong>The Func. Lab's Protein</strong> was created to answer these concerns. Whether you're an athlete, a busy parent, or someone trying to improve your health, The Func Lab offers clean, gut-friendly protein options designed to nourish your body without compromise.</p>
+    </div>
+
+    <div class="formula-tagline">
+      100% single-source protein, no blends, no fillers — just clean nutrition that works.
+    </div>
+
+    <button class="read-more-btn" onclick="toggleMore('protein', this)">
+      Read more <span class="arrow">↓</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ELECTROLYTES FORMULA BLOCK — image left, text right       -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="formula-block reveal d1">
+  <div class="formula-img">
+    <img src="https://thefunclab.com/cdn/shop/files/electrolytes.png?v=1752225928&width=1200" alt="Electrolytes – Hydration for Every Body">
+  </div>
+  <div class="formula-text">
+    <h3>Electrolytes: Hydration for Every Body</h3>
+
+    <div class="formula-preview">
+      <p>Hydration isn't just about drinking water, it's about ensuring your body absorbs it effectively. After years of hearing clients complain about fatigue, cramps, and sluggish recovery, Sohrab knew that proper hydration was often the missing link.</p>
+      <p>Daneesh, as a mom, recognized another crucial gap: <strong>hydration products for kids.</strong> Most options on the market were loaded with sugar, artificial colors, and chemicals, not something she felt comfortable giving her child.</p>
+    </div>
+
+    <div class="formula-more" id="more-electrolytes">
+      <p>The Func. Lab's Electrolyte Mix was designed to support hydration across ages — from active adults to kids as young as three. With 1000mg of sodium, 200mg of potassium, and 60mg of magnesium, it's a clean, effective way to replenish essential minerals without the added junk.</p>
+    </div>
+
+    <div class="formula-tagline">
+      No sugar. No fillers. Just hydration that works.
+    </div>
+
+    <button class="read-more-btn" onclick="toggleMore('electrolytes', this)">
+      Read more <span class="arrow">↓</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CLOSING TEXT                                               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="closing-section reveal">
+  <h2>Every Product Has a Purpose</h2>
+  <p>From protein to electrolytes, creatine to glutamine, every product at The Func. Lab was chosen to meet a real need. Whether you're training hard, balancing family life, or simply looking to improve your health, our products are designed to make nutrition simpler, cleaner, and more effective.</p>
+  <p><strong>Because the best results come from doing the basics — and doing them right.</strong></p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- BOTTOM BANNER                                              -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="bottom-banner reveal">
+  <img src="https://thefunclab.com/cdn/shop/files/WHY_THESE_FORMULAS_BOTTOM_PAGE_BANNER_926b0f90-2280-4de6-be46-cccea5089e7a.png?v=1752311138&width=1920" alt="The Func. Lab">
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                     -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-row">
+      <img src="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/the-func-lab-logo_1.jpg?v=1749821041" alt="The Func Lab Logo">
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="origin-story.html">About Us</a></li>
+          <li><a href="ingredients.html">Ingredients</a></li>
+          <li><a href="certified.html">Certified</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">All products</a></li>
+          <li><a href="whey-protein-isolate.html">Whey Protein Isolate</a></li>
+          <li><a href="whey-protein-concentrate.html">Whey Protein Concentrate</a></li>
+          <li><a href="plant-protein.html">Plant Protein</a></li>
+          <li><a href="electrolytes.html">Electrolytes</a></li>
+          <li><a href="on-the-go-travel-packs.html">On The Go Travel Packs</a></li>
+          <li><a href="merchandise.html">Merchandise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Refunds &amp; Cancellation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/thefunclab/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/thefunclab" target="_blank">LinkedIn</a></li>
+          <li><a href="https://api.whatsapp.com/send?phone=918291959606" target="_blank">WhatsApp</a></li>
+        </ul>
+        <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:12px;">Follow us on social media!</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026, <a href="thefunclab-replica.html">The Func. Lab</a>. All rights reserved. · <a href="#">Powered by Shopify</a></p>
+      <div class="payment-methods">
+        <span class="pay-tag">Visa</span>
+        <span class="pay-tag">Mastercard</span>
+        <span class="pay-tag">UPI</span>
+        <span class="pay-tag">Razorpay</span>
+        <span class="pay-tag">Net Banking</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Header shadow ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('siteHeader').classList.toggle('shadow',window.scrollY>30);
+});
+
+/* ── Search ── */
+function openSearch(){
+  document.getElementById('searchOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('searchInput').focus(),150);
+}
+function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');}
+document.getElementById('searchOverlay').addEventListener('click',function(e){if(e.target===this)closeSearch();});
+
+/* ── Mobile menu ── */
+function openMobileMenu(){
+  document.getElementById('mobMenu').classList.add('open');
+  document.getElementById('mobOverlay').classList.add('open');
+}
+function closeMobileMenu(){
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('mobOverlay').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeSearch();closeMobileMenu();}
+});
+
+/* ── Read more toggle ── */
+function toggleMore(id, btn){
+  const el = document.getElementById('more-' + id);
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.querySelector('.arrow').textContent = isOpen ? '↓' : '↑';
+  btn.childNodes[0].textContent = isOpen ? 'Read more ' : 'Read less ';
+}
+
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+// ── LIVE LOGIN LABEL + CART COUNT ──────────────────────────────────────────
+(async () => {
+  const API   = 'https://funclab-backend-cwsp.onrender.com';
+  const token = localStorage.getItem('fl_token') || '';
+  const link  = document.getElementById('loginLink');
+  const badge = document.getElementById('cartCount');
+
+  // Update login label
+  if (token && link) {
+    try {
+      const r = await fetch(API + '/api/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (r.ok) {
+        const d = await r.json();
+        const name = (d.user?.name || '').split(' ')[0];
+        if (name) { link.textContent = 'Hi, ' + name; link.href = 'account.html'; }
+      } else {
+        localStorage.removeItem('fl_token');
+      }
+    } catch(e) {}
+  }
+
+  // Cart click: redirect to login if not logged in
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', function(e) {
+      if (!localStorage.getItem('fl_token')) {
+        e.preventDefault();
+        sessionStorage.setItem('fl_redirect_after_login', 'cart.html');
+        window.location.href = 'account.html';
+      }
+    });
+  }
+
+  // Load cart count
+  try {
+    const headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+    const r = await fetch(API + '/api/cart/', { headers, credentials: 'include' });
+    if (r.ok) {
+      const d = await r.json();
+      const count = d.summary?.item_count || 0;
+      if (badge && count > 0) {
+        badge.textContent = count;
+        badge.classList.add('has-items');
+      }
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
