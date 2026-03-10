@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certified – BioHAK Wellness</title>
+<title>On The Go Travel Pack – BioHAK Wellness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -32,7 +32,6 @@ button{cursor:pointer;font-family:inherit;}
 .main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
 .main-nav>a,.nav-item>a{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;}
 .main-nav>a:hover,.nav-item>a:hover{color:#666;}
-.main-nav>a.active-page{color:#c9a96e;}
 .nav-item{position:relative;}
 .nav-item>a::after{content:' ▾';font-size:8px;}
 .nav-item:hover .nav-drop{opacity:1;visibility:visible;transform:translateY(0);}
@@ -68,85 +67,115 @@ button{cursor:pointer;font-family:inherit;}
 .mobile-menu{position:fixed;top:0;left:0;width:300px;height:100vh;background:#fff;z-index:300;transform:translateX(-100%);transition:transform .35s cubic-bezier(.76,0,.24,1);padding:80px 32px 40px;overflow-y:auto;}
 .mobile-menu.open{transform:translateX(0);}
 .mob-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;color:#666;cursor:pointer;}
-.mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;}
+.mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;transition:color .2s;}
 
-/* ── HERO BANNERS ── */
-.hero-banner{width:100%;overflow:hidden;max-height:440px;}
-.hero-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
-.testing-banner{width:100%;overflow:hidden;max-height:400px;margin-bottom:0;}
-.testing-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+/* ── HERO ── */
+.collection-hero{width:100%;overflow:hidden;position:relative;max-height:420px;}
+.collection-hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.collection-hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,.30);}
+.collection-hero-title{font-size:clamp(28px,4.5vw,64px);font-weight:700;color:#fff;letter-spacing:.02em;text-align:center;text-shadow:0 2px 20px rgba(0,0,0,.3);padding:0 20px;}
+.hero-sub{font-size:clamp(12px,1.4vw,16px);color:rgba(255,255,255,.85);letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
 
-/* ── PAGE CONTENT ── */
-.page-content{max-width:1100px;margin:0 auto;padding:64px 40px 80px;}
+/* ── BREADCRUMB ── */
+.breadcrumb{max-width:1440px;margin:0 auto;padding:16px 40px 0;display:flex;align-items:center;gap:8px;font-size:12px;color:#999;}
+.breadcrumb a{color:#999;transition:color .2s;}
+.breadcrumb a:hover{color:#1a1a1a;}
+.sep{color:#ccc;}
 
-/* ── TESTING SECTION ── */
-.testing-intro{margin-bottom:40px;}
-.testing-intro h2{font-size:clamp(22px,2.8vw,32px);font-weight:700;margin-bottom:20px;}
-.testing-intro p{font-size:15px;line-height:1.9;color:#444;margin-bottom:16px;}
-.testing-intro ul{list-style:none;margin:12px 0;}
-.testing-intro ul li{font-size:14px;color:#444;padding:4px 0 4px 20px;position:relative;line-height:1.6;}
-.testing-intro ul li::before{content:'•';position:absolute;left:0;color:#c9a96e;font-weight:700;}
-.testing-intro ul li strong{color:#1a1a1a;}
-.highlight-line{font-size:15px;color:#444;line-height:1.9;margin-top:16px;}
-.highlight-line strong{color:#1a1a1a;}
+/* ── LAYOUT ── */
+.collection-wrap{max-width:1440px;margin:0 auto;padding:32px 40px 80px;display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start;}
 
-/* ── LAB REPORT TABLE ── */
-.table-wrap{overflow-x:auto;margin:40px 0 64px;}
-.lab-table{width:100%;border-collapse:collapse;font-size:13px;}
-.lab-table thead th{background:#1a1a1a;color:#fff;padding:14px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;}
-.lab-table tbody tr{border-bottom:1px solid #e8e4de;}
-.lab-table tbody tr:nth-child(even){background:#f7f4f0;}
-.lab-table tbody tr:hover{background:#f0ece6;}
-.lab-table td{padding:12px 16px;color:#444;vertical-align:middle;}
-.lab-table td:first-child{font-weight:600;color:#1a1a1a;}
-.lab-table td:nth-child(2){font-family:monospace;font-size:12px;color:#666;}
-.lab-table .view-link{display:inline-flex;align-items:center;gap:5px;background:#1a1a1a;color:#fff;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:background .2s;white-space:nowrap;}
-.lab-table .view-link:hover{background:#333;}
-.lab-table .view-link svg{width:12px;height:12px;}
+/* ── SIDEBAR ── */
+.sidebar{position:sticky;top:88px;}
+.filter-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.filter-header h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.filter-clear-all{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#999;border:none;background:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+.filter-clear-all:hover{color:#1a1a1a;}
+.filter-group{border-top:1px solid #e8e4de;padding:20px 0;}
+.filter-group-title{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;user-select:none;}
+.filter-group-title .chevron{font-size:12px;transition:transform .25s;}
+.filter-group-title.open .chevron{transform:rotate(180deg);}
+.filter-options{padding-top:14px;display:none;}
+.filter-options.open{display:block;}
+.filter-option{display:flex;align-items:center;gap:10px;padding:5px 0;}
+.filter-option input[type="checkbox"]{width:15px;height:15px;accent-color:#1a1a1a;cursor:pointer;flex-shrink:0;}
+.filter-option label{font-size:13px;color:#444;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;}
+.filter-option label .count{color:#aaa;font-size:12px;}
+.show-more-btn{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;background:none;border:none;cursor:pointer;margin-top:8px;text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+.show-more-btn:hover{color:#c9a96e;}
+.price-range-wrap{padding-top:14px;}
+.price-display{font-size:13px;color:#666;margin-bottom:12px;}
+.price-inputs{display:flex;gap:10px;align-items:center;}
+.price-inputs input[type="number"]{width:80px;border:1px solid #d0ccc6;padding:7px 10px;font-family:'Assistant',sans-serif;font-size:13px;color:#1a1a1a;outline:none;transition:border-color .2s;}
+.price-inputs input[type="number"]:focus{border-color:#1a1a1a;}
+.price-inputs span{font-size:13px;color:#999;}
 
-/* ── CERTIFICATIONS ── */
-.section-heading{text-align:center;margin-bottom:40px;}
-.section-heading h2{font-size:clamp(22px,2.8vw,32px);font-weight:700;}
-.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:64px;}
-.cert-card{border:1px solid #e8e4de;padding:28px 20px;text-align:center;transition:box-shadow .3s,transform .3s;}
-.cert-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px);}
-.cert-card img{width:52px;height:52px;object-fit:contain;margin:0 auto 14px;}
-.cert-name{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
-.cert-desc{font-size:13px;color:#666;line-height:1.6;}
+/* ── SORT BAR ── */
+.active-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.filter-chip{display:inline-flex;align-items:center;gap:6px;background:#f7f4f0;border:1px solid #d0ccc6;padding:5px 12px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.filter-chip:hover{background:#e8e4de;}
+.filter-chip .x{font-size:14px;line-height:1;color:#999;}
+.sort-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #e8e4de;flex-wrap:wrap;gap:12px;}
+.product-count{font-size:13px;color:#666;}
+.sort-select-wrap{display:flex;align-items:center;gap:10px;}
+.sort-label{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#666;}
+.sort-select{border:1px solid #d0ccc6;padding:8px 32px 8px 12px;font-family:'Assistant',sans-serif;font-size:13px;color:#1a1a1a;background:#fff;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
 
-/* ── CERTIFICATE DOCS ── */
-.docs-heading{font-size:clamp(18px,2vw,24px);font-weight:700;margin-bottom:24px;text-align:center;}
-.docs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:72px;}
-.doc-card{border:1px solid #e8e4de;overflow:hidden;cursor:pointer;transition:box-shadow .3s,transform .3s;text-decoration:none;}
-.doc-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.08);transform:translateY(-2px);}
-.doc-thumb{aspect-ratio:3/4;overflow:hidden;background:#f7f4f0;position:relative;}
-.doc-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
-.doc-card:hover .doc-thumb img{transform:scale(1.03);}
-.doc-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .3s;}
-.doc-card:hover .doc-thumb-overlay{background:rgba(0,0,0,.25);}
-.doc-thumb-overlay svg{opacity:0;transition:opacity .3s;color:#fff;width:32px;height:32px;}
-.doc-card:hover .doc-thumb-overlay svg{opacity:1;}
-.doc-label{padding:10px 12px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;text-align:center;border-top:1px solid #e8e4de;}
+/* ── PRODUCT GRID ── */
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.product-card{border:1px solid #e8e4de;overflow:hidden;transition:box-shadow .3s,transform .3s;cursor:pointer;}
+.product-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-3px);}
+.product-card.hidden{display:none;}
+.product-thumb{position:relative;overflow:hidden;aspect-ratio:1/1;background:#f7f4f0;}
+.product-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.product-card:hover .product-thumb img{transform:scale(1.04);}
+.product-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;z-index:2;}
+.badge-launch{background:#1a1a1a;color:#fff;}
+.badge-pct{background:#fff;color:#1a1a1a;border:1px solid #1a1a1a;}
 
-/* ── TESTING PROCESS ── */
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:72px;}
-.process-card{text-align:center;padding:24px 16px;border:1px solid #e8e4de;transition:box-shadow .25s,transform .25s;}
-.process-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-2px);}
-.process-card img{width:48px;height:48px;object-fit:contain;margin:0 auto 14px;}
-.process-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px;line-height:1.4;}
-.process-desc{font-size:12px;color:#666;line-height:1.6;}
-.process-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff3cd;color:#856404;padding:2px 7px;margin-bottom:6px;border-radius:2px;}
+/* protein-type tag on thumb */
+.protein-tag{position:absolute;bottom:10px;left:10px;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;z-index:2;border-radius:2px;}
+.tag-wpi{background:#1a1a1a;color:#c9a96e;}
+.tag-wpc{background:#3a5a7a;color:#fff;}
+.tag-pp{background:#2d6a4f;color:#fff;}
 
-/* ── PROMISE CLOSE ── */
-.promise-close{text-align:center;padding:24px 0 56px;}
-.promise-close h2{font-size:clamp(18px,2.2vw,26px);font-weight:700;color:#1a1a1a;}
+.product-body{padding:14px 16px 18px;}
+.product-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px;line-height:1.4;}
+.sachet-info{font-size:11px;color:#888;margin-bottom:8px;font-weight:600;letter-spacing:.03em;}
+.price-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.price-sale{font-size:15px;font-weight:700;color:#1a1a1a;}
+.price-compare{font-size:13px;color:#bbb;text-decoration:line-through;}
+.atc-btn{width:100%;background:#1a1a1a;color:#fff;border:none;padding:11px 16px;font-family:'Assistant',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:background .2s;}
+.atc-btn:hover{background:#333;}
+.atc-btn.added{background:#2d6a4f;}
 
-/* ── BOTTOM BANNER ── */
-.bottom-banner{width:100%;overflow:hidden;max-height:300px;}
-.bottom-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+/* ── TRAVEL INFO STRIP ── */
+.travel-strip{background:#f7f4f0;border-top:1px solid #e8e4de;border-bottom:1px solid #e8e4de;padding:56px 40px;}
+.travel-strip-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.ts-icon{font-size:32px;margin-bottom:12px;}
+.ts-head{font-size:15px;font-weight:700;margin-bottom:6px;}
+.ts-body{font-size:13px;color:#666;line-height:1.6;}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:40px;padding-bottom:8px;}
+.page-btn{border:1px solid #e8e4de;background:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.page-btn:hover,.page-btn.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}
+.page-btn.next{width:auto;padding:0 16px;gap:4px;}
+
+/* ── MOB FILTER ── */
+.mob-filter-btn{display:none;align-items:center;gap:8px;border:1px solid #d0ccc6;background:#fff;padding:10px 20px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.mob-filter-btn:hover{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}
+.mob-filter-drawer{position:fixed;inset:0;z-index:400;display:flex;opacity:0;visibility:hidden;transition:all .3s;}
+.mob-filter-drawer.open{opacity:1;visibility:visible;}
+.mob-filter-bg{position:absolute;inset:0;background:rgba(0,0,0,.4);}
+.mob-filter-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;max-height:80vh;overflow-y:auto;padding:24px 24px 40px;transform:translateY(100%);transition:transform .35s cubic-bezier(.76,0,.24,1);}
+.mob-filter-drawer.open .mob-filter-panel{transform:translateY(0);}
+.mob-filter-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.mob-filter-header h3{font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.mob-filter-close{background:none;border:none;font-size:24px;cursor:pointer;color:#666;}
 
 /* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
 /* ── FOOTER ── */
@@ -168,9 +197,10 @@ footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
 .pay-tag{background:rgba(255,255,255,.08);border-radius:3px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,.4);font-weight:600;}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){.main-nav{display:none;}.hamburger{display:flex;}.page-content{padding:48px 24px 60px;}.cert-grid{grid-template-columns:repeat(2,1fr);}.docs-grid{grid-template-columns:repeat(3,1fr);}.process-grid{grid-template-columns:repeat(2,1fr);}.header-wrap{padding:0 24px;}}
-@media(max-width:768px){.cert-grid{grid-template-columns:repeat(2,1fr);}.docs-grid{grid-template-columns:repeat(2,1fr);}.process-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:repeat(2,1fr);gap:32px;}.header-wrap{padding:0 20px;}.page-content{padding:40px 20px 60px;}.lab-table{font-size:12px;}.lab-table td,.lab-table th{padding:10px 12px;}}
-@media(max-width:500px){.cert-grid{grid-template-columns:1fr 1fr;}.docs-grid{grid-template-columns:1fr 1fr;}.process-grid{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}}
+@media(max-width:1100px){.products-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:1024px){.main-nav{display:none;}.hamburger{display:flex;}.collection-wrap{grid-template-columns:220px 1fr;gap:32px;padding:28px 24px 60px;}.travel-strip{padding:40px 24px;}.breadcrumb{padding:16px 24px 0;}}
+@media(max-width:768px){.collection-wrap{grid-template-columns:1fr;padding:20px 20px 60px;}.sidebar{display:none;}.mob-filter-btn{display:flex;}.products-grid{grid-template-columns:repeat(2,1fr);gap:16px;}.travel-strip-inner{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:repeat(2,1fr);gap:32px;}.breadcrumb{padding:12px 20px 0;}.header-wrap{padding:0 20px;}}
+@media(max-width:500px){.products-grid{grid-template-columns:1fr;}.travel-strip-inner{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}}
 
 /* ── GOLD TEXT SELECTION ── */
 ::selection{background:#c9a96e;color:#fff;}
@@ -336,12 +366,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
           <a href="/plant-protein.html">Plant Protein</a>
           <a href="/omega-3-algal.html">Omega-3 (Algal)</a>
           <a href="/multivitamins.html">Multivitamins</a>
-          <a href="/b-complex.html">B-Complex</a>
+          <a href="/b-complex.html" class="active-page">B-Complex</a>
           <a href="/vitamin-d3-k2.html">Vitamin D-3 + K2</a>
         </div>
       </div>
       <a href="/ingredients.html">Ingredients</a>
-      <a href="/certified.html" class="active-page">Certified</a>
+      <a href="/certified.html">Certified</a>
       <a href="/news.html">News</a>
       <a href="/blogs.html">Blogs</a>
     </nav>
@@ -372,214 +402,411 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   <a href="/index.html">Home</a>
   <a href="/origin-story.html">About Us</a>
   <a href="/all-products.html">All Products</a>
-  <a href="/ingredients.html">Ingredients</a>
-  <a href="/certified.html">Certified</a>
+  <a href="/whey-protein.html">Whey Protein</a>
+  <a href="/whey-protein.html">Whey Protein</a>
+  <a href="/plant-protein.html">Plant Protein</a>
+  <a href="/omega-3-algal.html">Omega-3 (Algal)</a>
+  <a href="/multivitamins.html">Multivitamins</a>
+  <a href="/b-complex.html">B-Complex</a>
   <a href="/account.html">Log in</a>
 </nav>
 
-<!-- HERO BANNERS -->
-<div class="hero-banner">
-  <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1920&q=80&fit=crop" alt="Certified">
+<!-- MOBILE FILTER DRAWER -->
+<div class="mob-filter-drawer" id="mobFilterDrawer">
+  <div class="mob-filter-bg" onclick="closeMobFilter()"></div>
+  <div class="mob-filter-panel">
+    <div class="mob-filter-header">
+      <h3>Filter</h3>
+      <button class="mob-filter-close" onclick="closeMobFilter()">✕</button>
+    </div>
+    <div class="filter-group" style="border-top:none;">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Category <span class="chevron">▲</span></div>
+      <div class="filter-options open">
+        <label class="filter-option"><input type="checkbox" value="plant" onchange="applyFilters()"><label>Plant Protein <span class="count">(5)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="wpc" onchange="applyFilters()"><label>Whey Protein <span class="count">(5)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="wpi" onchange="applyFilters()"><label>Whey Protein <span class="count">(5)</span></label></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Flavours <span class="chevron">▲</span></div>
+      <div class="filter-options open">
+        <label class="filter-option"><input type="checkbox" value="chocolate" onchange="applyFilters()"><label>Chocolate <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="coffee" onchange="applyFilters()"><label>Coffee <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="unflavoured" onchange="applyFilters()"><label>Unflavoured <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="vanilla" onchange="applyFilters()"><label>Vanilla <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="assorted" onchange="applyFilters()"><label>Assorted <span class="count">(3)</span></label></label>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="testing-banner">
-  <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80&fit=crop" alt="Testing">
+
+<!-- HERO -->
+<section class="collection-hero">
+  <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="B-Complex">
+  <div class="collection-hero-overlay">
+    <h1 class="collection-hero-title">On The Go Travel Pack</h1>
+    <p class="hero-sub">8 × 35g sachets · Take your nutrition anywhere</p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="/index.html">Home</a>
+  <span class="sep">/</span>
+  <a href="/all-products.html">Collections</a>
+  <span class="sep">/</span>
+  <span style="color:#1a1a1a;font-weight:600;">On The Go Travel Pack</span>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div class="collection-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="filter-header">
+      <h2>Filter</h2>
+      <button class="filter-clear-all" onclick="clearAllFilters()">Clear all</button>
+    </div>
+
+    <!-- Category -->
+    <div class="filter-group">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Category <span class="chevron">▲</span></div>
+      <div class="filter-options open" id="fg-category">
+        <label class="filter-option"><input type="checkbox" value="plant" onchange="applyFilters()"><label>Plant Protein <span class="count">(5)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="wpc" onchange="applyFilters()"><label>Whey Protein <span class="count">(5)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="wpi" onchange="applyFilters()"><label>Whey Protein <span class="count">(5)</span></label></label>
+      </div>
+    </div>
+
+    <!-- Flavours -->
+    <div class="filter-group">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Flavours <span class="chevron">▲</span></div>
+      <div class="filter-options open" id="fg-flavours">
+        <label class="filter-option"><input type="checkbox" value="chocolate" onchange="applyFilters()"><label>Chocolate <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="coffee" onchange="applyFilters()"><label>Coffee <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="unflavoured" onchange="applyFilters()"><label>Unflavoured <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="vanilla" onchange="applyFilters()"><label>Vanilla <span class="count">(3)</span></label></label>
+        <label class="filter-option"><input type="checkbox" value="assorted" onchange="applyFilters()"><label>Assorted <span class="count">(3)</span></label></label>
+        <label class="filter-option" id="flav-extra-1" style="display:none"><input type="checkbox" value="single" onchange="applyFilters()"><label>Single Flavour <span class="count">(12)</span></label></label>
+        <button class="show-more-btn" id="flavMoreBtn" onclick="toggleShowMore()">Show more</button>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="filter-group">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Price <span class="chevron">▲</span></div>
+      <div class="filter-options open">
+        <div class="price-range-wrap">
+          <div class="price-display" id="priceDisplay">Price: Rs. 0 – Rs. 2,069</div>
+          <div class="price-inputs">
+            <span>₹</span>
+            <input type="number" id="priceMin" value="0" min="0" max="2069" placeholder="From" onchange="updatePriceDisplay()">
+            <span>–</span>
+            <input type="number" id="priceMax" value="2069" min="0" max="2069" placeholder="To" onchange="updatePriceDisplay()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+      <button class="mob-filter-btn" onclick="openMobFilter()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filter &amp; Sort
+      </button>
+    </div>
+
+    <div class="active-filters" id="activeFilters"></div>
+
+    <div class="sort-bar">
+      <span class="product-count" id="productCountLabel">15 products</span>
+      <div class="sort-select-wrap">
+        <span class="sort-label">Sort by</span>
+        <select class="sort-select" onchange="sortProducts(this.value)">
+          <option value="featured">Featured</option>
+          <option value="best-selling">Best selling</option>
+          <option value="a-z">Alphabetically, A–Z</option>
+          <option value="z-a">Alphabetically, Z–A</option>
+          <option value="price-low">Price, low to high</option>
+          <option value="price-high">Price, high to low</option>
+          <option value="date-old">Date, old to new</option>
+          <option value="date-new">Date, new to old</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ── 15 TRAVEL PACK PRODUCTS ── -->
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ── PLANT PROTEIN (5) ── -->
+
+      <!-- 1. PP Assorted -->
+      <div class="product-card reveal" data-cat="plant" data-flavour="assorted" data-price="525" data-name="Plant Protein – Assorted Flavor Travel Pack Sachets" data-date="1">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80&fit=crop" alt="Plant Protein – Assorted" loading="lazy">
+          <span class="product-badge badge-launch">Launch Offer</span>
+          <span class="protein-tag tag-pp">Plant Protein</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Plant Protein – Assorted Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">4 × 35g sachets · All flavours</div>
+          <div class="price-row"><span class="price-sale">Rs. 525.00</span><span class="price-compare">Rs. 600.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 2. PP Coffee -->
+      <div class="product-card reveal" data-cat="plant" data-flavour="coffee" data-price="699" data-name="Plant Protein - Single Coffee Flavor Travel Pack Sachets" data-date="2">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&fit=crop" alt="Plant Protein Coffee Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–13%</span>
+          <span class="protein-tag tag-pp">Plant Protein</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Plant Protein - Single Coffee Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Coffee</div>
+          <div class="price-row"><span class="price-sale">Rs. 699.00</span><span class="price-compare">Rs. 800.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 3. PP Chocolate -->
+      <div class="product-card reveal" data-cat="plant" data-flavour="chocolate" data-price="699" data-name="Plant Protein - Single Chocolate Flavor Travel Pack Sachets" data-date="3">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=600&q=80&fit=crop" alt="Plant Protein Chocolate Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–13%</span>
+          <span class="protein-tag tag-pp">Plant Protein</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Plant Protein - Single Chocolate Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Chocolate</div>
+          <div class="price-row"><span class="price-sale">Rs. 699.00</span><span class="price-compare">Rs. 800.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 4. PP Vanilla -->
+      <div class="product-card reveal" data-cat="plant" data-flavour="vanilla" data-price="699" data-name="Plant Protein - Single Vanilla Flavor Travel Pack Sachets" data-date="4">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=600&q=80&fit=crop" alt="Plant Protein Vanilla Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–13%</span>
+          <span class="protein-tag tag-pp">Plant Protein</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Plant Protein - Single Vanilla Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Vanilla</div>
+          <div class="price-row"><span class="price-sale">Rs. 699.00</span><span class="price-compare">Rs. 800.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 5. PP Unflavoured -->
+      <div class="product-card reveal" data-cat="plant" data-flavour="unflavoured" data-price="699" data-name="Plant Protein - Single Unflavoured Flavor Travel Pack Sachets" data-date="5">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Plant Protein Unflavoured Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–13%</span>
+          <span class="protein-tag tag-pp">Plant Protein</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Plant Protein - Single Unflavoured Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Unflavoured</div>
+          <div class="price-row"><span class="price-sale">Rs. 699.00</span><span class="price-compare">Rs. 800.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- ── WHEY PROTEIN ISOLATE (5) ── -->
+
+      <!-- 6. WPI Assorted -->
+      <div class="product-card reveal" data-cat="wpi" data-flavour="assorted" data-price="1299" data-name="Whey Protein - Assorted Flavor Travel Pack Sachets" data-date="6">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&fit=crop" alt="WPI Assorted Travel Pack" loading="lazy">
+          <span class="product-badge badge-launch">Launch Offer</span>
+          <span class="protein-tag tag-wpi">WPI</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Assorted Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">4 × 35g sachets · All flavours</div>
+          <div class="price-row"><span class="price-sale">Rs. 1,299.00</span><span class="price-compare">Rs. 1,400.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 7. WPI Coffee -->
+      <div class="product-card reveal" data-cat="wpi" data-flavour="coffee" data-price="1725" data-name="Whey Protein - Single Coffee Flavor Travel Pack Sachets" data-date="7">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&q=80&fit=crop" alt="WPI Coffee Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–14%</span>
+          <span class="protein-tag tag-wpi">WPI</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Coffee Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Coffee</div>
+          <div class="price-row"><span class="price-sale">Rs. 1,725.00</span><span class="price-compare">Rs. 2,000.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 8. WPI Chocolate -->
+      <div class="product-card reveal" data-cat="wpi" data-flavour="chocolate" data-price="1725" data-name="Whey Protein - Single Chocolate Flavor Travel Pack Sachets" data-date="8">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1612200900624-56e2eb3c7561?w=600&q=80&fit=crop" alt="WPI Chocolate Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–14%</span>
+          <span class="protein-tag tag-wpi">WPI</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Chocolate Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Chocolate</div>
+          <div class="price-row"><span class="price-sale">Rs. 1,725.00</span><span class="price-compare">Rs. 2,000.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 9. WPI Vanilla -->
+      <div class="product-card reveal" data-cat="wpi" data-flavour="vanilla" data-price="1725" data-name="Whey Protein - Single Vanilla Flavor Travel Pack Sachets" data-date="9">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="WPI Vanilla Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–14%</span>
+          <span class="protein-tag tag-wpi">WPI</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Vanilla Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Vanilla</div>
+          <div class="price-row"><span class="price-sale">Rs. 1,725.00</span><span class="price-compare">Rs. 2,000.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 10. WPI Unflavoured -->
+      <div class="product-card reveal" data-cat="wpi" data-flavour="unflavoured" data-price="1725" data-name="Whey Protein - Single Unflavoured Flavor Travel Pack Sachets" data-date="10">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?w=600&q=80&fit=crop" alt="WPI Unflavoured Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–14%</span>
+          <span class="protein-tag tag-wpi">WPI</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Unflavoured Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Unflavoured</div>
+          <div class="price-row"><span class="price-sale">Rs. 1,725.00</span><span class="price-compare">Rs. 2,000.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- ── WHEY PROTEIN CONCENTRATE (5) ── -->
+
+      <!-- 11. WPC Assorted -->
+      <div class="product-card reveal" data-cat="wpc" data-flavour="assorted" data-price="699" data-name="Whey Protein – Assorted Flavor Travel Pack Sachets" data-date="11">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&fit=crop" alt="WPC Assorted Travel Pack" loading="lazy">
+          <span class="product-badge badge-launch">Launch Offer</span>
+          <span class="protein-tag tag-wpc">WPC</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein – Assorted Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">4 × 35g sachets · All flavours</div>
+          <div class="price-row"><span class="price-sale">Rs. 699.00</span><span class="price-compare">Rs. 900.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 12. WPC Coffee -->
+      <div class="product-card reveal" data-cat="wpc" data-flavour="coffee" data-price="899" data-name="Whey Protein - Single Coffee Flavor Travel Pack Sachets" data-date="12">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&fit=crop" alt="WPC Coffee Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–40%</span>
+          <span class="protein-tag tag-wpc">WPC</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Coffee Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Coffee</div>
+          <div class="price-row"><span class="price-sale">Rs. 899.00</span><span class="price-compare">Rs. 1,500.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 13. WPC Chocolate -->
+      <div class="product-card reveal" data-cat="wpc" data-flavour="chocolate" data-price="899" data-name="Whey Protein - Single Chocolate Flavor Travel Pack Sachets" data-date="13">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1627467959547-dc9b5bfda8e2?w=600&q=80&fit=crop" alt="WPC Chocolate Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–40%</span>
+          <span class="protein-tag tag-wpc">WPC</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Chocolate Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Chocolate</div>
+          <div class="price-row"><span class="price-sale">Rs. 899.00</span><span class="price-compare">Rs. 1,500.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 14. WPC Vanilla -->
+      <div class="product-card reveal" data-cat="wpc" data-flavour="vanilla" data-price="899" data-name="Whey Protein - Single Vanilla Flavor Travel Pack Sachets" data-date="14">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1627467959547-dc9b5bfda8e2?w=600&q=80&fit=crop" alt="WPC Vanilla Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–40%</span>
+          <span class="protein-tag tag-wpc">WPC</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Vanilla Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Vanilla</div>
+          <div class="price-row"><span class="price-sale">Rs. 899.00</span><span class="price-compare">Rs. 1,500.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+      <!-- 15. WPC Unflavoured -->
+      <div class="product-card reveal" data-cat="wpc" data-flavour="unflavoured" data-price="899" data-name="Whey Protein - Single Unflavoured Flavor Travel Pack Sachets" data-date="15">
+        <div class="product-thumb">
+          <img src="https://images.unsplash.com/photo-1627467959547-dc9b5bfda8e2?w=600&q=80&fit=crop" alt="WPC Unflavoured Travel Pack" loading="lazy">
+          <span class="product-badge badge-pct">–40%</span>
+          <span class="protein-tag tag-wpc">WPC</span>
+        </div>
+        <div class="product-body">
+          <div class="product-title">Whey Protein - Single Unflavoured Flavor Travel Pack Sachets</div>
+          <div class="sachet-info">8 × 35g sachets · Unflavoured</div>
+          <div class="price-row"><span class="price-sale">Rs. 899.00</span><span class="price-compare">Rs. 1,500.00</span></div>
+          <button class="atc-btn" onclick="addToCart(this)">Add To Cart</button>
+        </div>
+      </div>
+
+    </div><!-- /products-grid -->
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn next">Next ›</button>
+    </div>
+
+  </main>
 </div>
 
-<!-- PAGE CONTENT -->
-<div class="page-content">
-
-  <!-- TESTING INTRO -->
-  <div class="testing-intro reveal">
-    <h2>Tested for Purity &amp; Safety</h2>
-    <p>At BioHAK Wellness, we prioritize product safety and transparency. All our protein powders and omega-3-algal are third-party lab tested to meet the highest standards of quality, purity, and nutritional accuracy.</p>
-
-    <p><strong>Protein Powders are tested for:</strong></p>
-    <ul>
-      <li><strong>Nutritional Values:</strong> Total fat, carbohydrates, protein (dry basis), total sugar, added sugar, sodium</li>
-      <li><strong>Heavy Metals:</strong> Arsenic, lead, mercury, cadmium, methyl mercury</li>
-      <li><strong>Contaminants:</strong> 200+ pesticide residues, melamine, aflatoxins</li>
-    </ul>
-
-    <p style="margin-top:16px;"><strong>Omega-3 (Algal) are tested for:</strong></p>
-    <ul>
-      <li><strong>Nutritional Values:</strong> Total sugar, energy, sodium, magnesium, potassium</li>
-      <li><strong>Heavy Metals:</strong> Arsenic, lead, mercury, cadmium</li>
-      <li><strong>Contaminants:</strong> Pesticide residues</li>
-    </ul>
-
-    <p class="highlight-line" style="margin-top:20px;">Every batch is screened for protein, carbs, fats, sugars, heavy metals, and (soon) banned substances — so you get <strong>clean</strong>, <strong>safe</strong>, and genuinely <strong>functional</strong> products you can <strong>trust</strong>.</p>
-  </div>
-
-  <!-- LAB REPORT TABLE -->
-  <div class="table-wrap reveal">
-    <table class="lab-table">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Unique Lab Report #</th>
-          <th>Report Date</th>
-          <th>Report</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Plant Protein Chocolate</td><td>TC155462500002792F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003591-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Plant Protein Vanilla</td><td>TC155462500002793F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003589-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Plant Protein Coffee</td><td>TC155462500002795F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Plant_protein_coffee.pdf?v=1752404350" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Plant Protein Unflavored</td><td>TC155462500002799F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003590-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Chocolate</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003593-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Vanilla</td><td>TC155462500002800F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003592-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Coffee</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003588-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Unflavored</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003594-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Chocolate</td><td>TC155462500002803F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003597-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Vanilla</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003596-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Coffee</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003587-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Whey Protein Unflavored</td><td>TC155462500002805F</td><td>July 15, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003595-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Omega-3 (Algal) Orange (Hydration Mix)</td><td>TC155462500002727F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003124-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Omega-3 (Algal) Citrus (Hydration Mix)</td><td>TC155462500002725F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003125-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Omega-3 (Algal) Berry Blast (Hydration Mix)</td><td>TC155462500002726F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003126-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Omega-3 (Algal) Raspberry (Hydration Mix)</td><td>TC155462500002728F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003127-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-        <tr><td>Omega-3 (Algal) Pineapple (Hydration Mix)</td><td>TC155462500002729F</td><td>July 4, 2025</td><td><a class="view-link" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/AR-644-2025-00003128-01.pdf?v=1752822081" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View File</a></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- CERTIFICATIONS -->
-  <div class="section-heading reveal">
-    <h2>We proudly hold the following certifications</h2>
-  </div>
-
-  <div class="cert-grid reveal">
-    <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="FSSAI" onerror="this.style.fontSize='28px';this.alt='🏆';this.style.display='block'">
-      <div class="cert-name">FSSAI</div>
-      <div class="cert-desc">Ensuring our products meet India's highest food safety standards.</div>
+<!-- TRAVEL INFO STRIP -->
+<div class="travel-strip">
+  <div class="travel-strip-inner">
+    <div class="reveal">
+      <div class="ts-icon">✈️</div>
+      <div class="ts-head">Airport-friendly</div>
+      <div class="ts-body">Pre-measured sachets pass security without any hassle</div>
     </div>
-    <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="GMP" onerror="this.style.display='none'">
-      <div class="cert-name">GMP (Good Manufacturing Practice)</div>
-      <div class="cert-desc">Guaranteeing consistent quality and safe production practices.</div>
+    <div class="reveal">
+      <div class="ts-icon">🎒</div>
+      <div class="ts-head">Gym bag ready</div>
+      <div class="ts-body">Toss a sachet in your bag — no scoops, no mess, no over-packing</div>
     </div>
-    <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&q=85&fit=crop" alt="BRC" onerror="this.style.display='none'">
-      <div class="cert-name">BRC (British Retail Consortium)</div>
-      <div class="cert-desc">Recognized globally for upholding stringent food safety guidelines.</div>
+    <div class="reveal">
+      <div class="ts-icon">⚖️</div>
+      <div class="ts-head">35g per sachet</div>
+      <div class="ts-body">Exactly one serving. Same formula as the full-size tub</div>
     </div>
-    <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=85&fit=crop" alt="ISO" onerror="this.style.display='none'">
-      <div class="cert-name">ISO Certification</div>
-      <div class="cert-desc">Ensuring our products align with India's trusted standards for holistic wellness.</div>
+    <div class="reveal">
+      <div class="ts-icon">🌿</div>
+      <div class="ts-head">3 protein types</div>
+      <div class="ts-body">WPI, WPC, and Plant Protein — all available in travel format</div>
     </div>
   </div>
-
-  <!-- CERTIFICATE DOCUMENTS -->
-  <h2 class="docs-heading reveal">&nbsp;</h2>
-  <div class="docs-grid reveal">
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/fssai-func.jpg?v=1752243211" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80&fit=crop" alt="FSSAI License" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">FSSAI License</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Renewed_FSSAI_license_-1.pdf?v=1751191898" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80&fit=crop" alt="FSSAI License Renewed" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">FSSAI License</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Factory_Licence_-_2.pdf?v=1751191897" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&q=80&fit=crop" alt="Factory License" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">Factory License</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/ISO_CERTIFICATE_-_3.pdf?v=1751191897" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&q=80&fit=crop" alt="ISO Certificate" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">ISO Certificate</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/GMP_Certificate_-_4.pdf?v=1751191897" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=85&fit=crop" alt="GMP Certificate" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">GMP Certificate</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/Halal_Certificate_-_5.pdf?v=1751191897" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85&fit=crop" alt="Halal Certificate" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">Halal Certificate</div>
-    </a>
-    <a class="doc-card" href="https://cdn.shopify.com/s/files/1/0924/0313/8860/files/BRCGS_CERTIFICATE_-_6.pdf?v=1751191897" target="_blank">
-      <div class="doc-thumb">
-        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=85&fit=crop" alt="BRCGS Certificate" loading="lazy">
-        <div class="doc-thumb-overlay"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-      </div>
-      <div class="doc-label">BRCGS Certificate</div>
-    </a>
-  </div>
-
-  <!-- TESTING PROCESS -->
-  <div class="section-heading reveal">
-    <h2>Our Testing Process: No Guesswork, Just Results</h2>
-  </div>
-
-  <div class="process-grid reveal">
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=600&q=85&fit=crop" alt="Informed Sports" onerror="this.style.display='none'">
-      <div class="process-badge">In Progress</div>
-      <div class="process-name">Informed Sports / NFS Certification</div>
-      <div class="process-desc">Globally recognized programs that are trusted by professional athletes worldwide.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=85&fit=crop" alt="Heavy Metals" onerror="this.style.display='none'">
-      <div class="process-name">Heavy Metals Testing</div>
-      <div class="process-desc">We test for lead, arsenic, mercury, and other contaminants to guarantee clean, safe supplements.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=85&fit=crop" alt="Protein Content" onerror="this.style.display='none'">
-      <div class="process-name">Protein Content Verification</div>
-      <div class="process-desc">Ensuring that each scoop delivers the precise protein content you're paying for.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=85&fit=crop" alt="Amino Acid" onerror="this.style.display='none'">
-      <div class="process-name">Amino Acid Profile Analysis</div>
-      <div class="process-desc">To verify the right balance of essential and non-essential amino acids for optimal recovery and muscle support.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&q=85&fit=crop" alt="Microbiology" onerror="this.style.display='none'">
-      <div class="process-name">Microbiology Testing</div>
-      <div class="process-desc">Screening for harmful bacteria and ensuring the highest hygiene standards.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=85&fit=crop" alt="Adulteration" onerror="this.style.display='none'">
-      <div class="process-name">Adulteration &amp; Purity Testing</div>
-      <div class="process-desc">Guaranteeing our products are free from contaminants and harmful additives.</div>
-    </div>
-    <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1559181567-c3190ca9be46?w=600&q=85&fit=crop" alt="Shelf Life" onerror="this.style.display='none'">
-      <div class="process-name">Stability &amp; Shelf Life Testing</div>
-      <div class="process-desc">Ensuring our products remain fresh, potent, and effective for their intended shelf life.</div>
-    </div>
-  </div>
-
-  <!-- PROMISE CLOSE -->
-  <div class="promise-close reveal">
-    <h2>Simple Products. Transparent Ingredients. Real Results.</h2>
-    <p style="font-size:15px;color:#555;margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;">BioHAK Wellness is your answer to functional, straightforward nutrition, designed to fit into your life, not complicate it.</p>
-  </div>
-
-</div><!-- /page-content -->
-
-<!-- BOTTOM BANNER -->
-<div class="bottom-banner reveal">
-  <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=85&fit=crop" alt="Certified Bottom Banner">
 </div>
 
 <!-- FOOTER -->
@@ -653,7 +880,90 @@ document.getElementById('searchOverlay').addEventListener('click',function(e){if
 
 function openMobileMenu(){document.getElementById('mobMenu').classList.add('open');document.getElementById('mobOverlay').classList.add('open');}
 function closeMobileMenu(){document.getElementById('mobMenu').classList.remove('open');document.getElementById('mobOverlay').classList.remove('open');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeMobileMenu();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeMobileMenu();closeMobFilter();}});
+
+function openMobFilter(){document.getElementById('mobFilterDrawer').classList.add('open');}
+function closeMobFilter(){document.getElementById('mobFilterDrawer').classList.remove('open');}
+
+function toggleFilterGroup(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
+
+let flavExpanded=false;
+function toggleShowMore(){
+  flavExpanded=!flavExpanded;
+  document.getElementById('flav-extra-1').style.display=flavExpanded?'flex':'none';
+  document.getElementById('flavMoreBtn').textContent=flavExpanded?'Show less':'Show more';
+}
+
+let cartCount=0;
+function addToCart(btn){
+  const orig=btn.textContent;
+  btn.textContent='✓ Added';btn.classList.add('added');
+  cartCount++;document.getElementById('cartCount').textContent=cartCount;
+  setTimeout(()=>{btn.textContent=orig;btn.classList.remove('added');},2000);
+}
+
+function applyFilters(){
+  const cats=[...document.querySelectorAll('#fg-category input:checked')].map(c=>c.value);
+  const flavs=[...document.querySelectorAll('#fg-flavours input:checked')].map(c=>c.value);
+  const min=parseInt(document.getElementById('priceMin').value)||0;
+  const max=parseInt(document.getElementById('priceMax').value)||2069;
+  let count=0;
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const catMatch=cats.length===0||cats.includes(card.dataset.cat);
+    const flavMatch=flavs.length===0||flavs.includes(card.dataset.flavour);
+    const priceMatch=parseInt(card.dataset.price)>=min&&parseInt(card.dataset.price)<=max;
+    const show=catMatch&&flavMatch&&priceMatch;
+    card.classList.toggle('hidden',!show);
+    if(show)count++;
+  });
+  document.getElementById('productCountLabel').textContent=count+' products';
+  renderChips(cats,flavs);
+}
+
+function renderChips(cats,flavs){
+  const c=document.getElementById('activeFilters');c.innerHTML='';
+  const catLabels={'plant':'Plant Protein','wpc':'WPC','wpi':'WPI'};
+  cats.forEach(v=>{
+    const chip=document.createElement('div');chip.className='filter-chip';
+    chip.innerHTML=`${catLabels[v]||v} <span class="x">×</span>`;
+    chip.onclick=()=>{document.querySelectorAll('#fg-category input').forEach(i=>{if(i.value===v)i.checked=false;});applyFilters();};
+    c.appendChild(chip);
+  });
+  flavs.forEach(v=>{
+    const chip=document.createElement('div');chip.className='filter-chip';
+    chip.innerHTML=`Flavour: ${v} <span class="x">×</span>`;
+    chip.onclick=()=>{document.querySelectorAll('#fg-flavours input').forEach(i=>{if(i.value===v)i.checked=false;});applyFilters();};
+    c.appendChild(chip);
+  });
+}
+
+function clearAllFilters(){
+  document.querySelectorAll('#fg-category input,#fg-flavours input').forEach(i=>i.checked=false);
+  document.getElementById('priceMin').value=0;document.getElementById('priceMax').value=2069;
+  updatePriceDisplay();
+}
+
+function updatePriceDisplay(){
+  const min=document.getElementById('priceMin').value||0;
+  const max=document.getElementById('priceMax').value||2069;
+  document.getElementById('priceDisplay').textContent=`Price: Rs. ${parseInt(min).toLocaleString()} – Rs. ${parseInt(max).toLocaleString()}`;
+  applyFilters();
+}
+
+function sortProducts(method){
+  const grid=document.getElementById('productsGrid');
+  const cards=[...grid.querySelectorAll('.product-card')];
+  cards.sort((a,b)=>{
+    if(method==='a-z')return a.dataset.name.localeCompare(b.dataset.name);
+    if(method==='z-a')return b.dataset.name.localeCompare(a.dataset.name);
+    if(method==='price-low')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+    if(method==='price-high')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+    if(method==='date-old')return parseInt(a.dataset.date)-parseInt(b.dataset.date);
+    if(method==='date-new')return parseInt(b.dataset.date)-parseInt(a.dataset.date);
+    return parseInt(a.dataset.date)-parseInt(b.dataset.date);
+  });
+  cards.forEach(c=>grid.appendChild(c));
+}
 
 const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.06});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
