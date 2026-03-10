@@ -287,7 +287,6 @@ async function addToCart(pid){
   }catch(e){btn.textContent='Error';btn.disabled=false;}
 }
 
-const API = 'https://funclab-backend-cwsp.onrender.com';
 document.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('fl_token') || '';
   const badge = document.getElementById('cartCount');
