@@ -385,7 +385,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
         </svg>
       </button>
       <a href="/account.html" class="hdr-link" id="loginLink">Log in</a>
-      <a href="/cart.html" class="cart-link">Cart</a>
+      <a href="/cart.html" class="cart-link" id="cartBtn" aria-label="Cart" onclick="handleCartClick(event)">
+        <svg viewBox="0 0 24 24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge" id="cartCount">0</span>
+      </a>
       <button class="hamburger" onclick="openMobileMenu()"><span></span><span></span><span></span></button>
     </div>
   </div>
