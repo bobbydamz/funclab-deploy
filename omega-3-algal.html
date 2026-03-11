@@ -11,13 +11,7 @@ body{font-family:'Assistant',sans-serif;background:#f7f4f0;color:#fff;}
 a{text-decoration:none;color:inherit;}
 button{cursor:pointer;font-family:inherit;}
 ::selection{background:#3a9c9c;color:#fff;}
-input{caret-color:#0f5252;}
-/* ANN BAR */
-.ann-bar{background:#1a1a1a;color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;overflow:hidden;}
-.ann-ticker{display:flex;width:max-content;animation:annTick 25s linear infinite;}
-.ann-seg{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:24px;}
-.ann-div{color:#0f5252;}
-@keyframes annTick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+input{caret-color:#0f5252;}100%{transform:translateX(-50%);}}
 /* HEADER */
 .site-header{background:#fff;border-bottom:1px solid #e8e4de;position:sticky;top:0;z-index:200;}
 .header-wrap{max-width:1440px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px;}
@@ -105,13 +99,66 @@ footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;margin-top:80px;}
   .footer-grid{grid-template-columns:repeat(2,1fr);}
   .related-section{padding:0 20px;}
 }
-</style>
+
+
+
+/* ─── ANNOUNCEMENT BAR ─── */
+.ann-bar{
+  background:#1a1a1a;
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:10px 0;
+  overflow:hidden;
+  position:relative;
+}
+
+.ann-ticker{display:flex;width:max-content;animation:annTick 25s linear infinite;}
+
+.ann-ticker:hover{animation-play-state:paused;}
+
+.ann-seg{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:24px;}
+
+.ann-seg a{color:#c9a96e;}
+
+.ann-divider{color:#c9a96e;font-size:10px;}
+
+@keyframes annTick{0%{transform:translateX(0);}
+
+
+  /* Announcement bar */
+  .ann-bar{font-size:10px !important;}</style>
 </head>
 <body>
-<div class="ann-bar"><div class="ann-ticker">
-  <div class="ann-seg"><span>Free shipping on orders over ₹1000</span><span class="ann-div">|</span><span>100% Clean Ingredients</span><span class="ann-div">|</span><span>Third-Party Tested</span><span class="ann-div">|</span></div>
-  <div class="ann-seg" aria-hidden="true"><span>Free shipping on orders over ₹1000</span><span class="ann-div">|</span><span>100% Clean Ingredients</span><span class="ann-div">|</span><span>Third-Party Tested</span><span class="ann-div">|</span></div>
-</div></div>
+<div class="ann-bar">
+  <div class="ann-ticker">
+    <div class="ann-seg">
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-divider">|</span>
+      <a href="/all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-divider">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-divider">|</span>
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-divider">|</span>
+      <a href="/all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-divider">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-divider">|</span>
+    </div>
+    <div class="ann-seg" aria-hidden="true">
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-divider">|</span>
+      <a href="/all-products.html">Get up to 26% off on all orders</a>
+      <span class="ann-divider">|</span>
+      <span>Free shipping on all orders over Rs. 1000</span>
+      <span class="ann-divider">|</span>
+      <span>World Protein Day Sale Live!</span>
+      <span class="ann-divider">|</span>
+    </div>
+  </div></div>
 
 <header class="site-header">
   <div class="header-wrap">
