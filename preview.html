@@ -631,6 +631,58 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 </style>
 </head>
 <body>
+<!-- ═══════════ SPLASH SCREEN ═══════════ -->
+<div id="splashScreen" style="position:fixed;inset:0;z-index:9999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease;">
+  <div id="splashLogo" style="display:flex;flex-direction:column;align-items:center;opacity:0;transform:scale(.85);transition:opacity .5s ease,transform .5s ease;">
+    <div style="margin-bottom:20px;">
+      <svg width="70" height="84" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:splashSpin 1s cubic-bezier(.68,-.55,.27,1.55) forwards;">
+        <path d="M20 10 Q50 40 80 10" stroke="#4bb4b4" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M20 10 Q50 40 80 10" stroke="#2d8787" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="4 6" opacity=".5"/>
+        <line x1="20" y1="10" x2="20" y2="110" stroke="#4bb4b4" stroke-width="5" stroke-linecap="round"/>
+        <line x1="80" y1="10" x2="80" y2="110" stroke="#4bb4b4" stroke-width="5" stroke-linecap="round"/>
+        <path d="M20 37 Q50 57 80 37" stroke="#3ca0a0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M20 57 Q50 77 80 57" stroke="#3ca0a0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M20 77 Q50 97 80 77" stroke="#3ca0a0" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".6"/>
+        <path d="M20 110 Q50 80 80 110" stroke="#4bb4b4" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M20 110 Q50 80 80 110" stroke="#2d8787" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="4 6" opacity=".5"/>
+      </svg>
+    </div>
+    <div style="display:flex;align-items:baseline;">
+      <span id="splashBio" style="font-family:'Arial Black',Arial,sans-serif;font-size:46px;font-weight:900;color:#1a1a1a;opacity:0;transform:translateX(-24px);transition:opacity .45s ease .55s,transform .45s ease .55s;">Bio</span>
+      <span id="splashHak" style="font-family:'Arial Black',Arial,sans-serif;font-size:46px;font-weight:900;color:#4bb4b4;opacity:0;transform:translateX(24px);transition:opacity .45s ease .75s,transform .45s ease .75s;">HAK</span>
+    </div>
+    <div id="splashWell" style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:#4bb4b4;margin-top:6px;opacity:0;transform:translateY(10px);transition:opacity .4s ease 1.05s,transform .4s ease 1.05s;">WELLNESS</div>
+  </div>
+</div>
+<style>
+@keyframes splashSpin{0%{transform:rotate(-200deg) scale(0);}65%{transform:rotate(15deg) scale(1.08);}100%{transform:rotate(0deg) scale(1);}}
+</style>
+<script>
+(function(){
+  var s=document.getElementById('splashScreen');
+  if(sessionStorage.getItem('bh_splash')){s.style.display='none';return;}
+  sessionStorage.setItem('bh_splash','1');
+  setTimeout(function(){
+    var l=document.getElementById('splashLogo');
+    l.style.opacity='1';l.style.transform='scale(1)';
+  },250);
+  setTimeout(function(){
+    var b=document.getElementById('splashBio'),h=document.getElementById('splashHak');
+    b.style.opacity='1';b.style.transform='translateX(0)';
+    h.style.opacity='1';h.style.transform='translateX(0)';
+  },550);
+  setTimeout(function(){
+    var w=document.getElementById('splashWell');
+    w.style.opacity='1';w.style.transform='translateY(0)';
+  },1050);
+  setTimeout(function(){
+    s.style.opacity='0';s.style.visibility='hidden';
+    setTimeout(function(){s.style.display='none';},650);
+  },2500);
+})();
+</script>
+<!-- ═══════════ END SPLASH ═══════════ -->
+
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="ann-bar">
