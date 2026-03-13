@@ -10,7 +10,8 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;font-size:16px;line-height:1.5;}
+html{overflow-x:hidden;}
+body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.5;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
 button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
@@ -19,9 +20,9 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .site-header{
   background:#fff;
   border-bottom:1px solid #e8e4de;
-  position:sticky;
-  top:0;
-  z-index:500;
+  
+  
+  
   transition:box-shadow .3s, border-color .3s;
 }
 .site-header.scrolled{
@@ -610,7 +611,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
 
 /* ─── ANNOUNCEMENT BAR ─── */
-.ann-bar{
+.ann-bar{position:sticky;top:0;z-index:501;
   background:#1a1a1a;
   color:#fff;
   font-size:12px;
@@ -636,7 +637,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
 
   /* Announcement bar */
-  .ann-bar{font-size:10px !important;}</style>
+  .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
+.site-top{position:sticky;top:0;z-index:500;background:#fff;}
+</style>
 </head>
 <body>
 <!-- ═══ BIOHAK SPLASH SCREEN ═══ -->
@@ -675,6 +678,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ═══ END SPLASH ═══ -->
 
 <!-- ANNOUNCEMENT BAR -->
+<div class="site-top">
 <div class="ann-bar">
   <div class="ann-ticker">
     <div class="ann-seg">
@@ -763,6 +767,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     </div>
   </div>
 </header>
+</div>
 
 <!-- SEARCH OVERLAY -->
 <div class="search-overlay" id="searchOverlay">

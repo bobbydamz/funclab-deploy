@@ -10,13 +10,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;font-size:16px;line-height:1.5;}
+html{overflow-x:hidden;}
+body{font-family:'Assistant',sans-serif;background:#fff;color:#1a1a1a;font-size:16px;line-height:1.5;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
 button{cursor:pointer;font-family:inherit;}
 
 /* ─── ANNOUNCEMENT BAR ─── */
-.ann-bar{
+.ann-bar{position:sticky;top:0;z-index:501;
   background:#1a1a1a;
   color:#fff;
   font-size:12px;
@@ -38,9 +39,9 @@ button{cursor:pointer;font-family:inherit;}
 .site-header{
   background:#fff;
   border-bottom:1px solid #e8e4de;
-  position:sticky;
-  top:0;
-  z-index:500;
+  
+  
+  
   transition:box-shadow .3s, border-color .3s;
 }
 .site-header.scrolled{
@@ -580,7 +581,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
 
   /* Announcement bar */
-  .ann-bar{font-size:10px !important;}
+  .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
 
   /* Grids → single column */
   .products-grid,.product-grid,.grid-4,.grid-3,
@@ -628,6 +629,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .hdr-link{display:none;}  /* hide login text on tiny screens, user icon remains */
 }
 
+
+.site-top{position:sticky;top:0;z-index:500;background:#fff;}
 </style>
 </head>
 <body>
@@ -667,6 +670,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ═══ END SPLASH ═══ -->
 
 <!-- ANNOUNCEMENT BAR -->
+<div class="site-top">
 <div class="ann-bar">
   <div class="ann-ticker">
     <div class="ann-seg">
@@ -755,6 +759,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     </div>
   </div>
 </header>
+</div>
 
 <!-- SEARCH OVERLAY -->
 <div class="search-overlay" id="searchOverlay">
