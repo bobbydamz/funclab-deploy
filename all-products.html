@@ -35,8 +35,8 @@ a{text-decoration:none;color:inherit;}
 .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
 .product-card{background:#fff;border:1px solid #e8e4de;transition:transform .2s,box-shadow .2s;}
 .product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
-.product-img-wrap{position:relative;overflow:hidden;}
-.product-img-wrap img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .3s;}
+.product-img-wrap{position:relative;overflow:hidden;background:#f7f4f0;aspect-ratio:4/5;}
+.product-img-wrap img{width:100%;object-fit:contain;padding:20px 16px 10px 16px;object-position:center top;transition:transform .3s;}
 .product-card:hover .product-img-wrap img{transform:scale(1.04);}
 .product-tag{position:absolute;top:12px;left:12px;background:#1a1a1a;color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;}
 .product-info{padding:20px;}
