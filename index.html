@@ -339,11 +339,7 @@ height:520px;max-height:520px;}
 .atc-btn:hover{background:#4bb4b4 !important;color:#fff !important;}
 .atc-btn.done{background:#2d6a4f;}
 .view-all-row{text-align:center;margin-top:40px;}
-.view-all-btn{
-  display:inline-block;border:1px solid #1a1a1a;color:#1a1a1a;
-  padding:13px 40px;font-size:12px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;transition:all .2s;
-}
+.view-all-btn{display:inline-block;background:transparent;color:#1a1a1a;padding:7px 22px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid #1a1a1a;border-radius:2px;transition:all .2s;}
 .view-all-btn:hover{background:#4bb4b4 !important;color:#fff !important;border-color:#4bb4b4 !important;}
 
 /* Product carousel scroll on smaller screens */
@@ -391,12 +387,12 @@ height:520px;max-height:520px;}
 }
 
 /* ─── FEATURE IMAGES STRIP ─── */
-.feature-strip{padding:56px 40px;max-width:1440px;margin:0 auto;}
-.feature-strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.feature-img{overflow:hidden;}
-.feature-img img{width:100%;height:auto;display:block;transition:transform .5s;object-fit:cover;}
+.feature-strip{padding:40px;max-width:1440px;margin:0 auto;border-top:1px solid #e8e4de;}
+.feature-strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.feature-img{overflow:hidden;height:280px;background:#f0ece6;}
+.feature-img img{width:100%;height:100%;display:block;transition:transform .6s ease;object-fit:cover;object-position:center;}
 .feature-img:hover img{transform:scale(1.03);}
-.feature-strip-cta{text-align:center;margin-top:28px;}
+.feature-strip-cta{text-align:center;margin-top:20px;}
 @media(max-width:768px){
   .feature-strip-grid{grid-template-columns:repeat(2,1fr);}
 }
@@ -602,7 +598,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   table{min-width:500px;}
 
   /* Buttons */
-  .atc-btn,.btn-primary,.submit-btn,.view-all-btn{width:100% !important;text-align:center;}
+  .atc-btn,.btn-primary,.submit-btn,.view-all-btn{display:inline-block;background:transparent;color:#1a1a1a;padding:7px 22px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid #1a1a1a;border-radius:2px;transition:all .2s;}
 
   /* Cart badge */
   .cart-badge{top:-3px;right:-4px;}
