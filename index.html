@@ -623,6 +623,110 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
 
 .site-top{position:sticky;top:0;z-index:500;background:#fff;}
+
+
+/* ══════════════════════════════════════════════
+   COMPREHENSIVE MOBILE FIX — max-width: 768px
+══════════════════════════════════════════════ */
+@media(max-width:768px){
+
+  /* ── HERO ── */
+  .hero{max-height:320px;}
+  .hero-slide{height:320px;max-height:320px;}
+  .hero-slide img{height:320px;object-fit:cover;object-position:center top;}
+  .hero-caption{bottom:28px;padding:0 16px;}
+  .hero-caption h2{font-size:18px;margin-bottom:12px;}
+  .hero-shop-btn{padding:9px 22px;font-size:10px;}
+
+  /* ── OUR PRODUCTS PANEL ── */
+  .our-products{padding:32px 16px;}
+  .prod-tab{padding:10px 14px;font-size:10px;letter-spacing:.06em;}
+  .prod-panel.active{display:flex;flex-direction:column;}
+  .panel-text{padding:24px 20px;order:2;}
+  .panel-text h3{font-size:15px;}
+  .panel-text p{font-size:12px;margin-bottom:14px;}
+  .panel-img{order:1;border-left:none;border-bottom:1px solid #e8e4de;
+    min-height:200px;padding:24px 16px;}
+  .panel-img img{max-width:130px;max-height:180px;}
+
+  /* ── FEATURE STRIP ── */
+  .feature-strip{padding:24px 16px;}
+  .feature-strip-grid{grid-template-columns:1fr 1fr;gap:6px;}
+  .feature-img{height:160px;}
+
+  /* ── QUALITY BANNER ── */
+  .quality-banner{max-height:none;}
+  .quality-banner img{height:220px;object-fit:cover;}
+  .quality-overlay{
+    position:static;transform:none;
+    max-width:100%;background:#fff;
+    padding:24px 20px;right:auto;top:auto;
+  }
+  .quality-overlay h2{font-size:18px;}
+  .quality-overlay p{font-size:12px;}
+
+  /* ── WHY BIOHAK ── */
+  .why-section{padding:40px 16px;}
+  .why-grid{grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;}
+  .why-icon{width:44px;height:44px;margin-bottom:12px;}
+  .why-icon img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  .why-title{font-size:12px;}
+  .why-desc{font-size:11.5px;line-height:1.6;}
+
+  /* ── TESTIMONIALS ── */
+  .t-slide{grid-template-columns:1fr;gap:16px;}
+  .t-wrap{padding:40px 16px;}
+
+  /* ── INSTAGRAM GRID ── */
+  .insta-section{padding:40px 16px;}
+  .insta-grid{grid-template-columns:repeat(3,1fr);}
+
+  /* ── SOHFIT ── */
+  .sohfit-inner{grid-template-columns:1fr;}
+  .sohfit-img{height:240px;overflow:hidden;}
+  .sohfit-img img{height:240px;object-fit:cover;}
+  .sohfit-text{padding:32px 20px;}
+  .sohfit-text h2{font-size:20px;}
+
+  /* ── SHOP PRODUCTS GRID ── */
+  .products-section{padding:40px 16px;}
+  .product-thumb{aspect-ratio:1;}
+  .product-thumb img{padding:10px;}
+  .product-title{font-size:13px;}
+  .price-sale{font-size:14px;}
+
+  /* ── GENERAL SECTIONS ── */
+  .section-title{font-size:20px !important;}
+  .section-label{font-size:10px !important;}
+  .view-all-btn{width:auto;padding:7px 20px;}
+}
+
+/* ══════════════════════════════════════════════
+   SMALL PHONES — max-width: 480px
+══════════════════════════════════════════════ */
+@media(max-width:480px){
+  .hero{max-height:260px;}
+  .hero-slide{height:260px;max-height:260px;}
+  .hero-slide img{height:260px;}
+  .hero-caption h2{font-size:15px;}
+
+  .feature-strip-grid{grid-template-columns:1fr 1fr;gap:4px;}
+  .feature-img{height:130px;}
+
+  .why-grid{grid-template-columns:1fr 1fr;gap:16px;}
+
+  .insta-grid{grid-template-columns:repeat(2,1fr);}
+
+  .prod-tab{padding:8px 10px;font-size:9px;}
+
+  .our-products{padding:24px 12px;}
+  .panel-text{padding:20px 14px;}
+  .panel-img img{max-width:110px;}
+
+  .quality-banner img{height:180px;}
+  .quality-overlay{padding:20px 16px;}
+  .quality-overlay h2{font-size:16px;}
+}
 </style>
 </head>
 <body>
@@ -780,7 +884,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     <!-- Slide 1 -->
     <div class="hero-slide active">
       <picture>
-        <source media="(max-width:767px)" srcset="https://thefunclab.com/cdn/shop/files/FL_WEBSITE_HOMEPAGE_MOBILE_2.png?v=1752244211&width=800">
+        <source media="(max-width:767px)" srcset="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=85&fit=crop">
         <img class="img-desktop" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1920&q=85&fit=crop" alt="Rooted in function. Designed for real life.">
       </picture>
       <div class="hero-caption">
@@ -792,7 +896,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     <!-- Slide 2 -->
     <div class="hero-slide">
       <picture>
-        <source media="(max-width:767px)" srcset="https://thefunclab.com/cdn/shop/files/FL_WEBSITE_HOMEPAGE_MOBILE.png?v=1752243902&width=800">
+        <source media="(max-width:767px)" srcset="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85&fit=crop">
         <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop" alt="Simple solutions for a healthier you.">
       </picture>
       <div class="hero-caption">
@@ -804,7 +908,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     <!-- Slide 3 -->
     <div class="hero-slide">
       <picture>
-        <source media="(max-width:767px)" srcset="https://thefunclab.com/cdn/shop/files/2_27_7471a2cf-7216-4c96-bbfa-9f74a94fa643.png?v=1752244148&width=800">
+        <source media="(max-width:767px)" srcset="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=85&fit=crop">
         <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=85&fit=crop" alt="Functional. Simple. Purposeful.">
       </picture>
       <div class="hero-caption">
@@ -1094,7 +1198,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <section class="quality-banner reveal">
   <picture>
-    <source media="(max-width:767px)" srcset="https://thefunclab.com/cdn/shop/files/FL_HOMEPAGE_QUALITY_ASSURANCE_4d055b0d-4a32-4457-b349-b245284dc5c3.png?v=1752222684&width=800">
+    <source media="(max-width:767px)" srcset="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85&fit=crop">
     <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=85&fit=crop" alt="Tested for Purity And Safety">
   </picture>
   <div class="quality-overlay">
