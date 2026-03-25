@@ -290,6 +290,36 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   /* Announcement bar */
   .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
 .site-top{position:sticky;top:0;z-index:500;background:#fff;}
+
+/* ── ORIGIN HERO OVERLAY ── */
+.origin-hero{width:100%;position:relative;overflow:hidden;max-height:85vh;min-height:420px;}
+.origin-hero img{width:100%;height:100%;min-height:420px;object-fit:cover;object-position:center;display:block;filter:brightness(.55);}
+.origin-hero-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 24px;
+}
+.origin-hero-label{
+  font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  color:#4bb4b4;margin-bottom:14px;
+}
+.origin-hero-title{
+  font-family:'Assistant',sans-serif;
+  font-size:clamp(36px,6vw,72px);
+  font-weight:300;letter-spacing:.04em;
+  color:#fff;margin:0 0 16px;line-height:1.1;
+  text-shadow:0 2px 24px rgba(0,0,0,.3);
+}
+.origin-hero-sub{
+  font-size:clamp(13px,1.5vw,16px);color:rgba(255,255,255,.8);
+  font-weight:300;letter-spacing:.05em;max-width:500px;
+}
+@media(max-width:768px){
+  .origin-hero{min-height:280px;max-height:50vh;}
+  .origin-hero img{min-height:280px;}
+  .origin-hero-title{font-size:32px;}
+  .origin-hero-sub{font-size:12px;}
+}
 </style>
 </head>
 <body>
@@ -428,6 +458,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ══════════════════════════════════════════════════════════ -->
 <section class="origin-hero">
   <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=80&fit=crop" alt="The Origin Story">
+  <div class="origin-hero-overlay">
+    <p class="origin-hero-label">About Us</p>
+    <h1 class="origin-hero-title">The Origin Story</h1>
+    <p class="origin-hero-sub">How BioHAK Wellness came to life — and why it matters.</p>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
