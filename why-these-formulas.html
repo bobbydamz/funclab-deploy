@@ -389,22 +389,29 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
 .site-top{position:sticky;top:0;z-index:500;background:#fff;}
 
-/* ── PAGE HERO OVERLAY (shared) ── */
+
 .manifesto-hero,.founders-hero,.page-hero{width:100%;position:relative;overflow:hidden;max-height:85vh;min-height:420px;}
 .manifesto-hero img,.founders-hero img,.page-hero img{width:100%;height:100%;min-height:420px;object-fit:cover;object-position:center;display:block;filter:brightness(.55);}
-.page-hero-overlay{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:0 24px;
-}
-.page-hero-label{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4bb4b4;margin-bottom:14px;}
-.page-hero-title{font-family:'Assistant',sans-serif;font-size:clamp(36px,6vw,72px);font-weight:300;letter-spacing:.04em;color:#fff;margin:0 0 16px;line-height:1.1;text-shadow:0 2px 24px rgba(0,0,0,.3);}
-.page-hero-sub{font-size:clamp(13px,1.5vw,16px);color:rgba(255,255,255,.8);font-weight:300;letter-spacing:.05em;max-width:500px;}
+
+
+
+
 @media(max-width:768px){
   .manifesto-hero,.founders-hero,.page-hero{min-height:280px;max-height:50vh;}
   .manifesto-hero img,.founders-hero img,.page-hero img{min-height:280px;}
-  .page-hero-title{font-size:28px;}
-  .page-hero-sub{font-size:12px;}
+  
+  
+}
+
+/* PAGE HERO — black bg like all-products */
+.page-hero-blk{background:#1a1a1a;color:#fff;text-align:center;padding:60px 40px;}
+.page-hero-blk .hero-label{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4bb4b4;margin-bottom:14px;display:block;}
+.page-hero-blk h1{font-size:42px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;color:#fff;}
+.page-hero-blk p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto;}
+@media(max-width:768px){
+  .page-hero-blk{padding:40px 20px;}
+  .page-hero-blk h1{font-size:28px;}
+  .page-hero-blk p{font-size:13px;}
 }
 </style>
 </head>
@@ -542,14 +549,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- HERO IMAGE                                                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="page-hero">
-  <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=1920&q=80&fit=crop" alt="Why These Formulas">
-  <div class="page-hero-overlay">
-    <p class="page-hero-label">About Us</p>
-    <h1 class="page-hero-title">Why These Formulas</h1>
-    <p class="page-hero-sub">Science-backed. Clean. Purposeful.</p>
-  </div>
-</section>
+<div class="page-hero-blk">
+  <span class="hero-label">About Us</span>
+  <h1>Why These Formulas</h1>
+  <p>Science-backed. Clean. Purposeful.</p>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- "EVERY PRODUCT HAS A PURPOSE" FULL-WIDTH BANNER           -->
