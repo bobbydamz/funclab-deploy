@@ -69,52 +69,49 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;transition:color .2s;}
 .mobile-menu a:hover{color:#666;}
 
-/* ── HERO FULL-WIDTH IMAGE ── */
 
-
-
-/* ── PAGE CONTENT WRAPPER ── */
-.page-content{max-width:900px;margin:0 auto;padding:72px 40px;}
-
-/* Section: about image */
-.about-img-section{width:100%;margin:0 0 80px;}
-.about-img-section img{width:100%;display:block;}
-
-/* Overlap images section */
-.overlap-section{position:relative;margin:80px 0;min-height:520px;}
-.overlap-back{position:absolute;top:0;right:0;width:65%;z-index:1;}
-.overlap-back img{width:100%;display:block;}
-.overlap-front{position:absolute;bottom:-40px;left:0;width:45%;z-index:2;box-shadow:0 20px 60px rgba(0,0,0,.18);}
-.overlap-front img{width:100%;display:block;}
-
-/* Mobile protein image (hidden on desktop) */
-.mobile-protein-img{display:none;width:100%;margin:48px 0;}
-.mobile-protein-img img{width:100%;display:block;}
-
-/* Text sections */
-.text-block{margin:72px 0;}
-.text-block h2{font-size:clamp(22px,3vw,32px);font-weight:700;line-height:1.35;margin-bottom:28px;color:#fff;}
-.text-block p{font-size:15px;line-height:1.9;color:#444;margin-bottom:18px;}
-.text-block p strong{color:#1a1a1a;font-weight:700;}
-.text-block p a{color:#1a1a1a;text-decoration:underline;text-underline-offset:3px;}
-.text-block p a:hover{color:#c9a96e;}
-
-/* Origin story image full width */
-.full-img{width:100%;margin:64px 0;}
-.full-img img{width:100%;display:block;}
-
-/* Section: Simple. Transparent. Real. */
-.strapline{text-align:center;padding:64px 40px;background:#f7f4f0;margin:64px 0;}
-.strapline h2{font-size:clamp(24px,3.5vw,38px);font-weight:700;color:#fff;}
-
-/* Bottom banner */
-.bottom-banner{width:100%;margin:0;}
-.bottom-banner img{width:100%;display:block;}
-
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
-.reveal.d1{transition-delay:.1s;}.reveal.d2{transition-delay:.2s;}.reveal.d3{transition-delay:.3s;}
+/* ══════════════════════════════
+   ORIGIN STORY PAGE STYLES
+══════════════════════════════ */
+.os-banner{width:100%;line-height:0;}
+.os-banner img{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center;}
+.os-overlap{position:relative;width:100%;height:560px;overflow:hidden;background:#f7f4f0;}
+.os-overlap-back{position:absolute;top:0;right:0;width:70%;height:100%;z-index:1;}
+.os-overlap-back img{width:100%;height:100%;object-fit:cover;display:block;}
+.os-overlap-front{position:absolute;bottom:40px;left:40px;width:42%;z-index:2;box-shadow:0 24px 64px rgba(0,0,0,.22);}
+.os-overlap-front img{width:100%;display:block;}
+.os-mobile-img{display:none;}
+.os-mobile-img img{width:100%;display:block;}
+.os-content{max-width:860px;margin:0 auto;padding:72px 40px;}
+.os-text{margin:64px 0;}
+.os-text h2{font-size:clamp(22px,3vw,30px);font-weight:700;line-height:1.4;margin-bottom:28px;color:#1a1a1a;}
+.os-text p{font-size:15px;line-height:1.9;color:#555;margin-bottom:18px;}
+.os-text p strong{color:#1a1a1a;}
+.os-text p a{color:#1a1a1a;text-decoration:underline;text-underline-offset:3px;}
+.os-text p a:hover{color:#4bb4b4;}
+.os-full-img{width:100%;line-height:0;margin:0;}
+.os-full-img img{width:100%;display:block;max-height:500px;object-fit:cover;}
+.os-strapline{text-align:center;padding:72px 40px;background:#1a1a1a;margin:0;}
+.os-strapline h2{font-size:clamp(24px,3.5vw,38px);font-weight:700;color:#fff;margin-bottom:16px;}
+.os-strapline p{font-size:15px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto;line-height:1.8;}
+.os-bottom-banner{width:100%;line-height:0;}
+.os-bottom-banner img{width:100%;display:block;max-height:500px;object-fit:cover;}
+@media(max-width:900px){
+  .os-overlap{height:400px;}
+  .os-overlap-front{width:50%;bottom:20px;left:20px;}
+  .os-content{padding:48px 24px;}
+}
+@media(max-width:768px){
+  .os-overlap{display:none;}
+  .os-mobile-img{display:block;margin:0;}
+  .os-banner img,.os-full-img img,.os-bottom-banner img{max-height:300px;}
+  .os-content{padding:40px 20px;}
+  .os-text{margin:40px 0;}
+  .os-text h2{font-size:22px;}
+  .os-text p{font-size:14px;}
+  .os-strapline{padding:48px 20px;}
+  .os-strapline h2{font-size:24px;}
+}
 
 /* ── FOOTER ── */
 footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
@@ -458,68 +455,64 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 </div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!-- PAGE CONTENT                                               -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<div class="page-content">
+<!-- ORIGIN STORY PAGE CONTENT                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
 
-  <!-- About image -->
-  <div class="about-img-section reveal">
-    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&fit=crop" alt="About BioHAK Wellness">
+<div class="os-banner reveal">
+  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop" alt="BioHAK Wellness">
+</div>
+
+<div class="os-banner reveal">
+  <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1920&q=85&fit=crop" alt="BioHAK Wellness nutrition">
+</div>
+
+<div class="os-overlap reveal">
+  <div class="os-overlap-back">
+    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&q=85&fit=crop" alt="">
   </div>
-
-  <!-- Overlapping images (desktop) -->
-  <div class="overlap-section reveal">
-    <div class="overlap-back">
-      <img src="https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?w=1200&q=80&fit=crop" alt="">
-    </div>
-    <div class="overlap-front">
-      <img src="https://images.unsplash.com/photo-1612200900624-56e2eb3c7561?w=800&q=80&fit=crop" alt="">
-    </div>
+  <div class="os-overlap-front">
+    <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=85&fit=crop" alt="">
   </div>
+</div>
 
-  <!-- Mobile protein image -->
-  <div class="mobile-protein-img">
-    <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=800&q=80&fit=crop" alt="BioHAK Wellness Protein">
-  </div>
+<div class="os-mobile-img">
+  <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=85&fit=crop" alt="BioHAK Wellness">
+</div>
 
-  <!-- First text block -->
-  <div class="text-block reveal">
+<div class="os-content">
+  <div class="os-text reveal">
     <h2>If you've ever Googled 'which protein is right for me?' at 1 A.M. — you're not alone.</h2>
-    <p>BioHAK Wellness wasn't born in a boardroom — it was built in gyms, kitchens, and conversations with real people trying to do better for their bodies. At the heart of the brand are <a href="#">three founders</a> who live and breathe wellness in different ways.</p>
+    <p>BioHAK Wellness wasn't born in a boardroom — it was built in gyms, kitchens, and conversations with real people trying to do better for their bodies. At the heart of the brand are <a href="/meet-the-founders.html">three founders</a> who live and breathe wellness in different ways.</p>
     <p><strong>Sohrab Khushrushahi</strong>, founder of SOHFIT and longtime coach to elite athletes and everyday movers, spent years helping people get stronger from the inside out. <strong>Sahil Kukreja</strong>, an ex-IPL cricketer turned health entrepreneur, has always believed in discipline and doing the basics right. <strong>Daneesh Davar</strong>, a brand-builder and mother, saw firsthand how misinformation, especially around protein and women, kept people from getting the support they deserved.</p>
     <p><strong>Each of them had witnessed the same frustration unfold — no matter how committed people were to their health, the supplement industry kept confusing them.</strong></p>
     <p>The problem wasn't effort, it was information. People didn't know which protein to pick, what hydration mix was right, or whether supplements were even necessary. Labels were crowded with complicated ingredients, artificial additives, and unpronounceable chemicals.</p>
   </div>
+</div>
 
-  <!-- Full-width origin story image -->
-  <div class="full-img reveal">
-    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&q=80&fit=crop" alt="BioHAK Wellness Origin Story">
-  </div>
+<div class="os-full-img reveal">
+  <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=85&fit=crop" alt="BioHAK Wellness Origin Story">
+</div>
 
-  <!-- Second text block -->
-  <div class="text-block reveal">
+<div class="os-content">
+  <div class="os-text reveal">
     <h2>BioHAK Wellness was created to cut through the noise.</h2>
     <p>It's not about trends, gimmicks, or what's "hot" right now; it's about creating products that are <strong>functional</strong>, <strong>clean</strong>, and <strong>honest.</strong> Every formula is stripped back to exactly what your body needs — nothing more, nothing less. No artificial sweeteners, no unnecessary fillers — just effective, thoughtfully designed supplements that help you feel your best.</p>
     <p><strong>But BioHAK Wellness isn't just about products, it's about education and empowerment. For Sohrab, years of working with clients at SOHFIT showed him one thing: People needed better answers, not more options. For Daneesh, it was about ensuring women (especially mothers) had access to safe, trustworthy nutrition solutions. For Sahil, a former cricketer, it was about providing athletes with supplements they could finally trust.</strong></p>
     <p>Together, they created BioHAK Wellness to simplify wellness and help people take control of their nutrition — with confidence, clarity, and results.</p>
   </div>
-
-  <!-- Strapline -->
-  <div class="strapline reveal">
-    <h2>Simple Products. Transparent Ingredients. Real Results.</h2>
-    <p style="margin-top:16px;font-size:15px;color:#666;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8;">BioHAK Wellness is your answer to functional, straightforward nutrition, designed to fit into your life, not complicate it.</p>
-  </div>
-
 </div>
 
-<!-- Bottom banner - full width -->
-<div class="bottom-banner reveal">
-  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600&q=80&fit=crop" alt="">
+<div class="os-strapline reveal">
+  <h2>Simple Products. Transparent Ingredients. Real Results.</h2>
+  <p>BioHAK Wellness is your answer to functional, straightforward nutrition, designed to fit into your life, not complicate it.</p>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- FOOTER                                                     -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<div class="os-bottom-banner reveal">
+  <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1920&q=85&fit=crop" alt="BioHAK Wellness">
+</div>
+
+
 <footer>
   <div class="footer-inner">
     <div class="footer-logo-row">
