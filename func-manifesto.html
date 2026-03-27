@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Func Manifesto – BioHAK Wellness</title>
+<title>The BioHAK Manifesto – BioHAK Wellness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -100,56 +100,16 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .manifesto-text-section p strong{color:#1a1a1a;font-weight:700;}
 
 /* ── OUR GUARANTEES ── */
-.guarantees-section{
-  background:#f7f4f0;
-  padding:80px 40px;
-}
-.guarantees-inner{max-width:1200px;margin:0 auto;}
-.guarantees-section h2{
-  font-size:clamp(26px,3vw,38px);
-  font-weight:700;
-  text-align:center;
-  margin-bottom:56px;
-  color:#1a1a1a;
-  letter-spacing:.01em;
-}
-.guarantees-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:40px;
-}
-.guarantee-item{
-  background:#fff;
-  border:1px solid #e8e4de;
-  padding:40px 32px;
-  text-align:center;
-  transition:box-shadow .3s, transform .3s;
-}
-.guarantee-item:hover{
-  box-shadow:0 8px 32px rgba(0,0,0,.08);
-  transform:translateY(-4px);
-}
-.guarantee-icon{
-  width:56px;height:56px;
-  margin:0 auto 24px;
-  display:flex;align-items:center;justify-content:center;
-}
-.guarantee-icon img{
-  width:100%;height:100%;
-  object-fit:contain;
-}
-.guarantee-title{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:14px;
-  color:#1a1a1a;
-  letter-spacing:.01em;
-}
-.guarantee-desc{
-  font-size:13px;
-  color:#666;
-  line-height:1.8;
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ── SCROLL REVEAL ── */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
@@ -181,7 +141,7 @@ footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
 @media(max-width:1024px){
   .main-nav{display:none;}
   .hamburger{display:flex;}
-  .guarantees-grid{grid-template-columns:repeat(2,1fr);}
+  
 }
 @media(max-width:768px){
   .panel-desktop{display:none;}
@@ -190,12 +150,12 @@ footer{background:#1a1a1a;color:#fff;padding:64px 40px 32px;}
 }
 @media(max-width:600px){
   .manifesto-text-section{padding:56px 24px;}
-  .guarantees-section{padding:56px 24px;}
-  .guarantees-grid{grid-template-columns:1fr;}
+  
+  
   .header-wrap{padding:0 20px;}
   footer{padding:48px 20px 24px;}
   .footer-grid{grid-template-columns:1fr;}
-  .guarantee-item{padding:32px 24px;}
+  
 }
 
 /* ── GOLD TEXT SELECTION ── */
@@ -423,7 +383,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
         <a href="#">About Us</a>
         <div class="nav-drop">
           <a href="/origin-story.html">The Origin Story</a>
-          <a href="/func-manifesto.html" class="active-page">The Func Manifesto</a>
+          <a href="/func-manifesto.html" class="active-page">The BioHAK Manifesto</a>
           <a href="/meet-the-founders.html">Meet The Founders</a>
           <a href="/why-these-formulas.html">Why These Formulas</a>
         </div>
@@ -492,88 +452,100 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- HERO IMAGE                                                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE HERO — BLACK BANNER                                   -->
+<!-- ══════════════════════════════════════════════════════════ -->
 <div class="page-hero-blk">
   <span class="hero-label">About Us</span>
-  <h1>The Func Manifesto</h1>
+  <h1>The BioHAK Manifesto</h1>
   <p>Our beliefs, values, and the principles we build by.</p>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!-- TWO-PANEL BANNER (desktop wide / mobile tall)             -->
+<!-- SECTION 1: Image left, text right                          -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<div class="panel-banner reveal">
-  <picture>
-    <source media="(max-width:767px)" srcset="https://thefunclab.com/cdn/shop/files/FUNC_MANIFESTO_MOBILE_1.png?v=1752309988&width=800">
-    <img class="panel-desktop" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&fit=crop" alt="The Func Manifesto">
-  </picture>
-</div>
+<section class="mf-intro">
+  <div class="mf-intro-inner">
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- MISSION & PHILOSOPHY TEXT                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="manifesto-text-section">
+    <!-- LEFT: Image -->
+    <div class="mf-intro-img reveal">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85&fit=crop" alt="The BioHAK Manifesto">
+    </div>
 
-  <div class="text-block reveal">
-    <h3>The Mission: Simple Solutions for a Healthier You</h3>
-    <p>BioHAK Wellness exists to make nutrition simpler—for the athlete chasing performance gains, the busy parent trying to stay healthy, for someone who just wants to know they're fueling their body with something real, clean, and something they can trust.</p>
-    <p>No guesswork. Just simple solutions.</p>
+    <!-- RIGHT: Text -->
+    <div class="mf-intro-text reveal d2">
+      <span class="mf-label">Our Mission</span>
+      <h2>Simple Solutions for a Healthier You</h2>
+      <p>BioHAK Wellness exists to make nutrition simpler — for the athlete chasing performance gains, the busy parent trying to stay healthy, or someone who just wants to know they're fuelling their body with something real, clean, and something they can trust.</p>
+      <p>No guesswork. Just simple solutions.</p>
+
+      <span class="mf-label" style="margin-top:32px;display:block;">Our Philosophy</span>
+      <h2>No Gimmicks, Just Results</h2>
+      <p>At BioHAK Wellness, we believe in cutting through the clutter. No confusing labels, no complicated formulas — just the essentials your body needs to perform at its best. Each ingredient has a purpose. Each product is designed to be <strong>clean, functional, and effective</strong>.</p>
+      <p>Because wellness isn't about the latest trends or quick fixes — it's about showing up consistently, doing the work, and getting the basics right every single day.</p>
+    </div>
+
   </div>
-
-  <div class="text-block reveal">
-    <h3>Our Philosophy: No Gimmicks, Just Results</h3>
-    <p>At BioHAK Wellness, we believe in cutting through the clutter. No confusing labels, no complicated formulas—just the essentials your body needs to perform at its best. Each ingredient has a purpose. Each product is designed to be <strong>clean, functional and effective</strong>.</p>
-    <p>Because wellness isn't about the latest trends or quick fixes, it's about showing up consistently, doing the work, and getting the basics right every single day.</p>
-  </div>
-
-</div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!-- OUR GUARANTEES                                             -->
+<!-- SECTION 2: Our Guarantees (SVG icons)                      -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="guarantees-section">
-  <div class="guarantees-inner">
+<section class="mf-guarantees">
+  <div class="mf-guarantees-inner">
     <h2 class="reveal">Our Guarantees</h2>
-    <div class="guarantees-grid">
+    <p class="mf-guarantees-sub reveal">Every BioHAK Wellness product is built on four non-negotiable commitments.</p>
+    <div class="mf-grid">
 
-      <div class="guarantee-item reveal d1">
-        <div class="guarantee-icon">
-          <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="Clean Ingredients">
+      <div class="mf-item reveal d1">
+        <div class="mf-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z"/>
+            <path d="M16 24l6 6 10-12"/>
+          </svg>
         </div>
-        <div class="guarantee-title">Clean Ingredients</div>
-        <div class="guarantee-desc">No gums, emulsifiers, or artificial sweeteners. Just high-quality, purposeful ingredients your body can recognize and use.</div>
+        <div class="mf-title">Clean Ingredients</div>
+        <div class="mf-desc">No gums, emulsifiers, or artificial sweeteners. Just high-quality, purposeful ingredients your body can recognise and use.</div>
       </div>
 
-      <div class="guarantee-item reveal d2">
-        <div class="guarantee-icon">
-          <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="Science-Backed">
+      <div class="mf-item reveal d2">
+        <div class="mf-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4l4 8 9 1.3-6.5 6.3 1.5 9L24 24l-8 4.6 1.5-9L11 13.3l9-1.3z"/>
+            <path d="M24 34v10M18 40h12"/>
+          </svg>
         </div>
-        <div class="guarantee-title">Science-Backed Formulations</div>
-        <div class="guarantee-desc">Every product is built on research — from amino profiles to electrolyte ratios — for better absorption, digestion, and real results.</div>
+        <div class="mf-title">Science-Backed Formulations</div>
+        <div class="mf-desc">Every product is built on research — from amino profiles to electrolyte ratios — for better absorption, digestion, and real results.</div>
       </div>
 
-      <div class="guarantee-item reveal d3">
-        <div class="guarantee-icon">
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop" alt="Gut-Friendly">
+      <div class="mf-item reveal d3">
+        <div class="mf-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="24" cy="24" rx="20" ry="12"/>
+            <path d="M24 12v24M4 24c5 5 10 8 20 8s15-3 20-8"/>
+          </svg>
         </div>
-        <div class="guarantee-title">Gut-Friendly &amp; Effective</div>
-        <div class="guarantee-desc">Formulated with natural digestive enzymes and probiotics for smooth digestion and no bloat — even with daily use.</div>
+        <div class="mf-title">Gut-Friendly &amp; Effective</div>
+        <div class="mf-desc">Formulated with natural digestive enzymes for smooth digestion and no bloat — even with daily use.</div>
       </div>
 
-      <div class="guarantee-item reveal d4">
-        <div class="guarantee-icon">
-          <img src=https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=85&fit=cropp" alt="Tested for Purity">
+      <div class="mf-item reveal d4">
+        <div class="mf-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4l16 6v12c0 10-7 18-16 22C17 40 8 32 8 22V10z"/>
+            <path d="M17 24l5 5 9-10"/>
+          </svg>
         </div>
-        <div class="guarantee-title">Tested for Purity &amp; Safety</div>
-        <div class="guarantee-desc">Third-party lab tested for heavy metals, contaminants, and accurate nutrition labels — because transparency and trust matter.</div>
+        <div class="mf-title">Tested for Purity &amp; Safety</div>
+        <div class="mf-desc">Third-party lab tested for heavy metals, contaminants, and accurate nutrition labels — because transparency and trust matter.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- FOOTER                                                     -->
-<!-- ══════════════════════════════════════════════════════════ -->
+
 <footer>
   <div class="footer-inner">
     <div class="footer-logo-row">
