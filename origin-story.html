@@ -70,47 +70,80 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .mobile-menu a:hover{color:#666;}
 
 
+
 /* ══════════════════════════════
-   ORIGIN STORY PAGE STYLES
+   ORIGIN STORY — CLEAN LAYOUT
 ══════════════════════════════ */
-.os-banner{width:100%;line-height:0;}
-.os-banner img{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center;}
-.os-overlap{position:relative;width:100%;height:560px;overflow:hidden;background:#f7f4f0;}
-.os-overlap-back{position:absolute;top:0;right:0;width:70%;height:100%;z-index:1;}
-.os-overlap-back img{width:100%;height:100%;object-fit:cover;display:block;}
-.os-overlap-front{position:absolute;bottom:40px;left:40px;width:42%;z-index:2;box-shadow:0 24px 64px rgba(0,0,0,.22);}
-.os-overlap-front img{width:100%;display:block;}
-.os-mobile-img{display:none;}
-.os-mobile-img img{width:100%;display:block;}
-.os-content{max-width:860px;margin:0 auto;padding:72px 40px;}
-.os-text{margin:64px 0;}
-.os-text h2{font-size:clamp(22px,3vw,30px);font-weight:700;line-height:1.4;margin-bottom:28px;color:#1a1a1a;}
-.os-text p{font-size:15px;line-height:1.9;color:#555;margin-bottom:18px;}
-.os-text p strong{color:#1a1a1a;}
-.os-text p a{color:#1a1a1a;text-decoration:underline;text-underline-offset:3px;}
-.os-text p a:hover{color:#4bb4b4;}
-.os-full-img{width:100%;line-height:0;margin:0;}
-.os-full-img img{width:100%;display:block;max-height:500px;object-fit:cover;}
-.os-strapline{text-align:center;padding:72px 40px;background:#1a1a1a;margin:0;}
-.os-strapline h2{font-size:clamp(24px,3.5vw,38px);font-weight:700;color:#fff;margin-bottom:16px;}
-.os-strapline p{font-size:15px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto;line-height:1.8;}
-.os-bottom-banner{width:100%;line-height:0;}
-.os-bottom-banner img{width:100%;display:block;max-height:500px;object-fit:cover;}
-@media(max-width:900px){
-  .os-overlap{height:400px;}
-  .os-overlap-front{width:50%;bottom:20px;left:20px;}
-  .os-content{padding:48px 24px;}
+
+/* SECTION 1: two-column intro */
+.os-intro{padding:80px 40px;background:#fff;}
+.os-intro-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
 }
-@media(max-width:768px){
-  .os-overlap{display:none;}
-  .os-mobile-img{display:block;margin:0;}
-  .os-banner img,.os-full-img img,.os-bottom-banner img{max-height:300px;}
-  .os-content{padding:40px 20px;}
-  .os-text{margin:40px 0;}
-  .os-text h2{font-size:22px;}
-  .os-text p{font-size:14px;}
+
+/* Left text */
+.os-intro-text h2{
+  font-size:clamp(20px,2.4vw,28px);font-weight:700;
+  line-height:1.45;margin-bottom:28px;color:#1a1a1a;
+}
+.os-intro-text p{font-size:14.5px;line-height:1.9;color:#555;margin-bottom:16px;}
+.os-intro-text p strong{color:#1a1a1a;}
+.os-intro-text p a{color:#1a1a1a;text-decoration:underline;text-underline-offset:3px;}
+.os-intro-text p a:hover{color:#4bb4b4;}
+
+/* Right overlapping images */
+.os-intro-imgs{position:relative;height:520px;}
+.os-overlap-back{position:absolute;top:0;right:0;width:85%;z-index:1;}
+.os-overlap-back img{width:100%;height:380px;object-fit:cover;display:block;}
+.os-overlap-front{
+  position:absolute;bottom:0;left:0;width:55%;z-index:2;
+  box-shadow:0 20px 56px rgba(0,0,0,.18);
+}
+.os-overlap-front img{width:100%;height:240px;object-fit:cover;display:block;}
+
+/* Full-width mid image */
+.os-full-img{width:100%;line-height:0;}
+.os-full-img img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:center;}
+
+/* Second text block */
+.os-second{padding:80px 40px;background:#fff;}
+.os-second-inner{max-width:760px;margin:0 auto;}
+.os-second-inner h2{font-size:clamp(20px,2.4vw,28px);font-weight:700;line-height:1.45;margin-bottom:28px;color:#1a1a1a;}
+.os-second-inner p{font-size:14.5px;line-height:1.9;color:#555;margin-bottom:16px;}
+.os-second-inner p strong{color:#1a1a1a;}
+
+/* Strapline */
+.os-strapline{text-align:center;padding:72px 40px;background:#1a1a1a;}
+.os-strapline h2{font-size:clamp(22px,3vw,36px);font-weight:700;color:#fff;margin-bottom:14px;}
+.os-strapline p{font-size:15px;color:rgba(255,255,255,.6);max-width:540px;margin:0 auto;line-height:1.8;}
+
+/* Bottom banner */
+.os-bottom-banner{width:100%;line-height:0;}
+.os-bottom-banner img{width:100%;display:block;max-height:460px;object-fit:cover;}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .os-intro{padding:56px 24px;}
+  .os-intro-inner{grid-template-columns:1fr;gap:48px;}
+  .os-intro-imgs{height:380px;}
+  .os-overlap-back img{height:280px;}
+  .os-overlap-front img{height:180px;}
+  .os-second{padding:56px 24px;}
+}
+@media(max-width:600px){
+  .os-intro{padding:40px 20px;}
+  .os-intro-inner{gap:32px;}
+  .os-intro-imgs{height:300px;}
+  .os-overlap-back img{height:220px;}
+  .os-overlap-front{width:60%;}
+  .os-overlap-front img{height:150px;}
+  .os-full-img img{max-height:240px;}
+  .os-second{padding:40px 20px;}
   .os-strapline{padding:48px 20px;}
-  .os-strapline h2{font-size:24px;}
+  .os-strapline h2{font-size:22px;}
+  .os-bottom-banner img{max-height:240px;}
 }
 
 /* ── FOOTER ── */
@@ -456,58 +489,56 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<!-- ORIGIN STORY PAGE CONTENT                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ORIGIN STORY PAGE CONTENT -->
 
-<div class="os-banner reveal">
-  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop" alt="BioHAK Wellness">
-</div>
+<!-- SECTION 1: Text left, overlapping images right -->
+<section class="os-intro">
+  <div class="os-intro-inner">
 
-<div class="os-banner reveal">
-  <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1920&q=85&fit=crop" alt="BioHAK Wellness nutrition">
-</div>
+    <!-- LEFT: Text -->
+    <div class="os-intro-text reveal">
+      <h2>If you've ever Googled 'which protein is right for me?' at 1 A.M. — you're not alone.</h2>
+      <p>BioHAK Wellness wasn't born in a boardroom — it was built in gyms, kitchens, and conversations with real people trying to do better for their bodies. At the heart of the brand are <a href="/meet-the-founders.html">three founders</a> who live and breathe wellness in different ways.</p>
+      <p><strong>Sohrab Khushrushahi</strong>, founder of SOHFIT and longtime coach to elite athletes and everyday movers, spent years helping people get stronger from the inside out. <strong>Sahil Kukreja</strong>, an ex-IPL cricketer turned health entrepreneur, has always believed in discipline and doing the basics right. <strong>Daneesh Davar</strong>, a brand-builder and mother, saw firsthand how misinformation, especially around protein and women, kept people from getting the support they deserved.</p>
+      <p><strong>Each of them had witnessed the same frustration unfold — no matter how committed people were to their health, the supplement industry kept confusing them.</strong></p>
+      <p>The problem wasn't effort, it was information. People didn't know which protein to pick, what hydration mix was right, or whether supplements were even necessary. Labels were crowded with complicated ingredients, artificial additives, and unpronounceable chemicals.</p>
+    </div>
 
-<div class="os-overlap reveal">
-  <div class="os-overlap-back">
-    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&q=85&fit=crop" alt="">
+    <!-- RIGHT: Overlapping images -->
+    <div class="os-intro-imgs reveal d2">
+      <div class="os-overlap-back">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=85&fit=crop" alt="">
+      </div>
+      <div class="os-overlap-front">
+        <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=85&fit=crop" alt="">
+      </div>
+    </div>
+
   </div>
-  <div class="os-overlap-front">
-    <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=85&fit=crop" alt="">
-  </div>
-</div>
+</section>
 
-<div class="os-mobile-img">
-  <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=85&fit=crop" alt="BioHAK Wellness">
-</div>
-
-<div class="os-content">
-  <div class="os-text reveal">
-    <h2>If you've ever Googled 'which protein is right for me?' at 1 A.M. — you're not alone.</h2>
-    <p>BioHAK Wellness wasn't born in a boardroom — it was built in gyms, kitchens, and conversations with real people trying to do better for their bodies. At the heart of the brand are <a href="/meet-the-founders.html">three founders</a> who live and breathe wellness in different ways.</p>
-    <p><strong>Sohrab Khushrushahi</strong>, founder of SOHFIT and longtime coach to elite athletes and everyday movers, spent years helping people get stronger from the inside out. <strong>Sahil Kukreja</strong>, an ex-IPL cricketer turned health entrepreneur, has always believed in discipline and doing the basics right. <strong>Daneesh Davar</strong>, a brand-builder and mother, saw firsthand how misinformation, especially around protein and women, kept people from getting the support they deserved.</p>
-    <p><strong>Each of them had witnessed the same frustration unfold — no matter how committed people were to their health, the supplement industry kept confusing them.</strong></p>
-    <p>The problem wasn't effort, it was information. People didn't know which protein to pick, what hydration mix was right, or whether supplements were even necessary. Labels were crowded with complicated ingredients, artificial additives, and unpronounceable chemicals.</p>
-  </div>
-</div>
-
+<!-- SECTION 2: Full-width image -->
 <div class="os-full-img reveal">
   <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=85&fit=crop" alt="BioHAK Wellness Origin Story">
 </div>
 
-<div class="os-content">
-  <div class="os-text reveal">
+<!-- SECTION 3: Second text block (centred, max-width) -->
+<section class="os-second reveal">
+  <div class="os-second-inner">
     <h2>BioHAK Wellness was created to cut through the noise.</h2>
     <p>It's not about trends, gimmicks, or what's "hot" right now; it's about creating products that are <strong>functional</strong>, <strong>clean</strong>, and <strong>honest.</strong> Every formula is stripped back to exactly what your body needs — nothing more, nothing less. No artificial sweeteners, no unnecessary fillers — just effective, thoughtfully designed supplements that help you feel your best.</p>
     <p><strong>But BioHAK Wellness isn't just about products, it's about education and empowerment. For Sohrab, years of working with clients at SOHFIT showed him one thing: People needed better answers, not more options. For Daneesh, it was about ensuring women (especially mothers) had access to safe, trustworthy nutrition solutions. For Sahil, a former cricketer, it was about providing athletes with supplements they could finally trust.</strong></p>
     <p>Together, they created BioHAK Wellness to simplify wellness and help people take control of their nutrition — with confidence, clarity, and results.</p>
   </div>
-</div>
+</section>
 
+<!-- SECTION 4: Strapline dark banner -->
 <div class="os-strapline reveal">
   <h2>Simple Products. Transparent Ingredients. Real Results.</h2>
   <p>BioHAK Wellness is your answer to functional, straightforward nutrition, designed to fit into your life, not complicate it.</p>
 </div>
 
+<!-- SECTION 5: Bottom banner -->
 <div class="os-bottom-banner reveal">
   <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1920&q=85&fit=crop" alt="BioHAK Wellness">
 </div>
