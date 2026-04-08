@@ -323,11 +323,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
 /* Section 1: image LEFT, text RIGHT */
 .mf-intro{padding:80px 40px;background:#fff;}
-.mf-intro-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:72px;align-items:center;
-}
+.mf-intro-inner{max-width:1200px;margin:0 auto;display:grid !important;grid-template-columns:1fr 1fr !important;gap:72px;align-items:center;}
 .mf-intro-img img{
   width:100%;height:520px;
   object-fit:cover;display:block;
@@ -379,9 +375,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 /* Mobile */
 @media(max-width:900px){
   .mf-intro{padding:56px 24px;}
-  .mf-intro-inner{grid-template-columns:1fr;gap:40px;}
+  .mf-intro-inner{grid-template-columns:1fr !important;gap:40px !important;}
   .mf-intro-img img{height:300px;}
-  .mf-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  .mf-grid{grid-template-columns:1fr 1fr !important;gap:16px !important;}
   .mf-guarantees{padding:56px 24px;}
 }
 @media(max-width:600px){
@@ -389,7 +385,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .mf-intro-img img{height:220px;}
   .mf-guarantees{padding:40px 20px;}
   .mf-guarantees-inner>h2{font-size:22px;}
-  .mf-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .mf-grid{grid-template-columns:1fr 1fr !important;gap:12px !important;}
   .mf-item{padding:24px 14px;}
   .mf-icon{width:44px;height:44px;}
 }
@@ -402,7 +398,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     @keyframes bhLogoIn{0%{opacity:0;transform:scale(.7);}60%{transform:scale(1.04);}100%{opacity:1;transform:scale(1);}}
     #bhLogo{animation:bhLogoIn .9s cubic-bezier(.34,1.56,.64,1) .1s both;}
   </style>
-  <img id="bhLogo" src="/logo-transparent.png" style="height:80px;width:auto;display:block;">
+  <img id="bhLogo" src="/logo-text-only.png" style="height:72px;width:auto;display:block;">
 </div>
 <script>
 (function(){
@@ -413,7 +409,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
     el.style.transition='opacity .65s ease';
     el.style.opacity='0';
     setTimeout(function(){el.style.display='none';},680);
-  },2200);
+  },4200);
 })();
 </script>
 <!-- ═══ END SPLASH ═══ -->
