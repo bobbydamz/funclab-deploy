@@ -136,7 +136,7 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:72px;}
 .process-card{text-align:center;padding:24px 16px;border:1px solid #e8e4de;transition:box-shadow .25s,transform .25s;}
 .process-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-2px);}
-.process-card img{width:48px;height:48px;object-fit:contain;margin:0 auto 14px;}
+.process-card img,.process-card svg{width:48px;height:48px;object-fit:contain;margin:0 auto 14px;display:block;}
 .process-name{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px;line-height:1.4;}
 .process-desc{font-size:12px;color:#666;line-height:1.6;}
 .process-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#fff3cd;color:#856404;padding:2px 7px;margin-bottom:6px;border-radius:2px;}
@@ -586,38 +586,65 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
   <div class="process-grid reveal">
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=600&q=85&fit=crop" alt="Informed Sports" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 4l16 6v12c0 10-7 18-16 22C17 40 8 32 8 22V10z"/>
+        <path d="M17 24l5 5 9-10"/>
+      </svg>
       <div class="process-badge">In Progress</div>
       <div class="process-name">Informed Sports / NFS Certification</div>
       <div class="process-desc">Globally recognized programs that are trusted by professional athletes worldwide.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=85&fit=crop" alt="Heavy Metals" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 6v8M24 6l-6 8h12l-6-8z"/>
+        <path d="M10 14h28M14 14l-4 22a4 4 0 004 4h20a4 4 0 004-4l-4-22"/>
+        <path d="M18 24h12"/>
+      </svg>
       <div class="process-name">Heavy Metals Testing</div>
       <div class="process-desc">We test for lead, arsenic, mercury, and other contaminants to guarantee clean, safe supplements.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=85&fit=crop" alt="Protein Content" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 24c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16S8 32.8 8 24z"/>
+        <path d="M24 14v10l6 4"/>
+      </svg>
       <div class="process-name">Protein Content Verification</div>
       <div class="process-desc">Ensuring that each scoop delivers the precise protein content you're paying for.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=85&fit=crop" alt="Amino Acid" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="16" r="6"/>
+        <circle cx="32" cy="16" r="6"/>
+        <circle cx="24" cy="32" r="6"/>
+        <path d="M20 19l-7 8M28 19l4 8M19 16h10"/>
+      </svg>
       <div class="process-name">Amino Acid Profile Analysis</div>
       <div class="process-desc">To verify the right balance of essential and non-essential amino acids for optimal recovery and muscle support.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?w=600&q=85&fit=crop" alt="Microbiology" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 6c-9 0-14 7-14 14s5 14 14 22c9-8 14-15 14-22S33 6 24 6z"/>
+        <circle cx="20" cy="20" r="2" fill="#4bb4b4"/>
+        <circle cx="28" cy="18" r="2" fill="#4bb4b4"/>
+        <circle cx="24" cy="26" r="2" fill="#4bb4b4"/>
+      </svg>
       <div class="process-name">Microbiology Testing</div>
       <div class="process-desc">Screening for harmful bacteria and ensuring the highest hygiene standards.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=85&fit=crop" alt="Adulteration" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z"/>
+        <path d="M16 24l6 6 10-12"/>
+      </svg>
       <div class="process-name">Adulteration &amp; Purity Testing</div>
       <div class="process-desc">Guaranteeing our products are free from contaminants and harmful additives.</div>
     </div>
     <div class="process-card">
-      <img src="https://images.unsplash.com/photo-1559181567-c3190ca9be46?w=600&q=85&fit=crop" alt="Shelf Life" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="26" r="14"/>
+        <path d="M24 18v8l6 4"/>
+        <path d="M19 4h10M24 4v6"/>
+      </svg>
       <div class="process-name">Stability &amp; Shelf Life Testing</div>
       <div class="process-desc">Ensuring our products remain fresh, potent, and effective for their intended shelf life.</div>
     </div>
