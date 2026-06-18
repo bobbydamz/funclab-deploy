@@ -1190,6 +1190,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   </div>
 </footer>
 
+<script>
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+
 <!-- BioHAK Wellness Scripts -->
 <script src="/assets/js/api.js"></script>
 <script src="/assets/js/auth.js"></script>
