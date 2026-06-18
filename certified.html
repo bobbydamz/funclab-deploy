@@ -114,7 +114,7 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:64px;}
 .cert-card{border:1px solid #e8e4de;padding:28px 20px;text-align:center;transition:box-shadow .3s,transform .3s;}
 .cert-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px);}
-.cert-card img{width:52px;height:52px;object-fit:contain;margin:0 auto 14px;}
+.cert-card img,.cert-card svg{width:52px;height:52px;object-fit:contain;margin:0 auto 14px;display:block;}
 .cert-name{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
 .cert-desc{font-size:13px;color:#666;line-height:1.6;}
 
@@ -435,9 +435,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <div class="hero-banner">
   <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1920&q=80&fit=crop" alt="Certified">
 </div>
-<div class="testing-banner">
-  <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80&fit=crop" alt="Testing">
-</div>
 
 <!-- PAGE CONTENT -->
 <div class="page-content">
@@ -504,22 +501,36 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 
   <div class="cert-grid reveal">
     <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="FSSAI" onerror="this.style.fontSize='28px';this.alt='🏆';this.style.display='block'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 4l16 6v12c0 10-7 18-16 22C17 40 8 32 8 22V10z"/>
+        <path d="M17 24l5 5 9-10"/>
+      </svg>
       <div class="cert-name">FSSAI</div>
       <div class="cert-desc">Ensuring our products meet India's highest food safety standards.</div>
     </div>
     <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80&fit=crop" alt="GMP" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="14" width="32" height="26" rx="2"/>
+        <path d="M16 14V9a4 4 0 014-4h8a4 4 0 014 4v5"/>
+        <path d="M18 24h12M18 30h12"/>
+      </svg>
       <div class="cert-name">GMP (Good Manufacturing Practice)</div>
       <div class="cert-desc">Guaranteeing consistent quality and safe production practices.</div>
     </div>
     <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=600&q=85&fit=crop" alt="BRC" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="20" r="12"/>
+        <path d="M17 30l-3 12 10-6 10 6-3-12"/>
+      </svg>
       <div class="cert-name">BRC (British Retail Consortium)</div>
       <div class="cert-desc">Recognized globally for upholding stringent food safety guidelines.</div>
     </div>
     <div class="cert-card">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=85&fit=crop" alt="ISO" onerror="this.style.display='none'">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="24" cy="24" r="18"/>
+        <circle cx="24" cy="24" r="10"/>
+        <path d="M24 6v8M24 34v8M6 24h8M34 24h8"/>
+      </svg>
       <div class="cert-name">ISO Certification</div>
       <div class="cert-desc">Ensuring our products align with India's trusted standards for holistic wellness.</div>
     </div>
