@@ -26,7 +26,7 @@ img{display:block;max-width:100%;}
 button{cursor:pointer;font-family:inherit;}
 
 /* ─── ANNOUNCEMENT BAR ─── */
-.ann-bar{position:sticky;top:0;z-index:501;
+.ann-bar{position:sticky;top:0;z-index:502;
   background:#1a1a1a;
   color:#fff;
   font-size:12px;
@@ -83,17 +83,7 @@ button{cursor:pointer;font-family:inherit;}
 .main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
 
 /* Nav items — sliding underline on hover */
-.main-nav>a,
-.nav-item>a{
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:#1a1a1a;
-  transition:color .2s;
-  position:relative;
-  padding-bottom:4px;
-}
+.main-nav>a,.nav-item>a{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;position:relative;padding-bottom:4px;}
 /* The sliding underline */
 .main-nav>a::before,
 .nav-item>a::before{
@@ -165,7 +155,7 @@ z-index:500;}
 }
 .hdr-link:hover::before{transform:scaleX(1);}
 .hdr-link:hover{color:#4bb4b4;}
-.hdr-icon-btn{background:none;border:none;padding:4px;display:flex;align-items:center;color:#fff;transition:color .2s, opacity .2s;cursor:pointer;}.site-top:hover .hdr-icon-btn,.site-top.scrolled .hdr-icon-btn{color:#1a1a1a;}
+.hdr-icon-btn{background:none;border:none;padding:4px;display:flex;align-items:center;color:#1a1a1a;transition:opacity .2s;cursor:pointer;}.site-top:hover .hdr-icon-btn,.site-top.scrolled .hdr-icon-btn{color:#1a1a1a;}
 .hdr-icon-btn:hover{opacity:.6;transform:scale(1.08);}
 .hdr-icon-btn svg{width:19px;height:19px;}
 .cart-link{
@@ -579,7 +569,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
 
   /* Announcement bar */
-  .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
+  .ann-bar{position:sticky;top:0;z-index:502;font-size:10px !important;}
 
   /* Grids → single column */
   .products-grid,.product-grid,.grid-4,.grid-3,
@@ -628,7 +618,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 }
 
 
-.site-top{position:sticky;top:0;z-index:500;background:#fff;}
+.site-top{position:sticky;top:0;z-index:501;background:#fff;}
 
 
 /* ══════════════════════════════════════════════
