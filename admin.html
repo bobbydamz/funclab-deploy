@@ -252,6 +252,10 @@ textarea{resize:vertical;min-height:80px;}
 .footer-service{font-size:13px;font-weight:700;color:#fff;line-height:1.8;margin-top:14px;}
 .footer-service a{color:#fff;font-weight:700;}
 .footer-service a:hover{opacity:.75;}
+
+/* Nav logo: white on transparent nav, normal on hover/scrolled */
+.nav-logo{filter:brightness(0) invert(1);transition:filter .3s;}
+.site-top:hover .nav-logo,.site-top.scrolled .nav-logo{filter:none;}
 </style>
 </head>
 <body>

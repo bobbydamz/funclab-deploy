@@ -736,6 +736,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .quality-overlay{padding:20px 16px;}
   .quality-overlay h2{font-size:16px;}
 }
+
+/* Nav logo: white on transparent nav, normal on hover/scrolled */
+.nav-logo{filter:brightness(0) invert(1);transition:filter .3s;}
+.site-top:hover .nav-logo,.site-top.scrolled .nav-logo{filter:none;}
 </style>
 <style>
 /* PAGE HERO */

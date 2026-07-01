@@ -49,7 +49,22 @@ button{cursor:pointer;font-family:inherit;}
 
 /* ─── HEADER ─── */
 .site-header{background:transparent;border-bottom:none;transition:background .3s,border-color .3s;}
-.site-top:hover header{background:#fff;border-bottom:1px solid #e8e4de;}
+/* White slides down from top on hover */
+.site-top::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:0;
+  background:#fff;
+  transition:height .35s cubic-bezier(.76,0,.24,1);
+  z-index:-1;
+  border-bottom:1px solid transparent;
+}
+.site-top:hover::before{
+  height:100%;
+  border-bottom-color:#e8e4de;
+}
+.site-top.scrolled::before{height:100%;border-bottom-color:#e8e4de;}
 .site-header.scrolled{
   box-shadow:0 2px 20px rgba(0,0,0,.09);
   border-color:transparent;
@@ -724,10 +739,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .quality-overlay h2{font-size:16px;}
 }
 
-.logo-dark{display:none !important;}
-.logo-light{display:block !important;}
-.site-top:hover .logo-dark,.site-top.scrolled .logo-dark{display:block !important;}
-.site-top:hover .logo-light,.site-top.scrolled .logo-light{display:none !important;}
+/* Nav logo: white filter on transparent nav, normal on hover/scrolled */
+.nav-logo{filter:brightness(0) invert(1);transition:filter .3s;}
+.site-top:hover .nav-logo,.site-top.scrolled .nav-logo{filter:none;}
 </style>
 </head>
 <body>
@@ -788,7 +802,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <header class="site-header" id="siteHeader">
   <div class="header-wrap">
     <!-- Logo (scrolling marquee like original) -->
-    <div class="logo-outer" style="display:flex;align-items:center;"><img src="/logo-white.png" alt="BioHAK Wellness" class="logo-dark" style="height:52px;width:auto;object-fit:contain;display:none;"><img src="/logo-transparent.png" alt="BioHAK Wellness" class="logo-light" style="height:52px;width:auto;object-fit:contain;"></div>
+    <div class="logo-outer" style="display:flex;align-items:center;"><img src="/logo-transparent.png" alt="BioHAK Wellness" class="nav-logo" style="height:52px;width:auto;object-fit:contain;"></div>
 
     <!-- Main Nav -->
     <nav class="main-nav">
