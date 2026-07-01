@@ -48,8 +48,19 @@ button{cursor:pointer;font-family:inherit;}
 @keyframes annTick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}100%{transform:translateX(-50%);}}
 
 /* ─── HEADER ─── */
+<<<<<<< HEAD
 .site-header{background:transparent;border-bottom:none;transition:background .3s,border-color .3s;}
 .site-top:hover header{background:#fff;border-bottom:1px solid #e8e4de;}
+=======
+.site-header{
+  background:#fff;
+  border-bottom:1px solid #e8e4de;
+  
+  
+  
+  transition:box-shadow .3s, border-color .3s;
+}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 .site-header.scrolled{
   box-shadow:0 2px 20px rgba(0,0,0,.09);
   border-color:transparent;
@@ -80,7 +91,21 @@ button{cursor:pointer;font-family:inherit;}
 .main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
 
 /* Nav items — sliding underline on hover */
+<<<<<<< HEAD
 .main-nav>a,.nav-item>a{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;transition:color .2s;position:relative;padding-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.4);}.site-top:hover .main-nav>a,.site-top:hover .nav-item>a,.site-top.scrolled .main-nav>a,.site-top.scrolled .nav-item>a{color:#1a1a1a;text-shadow:none;}
+=======
+.main-nav>a,
+.nav-item>a{
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#1a1a1a;
+  transition:color .2s;
+  position:relative;
+  padding-bottom:4px;
+}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 /* The sliding underline */
 .main-nav>a::before,
 .nav-item>a::before{
@@ -179,7 +204,11 @@ z-index:500;}
 }
 .cart-badge.has-items{opacity:1;transform:scale(1);}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
+<<<<<<< HEAD
 .hamburger span{width:22px;height:1.5px;background:#fff;display:block;transition:all .3s;}.site-top:hover .hamburger span,.site-top.scrolled .hamburger span{background:#1a1a1a;}
+=======
+.hamburger span{width:22px;height:1.5px;background:#1a1a1a;display:block;transition:all .3s;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 
 /* ─── SEARCH OVERLAY ─── */
 .search-overlay{
@@ -534,7 +563,11 @@ footer{background:#4bb4b4;color:#fff;padding:40px 40px 24px;}
 }
 @media(max-width:600px){
   .header-wrap{padding:0 20px;}
+<<<<<<< HEAD
   .hero-caption h2{font-size:22px;}.hero-slide{height:260px;max-height:260px;}.hero{max-height:260px;position:relative;}
+=======
+  .hero-caption h2{font-size:22px;}.hero-slide{height:260px;max-height:260px;}.hero{max-height:260px;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
   .about-section,.why-section,.insta-section{padding:48px 20px;}
   footer{padding:48px 20px 24px;}
   .quality-overlay{padding:32px 24px;}
@@ -569,7 +602,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
 
   /* Announcement bar */
+<<<<<<< HEAD
   .ann-bar{position:relative;z-index:501;font-size:10px !important;}
+=======
+  .ann-bar{position:sticky;top:0;z-index:501;font-size:10px !important;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 
   /* Grids → single column */
   .products-grid,.product-grid,.grid-4,.grid-3,
@@ -618,7 +655,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 }
 
 
+<<<<<<< HEAD
 .site-top{position:absolute;top:0;left:0;right:0;z-index:500;background:transparent;transition:background .3s,box-shadow .3s;}.site-top.scrolled{position:fixed;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.08);}.site-top.scrolled header{border-bottom:1px solid #e8e4de;}
+=======
+.site-top{position:sticky;top:0;z-index:500;background:#fff;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 
 
 /* ══════════════════════════════════════════════
@@ -627,7 +668,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 @media(max-width:768px){
 
   /* ── HERO ── */
+<<<<<<< HEAD
   .hero{max-height:320px;position:relative;}
+=======
+  .hero{max-height:320px;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
   .hero-slide{height:320px;max-height:320px;}
   .hero-slide img{height:320px;object-fit:cover;object-position:center top;}
   .hero-caption{bottom:28px;padding:0 16px;}
@@ -701,7 +746,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
    SMALL PHONES — max-width: 480px
 ══════════════════════════════════════════════ */
 @media(max-width:480px){
+<<<<<<< HEAD
   .hero{max-height:260px;position:relative;}
+=======
+  .hero{max-height:260px;}
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
   .hero-slide{height:260px;max-height:260px;}
   .hero-slide img{height:260px;}
   .hero-caption h2{font-size:15px;}
@@ -723,11 +772,14 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   .quality-overlay{padding:20px 16px;}
   .quality-overlay h2{font-size:16px;}
 }
+<<<<<<< HEAD
 
 .logo-dark{display:none !important;}
 .logo-light{display:block !important;}
 .site-top:hover .logo-dark,.site-top.scrolled .logo-dark{display:block !important;}
 .site-top:hover .logo-light,.site-top.scrolled .logo-light{display:none !important;}
+=======
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 </style>
 </head>
 <body>
@@ -788,7 +840,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <header class="site-header" id="siteHeader">
   <div class="header-wrap">
     <!-- Logo (scrolling marquee like original) -->
+<<<<<<< HEAD
     <div class="logo-outer" style="display:flex;align-items:center;"><img src="/logo-white.png" alt="BioHAK Wellness" class="logo-dark" style="height:52px;width:auto;object-fit:contain;display:none;"><img src="/logo-transparent.png" alt="BioHAK Wellness" class="logo-light" style="height:52px;width:auto;object-fit:contain;"></div>
+=======
+    <div class="logo-outer" style="display:flex;align-items:center;"><img src="/logo.png" alt="" style="height:52px;width:auto;object-fit:contain;"></div>
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 
     <!-- Main Nav -->
     <nav class="main-nav">
@@ -1498,6 +1554,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 <!-- JAVASCRIPT                                                      -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 <script>
+<<<<<<< HEAD
 
 // ── TRANSPARENT NAV SCROLL DETECTION ──
 (function(){
@@ -1514,6 +1571,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   updateNav();
 })();
 
+=======
+>>>>>>> 94e2566625fe75f80d04bdc15b5035258e168fd9
 // ── HEADER SHADOW + SHRINK ──────────────────────────────────────
 window.addEventListener('scroll',()=>{
   document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
