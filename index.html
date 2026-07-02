@@ -785,6 +785,27 @@ header{
 .hamburger span{background:#fff;transition:background .2s;}
 .site-top:hover .hamburger span,
 .site-top.scrolled .hamburger span{background:#1a1a1a;}
+
+/* ── ANNOUNCEMENT BAR TICKER ── */
+.ann-ticker{
+  display:flex;
+  width:max-content;
+  animation:annScroll 28s linear infinite;
+}
+.ann-ticker:hover{animation-play-state:paused;}
+.ann-seg{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding-right:20px;
+  white-space:nowrap;
+}
+.ann-seg a{color:#fff;text-decoration:underline;}
+.ann-divider{opacity:.4;}
+@keyframes annScroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
 </style>
 </head>
 <body>
