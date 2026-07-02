@@ -720,11 +720,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
    NAV — INNER PAGES (solid white sticky)
 ═══════════════════════════════════════ */
 .site-top{
-  position:sticky;
-  top:0;
+  position:fixed;
+  top:0;left:0;right:0;
   z-index:999;
   background:#fff;
   box-shadow:0 2px 12px rgba(0,0,0,.06);
+  transition:box-shadow .3s;
 }
 .ann-bar{
   position:relative;
@@ -982,7 +983,7 @@ header{
 </header>
 </div>
 
-<div class="page-hero-blk">
+<div class="page-hero-blk" style="margin-top:126px;">
   <span class="hero-label">What's Inside</span>
   <h1>Ingredients</h1>
   <p>Clean, purposeful, and backed by science.</p>
@@ -1280,5 +1281,21 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 <script src="/assets/js/api.js"></script>
 <script src="/assets/js/auth.js"></script>
 <script src="/assets/js/cart.js"></script>
+
+<script>
+// ── FIXED NAV SCROLL DETECTION ──
+(function(){
+  var siteTop = document.querySelector('.site-top');
+  function updateNav(){
+    if(window.scrollY > 10){
+      siteTop.style.boxShadow = '0 2px 12px rgba(0,0,0,.10)';
+    } else {
+      siteTop.style.boxShadow = '0 2px 12px rgba(0,0,0,.06)';
+    }
+  }
+  window.addEventListener('scroll', updateNav, {passive:true});
+  updateNav();
+})();
+</script>
 </body>
 </html>
