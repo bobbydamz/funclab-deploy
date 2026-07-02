@@ -26,7 +26,7 @@ img{display:block;max-width:100%;}
 button{cursor:pointer;font-family:inherit;}
 
 /* ─── ANNOUNCEMENT BAR ─── */
-.ann-bar{position:sticky;top:0;z-index:502;
+.ann-bar{position:relative;z-index:1;
   background:#1a1a1a;
   color:#fff;
   font-size:12px;
@@ -35,8 +35,7 @@ button{cursor:pointer;font-family:inherit;}
   text-transform:uppercase;
   padding:10px 0;
   overflow:hidden;
-  position:relative;
-}
+  }
 .ann-ticker{display:flex;width:max-content;animation:annTick 25s linear infinite;}
 .ann-ticker:hover{animation-play-state:paused;}
 .ann-seg{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:24px;}
@@ -569,7 +568,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   section>.inner,.section-content{padding-left:16px !important;padding-right:16px !important;}
 
   /* Announcement bar */
-  .ann-bar{position:sticky;top:0;z-index:502;font-size:10px !important;}
+  .ann-bar{position:relative;z-index:1;font-size:10px !important;}
 
   /* Grids → single column */
   .products-grid,.product-grid,.grid-4,.grid-3,
@@ -618,7 +617,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
 }
 
 
-.site-top{position:sticky;top:0;z-index:501;background:#fff;}
+.site-top{position:sticky;top:0;z-index:500;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.06);}
 
 
 /* ══════════════════════════════════════════════
