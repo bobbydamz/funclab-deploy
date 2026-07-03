@@ -301,7 +301,7 @@ height:680px;max-height:680px;}
 .stars{color:#1a1a1a;font-size:12px;letter-spacing:1px;}
 .rating-count{font-size:11px;color:#999;}
 .price-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
-.price-sale{font-size:15px;font-weight:700;color:#fff;}
+.price-sale{font-size:16px;font-weight:700;color:#1a1a1a;}
 .price-compare{font-size:13px;color:#999;text-decoration:line-through;}
 .atc-btn{
   width:100%;background:#1a1a1a;color:#fff;border:none;
@@ -1502,6 +1502,23 @@ function switchProdTab(n,btn){
   document.querySelectorAll('.prod-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
   document.querySelectorAll('.prod-panel').forEach((p,i)=>p.classList.toggle('active',i===n));
 }
+
+// ── SAVINGS BADGE ─────────────────────────────────────────────────────────
+document.querySelectorAll('.products-grid .product-card').forEach(card => {
+  const saleText = card.querySelector('.price-sale')?.textContent || '';
+  const compareText = card.querySelector('.price-compare')?.textContent || '';
+  const sale = parseFloat((saleText.match(/[\d,]+(\.\d+)?/) || ['0'])[0].replace(/,/g, ''));
+  const compare = parseFloat((compareText.match(/[\d,]+(\.\d+)?/) || ['0'])[0].replace(/,/g, ''));
+  if (!sale || !compare || compare <= sale) return;
+  const pct = Math.round((1 - sale / compare) * 100);
+  const thumb = card.querySelector('.product-thumb');
+  if (thumb) {
+    const badge = document.createElement('span');
+    badge.className = 'product-badge badge-pct';
+    badge.textContent = `Save ${pct}%`;
+    thumb.appendChild(badge);
+  }
+});
 
 // ── ADD TO CART ──────────────────────────────────────────────────────────
 function addToCart(btn) {
