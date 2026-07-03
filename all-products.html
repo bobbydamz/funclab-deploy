@@ -399,32 +399,23 @@ header{
 <script src="/assets/js/chrome.js"></script>
 
 <script>
-const API = 'https://funclab-backend-cwsp.onrender.com';
-async function addToCart(pid, btn) {
-  const token = localStorage.getItem('fl_token');
-  if (!token) { sessionStorage.setItem('fl_redirect_after_login','/cart.html'); window.location.href='/account.html'; return; }
-  btn.textContent = 'Adding...'; btn.disabled = true;
-  try {
-    const r = await fetch(API+'/api/cart/add', {method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({product_id:pid,quantity:1})});
-    const d = await r.json();
-    if (r.ok) {
-      btn.textContent = '✓ Added'; btn.classList.add('added');
-      const b = document.getElementById('cartCount');
-      if(b){b.textContent=d.summary?.item_count||'';b.classList.add('has-items');}
-      setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added');btn.disabled=false;},2000);
-    } else { btn.textContent='Try Again'; btn.disabled=false; }
-  } catch(e) { btn.textContent='Error'; btn.disabled=false; }
+function addToCart(pid, btn) {
+  const card = btn.closest('.product-card');
+  const name = card.querySelector('.product-name a')?.textContent.trim() || '';
+  const priceText = card.querySelector('.price-now')?.textContent || '0';
+  const price = parseFloat((priceText.match(/[\d,]+(\.\d+)?/) || ['0'])[0].replace(/,/g, ''));
+  const image = card.querySelector('.product-img-wrap img')?.src || '';
+  const href = card.querySelector('.product-img-wrap a')?.getAttribute('href') || '';
+  const slug = href.replace(/^\//, '').replace(/\.html$/, '');
+
+  window.funcCart.add({ id: slug, name, price, image, slug }, 1);
+
+  const orig = btn.textContent;
+  btn.textContent = '✓ Added';
+  btn.classList.add('added');
+  btn.disabled = true;
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('added'); btn.disabled = false; }, 2000);
 }
-document.addEventListener('DOMContentLoaded', () => {
-  const token = localStorage.getItem('fl_token')||'';
-  const badge = document.getElementById('cartCount');
-  const loginLink = document.getElementById('loginLink');
-  if (token) {
-    fetch(API+'/api/auth/me',{headers:{'Authorization':'Bearer '+token}}).then(r=>r.ok?r.json():null).then(d=>{if(d?.user&&loginLink){loginLink.textContent='Hi, '+d.user.name.split(' ')[0];loginLink.href='/account.html';}}).catch(()=>{});
-    fetch(API+'/api/cart/',{headers:{'Authorization':'Bearer '+token}}).then(r=>r.ok?r.json():null).then(d=>{if(d?.summary?.item_count>0&&badge){badge.textContent=d.summary.item_count;badge.classList.add('has-items');}}).catch(()=>{});
-  }
-  document.getElementById('cartBtn')?.addEventListener('click',e=>{if(!localStorage.getItem('fl_token')){e.preventDefault();sessionStorage.setItem('fl_redirect_after_login','/cart.html');window.location.href='/account.html';}});
-});
 </script>
 
 <script>

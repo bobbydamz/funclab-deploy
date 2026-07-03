@@ -1503,107 +1503,27 @@ function switchProdTab(n,btn){
   document.querySelectorAll('.prod-panel').forEach((p,i)=>p.classList.toggle('active',i===n));
 }
 
-// ── CART CLICK — redirect to login if not logged in ────────────────────────
-function handleCartClick(e) {
-  const token = localStorage.getItem('fl_token');
-  if (!token) {
-    e.preventDefault();
-    // Save intended destination so account page can redirect back after login
-    sessionStorage.setItem('fl_redirect_after_login', '/cart.html');
-    window.location.href = '/account.html';
-  }
-  // If logged in, follow the href to cart.html normally
-}
+// ── ADD TO CART ──────────────────────────────────────────────────────────
+function addToCart(btn) {
+  const card = btn.closest('.product-card');
+  const name = card.querySelector('.product-title a')?.textContent.trim() || '';
+  const priceText = card.querySelector('.price-sale')?.textContent || '0';
+  const price = parseFloat((priceText.match(/[\d,]+(\.\d+)?/) || ['0'])[0].replace(/,/g, ''));
+  const image = card.querySelector('.product-thumb img')?.src || '';
+  const href = card.querySelector('.product-thumb a')?.getAttribute('href') || '';
+  const slug = href.replace(/^\//, '').replace(/\.html$/, '');
 
-// ── UPDATE LOGIN LINK if already logged in ──────────────────────────────────
-window.addEventListener('DOMContentLoaded', async () => {
-  const token = localStorage.getItem('fl_token');
-  const loginLink = document.getElementById('loginLink');
-
-  if (token && loginLink) {
-    try {
-      const r = await fetch(`${API}/api/auth/me`, {
-        headers: { 'Authorization': 'Bearer ' + token }
-      });
-      if (r.ok) {
-        const d = await r.json();
-        const firstName = (d.user?.name || 'Account').split(' ')[0];
-        loginLink.textContent = 'Hi, ' + firstName;
-        loginLink.href = '/account.html';
-      } else {
-        // Token expired - clear it
-        localStorage.removeItem('fl_token');
-      }
-    } catch(e) { /* backend offline */ }
-  }
-
-  // Load cart count
-  try {
-    const headers = {};
-    if (token) headers['Authorization'] = 'Bearer ' + token;
-    const r = await fetch(`${API}/api/cart/`, { headers, credentials: 'include' });
-    if (r.ok) {
-      const d = await r.json();
-      const count = d.summary?.item_count || 0;
-      const badge = document.getElementById('cartCount');
-      if (badge && count > 0) {
-        badge.textContent = count;
-        badge.classList.add('has-items');
-      }
-    }
-  } catch(e) { /* backend offline, skip silently */ }
-});
-
-// ── ADD TO CART — calls real backend ───────────────────────────────────────
-const API   = 'https://funclab-backend-cwsp.onrender.com';
-const TOKEN = localStorage.getItem('fl_token') || '';
-
-async function addToCart(btn) {
-  const pid = btn.getAttribute('data-pid');
-  if (!pid) { console.warn('No data-pid on button'); return; }
+  window.funcCart.add({ id: slug, name, price, image, slug }, 1);
 
   const orig = btn.textContent;
   btn.disabled = true;
-  btn.textContent = 'Adding...';
-
-  try {
-    const headers = { 'Content-Type': 'application/json' };
-    if (TOKEN) headers['Authorization'] = 'Bearer ' + TOKEN;
-
-    const r = await fetch(`${API}/api/cart/add`, {
-      method: 'POST',
-      headers,
-      credentials: 'include',
-      body: JSON.stringify({ product_id: parseInt(pid), quantity: 1 })
-    });
-
-    const d = await r.json();
-
-    if (r.ok) {
-      btn.textContent = '✓ Added!';
-      btn.classList.add('done');
-
-      // Update badge
-      const count = d.summary?.item_count || 0;
-      const badge = document.getElementById('cartCount');
-      if (badge) {
-        badge.textContent = count;
-        badge.classList.toggle('has-items', count > 0);
-      }
-
-      setTimeout(() => {
-        btn.textContent = orig;
-        btn.classList.remove('done');
-        btn.disabled = false;
-      }, 2000);
-    } else {
-      btn.textContent = d.error || 'Error';
-      setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000);
-    }
-  } catch(e) {
-    btn.textContent = 'Server offline';
-    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2500);
-  }
+  btn.textContent = '✓ Added!';
+  btn.classList.add('done');
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.classList.remove('done');
+    btn.disabled = false;
+  }, 2000);
 }
 
 // ── TESTIMONIALS SLIDER ────────────────────────────────────────
