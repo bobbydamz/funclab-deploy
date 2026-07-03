@@ -128,3 +128,14 @@
   .main-nav{display:none;}
   .hamburger{display:flex;}
 }
+
+/* The !important rules above (header-wrap grid/padding, logo-outer width) were needed
+   to beat conflicting !important declarations on some pages' desktop-level rules, but
+   that also blocked every page's own mobile-width header-shrinking rules, since those
+   are unconditional (apply at all widths) and chrome.css loads after them. Re-declare
+   the intended mobile values here, scoped to the same breakpoint pages already use, so
+   they win via matching media condition + later source order. */
+@media(max-width:768px){
+  .header-wrap{grid-template-columns:1fr auto !important;padding:0 16px !important;}
+  .logo-outer{width:160px !important;}
+}
