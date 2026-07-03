@@ -23,7 +23,7 @@
 .logo-inner:hover{animation-play-state:paused;}
 @keyframes logoScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-.main-nav{display:flex !important;align-items:center;gap:32px !important;justify-content:center;}
+.main-nav{display:flex;align-items:center;gap:32px;justify-content:center;}
 .main-nav>a,.nav-item>a{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;transition:color .2s;position:relative;padding-bottom:4px;}
 .main-nav>a::before,
 .nav-item>a::before{
@@ -120,3 +120,11 @@
 
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
 .hamburger span{background:#1a1a1a;}
+
+/* Safety net: some pages (e.g. forgot-password.html) never had their own responsive
+   rule to hide .main-nav / show .hamburger at mobile widths. Most pages redundantly
+   redeclare this at 768px/900px too, which is harmless (same values). */
+@media(max-width:1024px){
+  .main-nav{display:none;}
+  .hamburger{display:flex;}
+}
