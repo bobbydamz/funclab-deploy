@@ -84,12 +84,12 @@ class FuncAuth {
     const u = this.user;
 
     if (u) {
-      if (loginLink) { loginLink.textContent = `Hi, ${u.firstName || u.name.split(' ')[0]}`; loginLink.href = '/account.html'; }
+      if (loginLink) { loginLink.setAttribute('aria-label', `Account - ${u.firstName || u.name.split(' ')[0]}`); loginLink.href = '/account.html'; }
       if (logoutBtn) logoutBtn.style.display = 'inline-block';
       if (userGreeting) userGreeting.textContent = `Welcome back, ${u.firstName || u.name.split(' ')[0]}!`;
       if (adminLink) adminLink.style.display = this.isAdmin() ? 'inline-block' : 'none';
     } else {
-      if (loginLink) { loginLink.textContent = 'Log in'; loginLink.href = '/account.html'; }
+      if (loginLink) { loginLink.setAttribute('aria-label', 'Account'); loginLink.href = '/account.html'; }
       if (logoutBtn) logoutBtn.style.display = 'none';
     }
   }
