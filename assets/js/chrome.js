@@ -1,10 +1,16 @@
 // assets/js/chrome.js — injects the shared header/footer partials so nav/badge/login-state
 // fixes only need to be made once instead of copy-pasted across every page.
 (function () {
+  function normalize(pathname) {
+    var p = pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    return p === '' ? '/index' : p;
+  }
+
   function setActiveNav() {
-    var here = location.pathname === '/' ? '/index.html' : location.pathname;
+    var here = normalize(location.pathname);
     document.querySelectorAll('.main-nav > a, .main-nav .nav-dropdown a').forEach(function (a) {
-      if (a.getAttribute('href') === here) a.classList.add('active-page');
+      var href = a.getAttribute('href');
+      if (href && normalize(href) === here) a.classList.add('active-page');
     });
   }
 
