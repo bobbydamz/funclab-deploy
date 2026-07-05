@@ -739,7 +739,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #c9a96e;outline-offset:2p
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:28px;
+  gap:40px;
 }
 header{
   background:transparent;
@@ -799,9 +799,9 @@ header{
 .site-top.scrolled .hamburger span{background:#1a1a1a;}
 
 /* ── ANNOUNCEMENT BAR SLIDER ── */
-.ann-slides{position:relative;min-height:16px;display:flex;align-items:center;justify-content:center;min-width:260px;}
-.ann-slide{position:absolute;left:0;right:0;text-align:center;opacity:0;visibility:hidden;transition:opacity .4s ease;white-space:nowrap;}
-.ann-slide.active{opacity:1;visibility:visible;}
+.ann-slides{position:relative;min-height:16px;overflow:hidden;min-width:260px;}
+.ann-slide{position:absolute;left:0;right:0;top:0;text-align:center;white-space:nowrap;transition:transform .5s ease;transform:translateX(100%);}
+.ann-slide.active{transform:translateX(0);}
 .ann-highlight{color:#4bb4b4;text-decoration:none;font-weight:700;}
 .ann-nav{background:none;border:none;color:#fff;font-size:16px;line-height:1;cursor:pointer;padding:0 4px;opacity:.7;transition:opacity .2s;}
 .ann-nav:hover{opacity:1;}

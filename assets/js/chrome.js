@@ -23,22 +23,40 @@
       .catch(function () { if (after) after(); });
   }
 
-  // Announcement bar: shows one message at a time, advancing every 5s.
-  // The prev/next buttons jump directly and restart the 5s timer from there.
+  // Announcement bar: shows one message at a time, advancing every 10s.
+  // The outgoing slide pushes off in the direction of travel while the
+  // incoming one enters from the opposite side. The prev/next buttons jump
+  // directly (reversing the travel direction) and restart the 10s timer.
   function initAnnBar() {
     var slides = document.querySelectorAll('#annSlides .ann-slide');
     if (!slides.length) return;
     var idx = 0;
     var timer;
-    function show(i) {
-      idx = ((i % slides.length) + slides.length) % slides.length;
-      slides.forEach(function (s, j) { s.classList.toggle('active', j === idx); });
+    var animating = false;
+    slides.forEach(function (s, j) { s.classList.toggle('active', j === idx); });
+
+    function show(newIdxRaw, dir) {
+      var newIdx = ((newIdxRaw % slides.length) + slides.length) % slides.length;
+      if (newIdx === idx || animating || !dir) return;
+      var oldSlide = slides[idx];
+      var newSlide = slides[newIdx];
+      animating = true;
+      newSlide.style.transition = 'none';
+      newSlide.style.transform = 'translateX(' + (dir > 0 ? '100%' : '-100%') + ')';
+      void newSlide.offsetHeight; // flush layout with the jump above before re-enabling the transition
+      newSlide.style.transition = '';
+      oldSlide.style.transform = 'translateX(' + (dir > 0 ? '-100%' : '100%') + ')';
+      newSlide.style.transform = 'translateX(0)';
+      oldSlide.classList.remove('active');
+      newSlide.classList.add('active');
+      idx = newIdx;
+      setTimeout(function () { animating = false; }, 500);
     }
     function restart() {
       clearInterval(timer);
-      timer = setInterval(function () { show(idx + 1); }, 5000);
+      timer = setInterval(function () { show(idx + 1, 1); }, 10000);
     }
-    window.annGoto = function (dir) { show(idx + dir); restart(); };
+    window.annGoto = function (dir) { show(idx + dir, dir); restart(); };
     restart();
   }
 
