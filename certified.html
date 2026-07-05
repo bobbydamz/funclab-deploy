@@ -73,11 +73,15 @@ button{cursor:pointer;font-family:inherit;}100%{transform:translateX(-50%);}}
 .mob-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;color:#666;cursor:pointer;}
 .mobile-menu a{display:block;font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#1a1a1a;padding:14px 0;border-bottom:1px solid #f0ece6;}
 
-/* ── HERO BANNERS ── */
-.hero-banner{width:100%;overflow:hidden;max-height:440px;}
-.hero-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
-.testing-banner{width:100%;overflow:hidden;max-height:400px;margin-bottom:0;}
-.testing-banner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+/* ── HERO ── */
+.page-hero-blk{background:#1a1a1a;color:#fff;text-align:center;padding:60px 40px;}
+.page-hero-blk .hero-label{font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#4bb4b4;margin-bottom:14px;display:block;}
+.page-hero-blk h1{font-size:42px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;color:#fff;}
+.page-hero-blk p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto;}
+@media(max-width:768px){
+  .page-hero-blk{padding:40px 20px;}
+  .page-hero-blk h1{font-size:28px;}
+}
 
 /* ── PAGE CONTENT ── */
 .page-content{max-width:1100px;margin:0 auto;padding:64px 40px 80px;}
@@ -415,9 +419,11 @@ header{
   <a href="/account.html">Log in</a>
 </nav>
 
-<!-- HERO BANNERS -->
-<div class="hero-banner">
-  <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1920&q=80&fit=crop" alt="Certified">
+<!-- HERO -->
+<div class="page-hero-blk">
+  <span class="hero-label">Quality Assurance</span>
+  <h1>Tested for Purity &amp; Safety</h1>
+  <p>Third-party lab tested for quality, purity, and nutritional accuracy.</p>
 </div>
 
 <!-- PAGE CONTENT -->
@@ -425,7 +431,6 @@ header{
 
   <!-- TESTING INTRO -->
   <div class="testing-intro reveal">
-    <h2>Tested for Purity &amp; Safety</h2>
     <p>At BioHAK Wellness, we prioritize product safety and transparency. All our protein powders and omega-3-algal are third-party lab tested to meet the highest standards of quality, purity, and nutritional accuracy.</p>
 
     <p><strong>Protein Powders are tested for:</strong></p>
