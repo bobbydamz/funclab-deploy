@@ -1,32 +1,12 @@
 <!-- ANNOUNCEMENT BAR -->
 <div class="site-top">
 <div class="ann-bar">
-  <div class="ann-ticker">
-    <div class="ann-seg">
-      <span>World Protein Day Sale Live!</span>
-      <span class="ann-divider">|</span>
-      <a href="/all-products.html">Get up to 26% off on all orders</a>
-      <span class="ann-divider">|</span>
-      <span>Free shipping on all orders over Rs. 1000</span>
-      <span class="ann-divider">|</span>
-      <span>World Protein Day Sale Live!</span>
-      <span class="ann-divider">|</span>
-      <a href="/all-products.html">Get up to 26% off on all orders</a>
-      <span class="ann-divider">|</span>
-      <span>Free shipping on all orders over Rs. 1000</span>
-      <span class="ann-divider">|</span>
-    </div>
-    <div class="ann-seg" aria-hidden="true">
-      <span>World Protein Day Sale Live!</span>
-      <span class="ann-divider">|</span>
-      <a href="/all-products.html">Get up to 26% off on all orders</a>
-      <span class="ann-divider">|</span>
-      <span>Free shipping on all orders over Rs. 1000</span>
-      <span class="ann-divider">|</span>
-      <span>World Protein Day Sale Live!</span>
-      <span class="ann-divider">|</span>
-    </div>
+  <button class="ann-nav ann-prev" onclick="annGoto(-1)" aria-label="Previous announcement">‹</button>
+  <div class="ann-slides" id="annSlides">
+    <div class="ann-slide active">Free shipping on all orders over Rs. 1000</div>
+    <div class="ann-slide"><a href="/all-products.html" class="ann-highlight">Get up to 26% off on all orders</a></div>
   </div>
+  <button class="ann-nav ann-next" onclick="annGoto(1)" aria-label="Next announcement">›</button>
 </div>
 
 <!-- SITE HEADER -->

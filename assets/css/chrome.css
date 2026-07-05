@@ -5,13 +5,14 @@
    has its own intentional transparent-over-hero nav treatment) or admin.html (no shared
    header). */
 
-.ann-bar{position:relative;z-index:1;background:#1a1a1a;color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;overflow:hidden;}
-.ann-ticker{display:flex;width:max-content;animation:annScroll 28s linear infinite;}
-.ann-ticker:hover{animation-play-state:paused;}
-.ann-seg{display:flex;align-items:center;gap:20px;padding-right:20px;white-space:nowrap;}
-.ann-seg a{color:#c9a96e;text-decoration:none;font-weight:700;}
-.ann-divider{opacity:.4;}
-@keyframes annScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ann-bar{position:relative;z-index:1;background:#1a1a1a;color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 0;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;}
+.ann-slides{position:relative;min-height:16px;display:flex;align-items:center;justify-content:center;min-width:260px;}
+.ann-slide{position:absolute;left:0;right:0;text-align:center;opacity:0;visibility:hidden;transition:opacity .4s ease;white-space:nowrap;}
+.ann-slide.active{opacity:1;visibility:visible;}
+.ann-highlight{color:#4bb4b4;text-decoration:none;font-weight:700;}
+.ann-nav{background:none;border:none;color:#fff;font-size:16px;line-height:1;cursor:pointer;padding:0 4px;opacity:.7;transition:opacity .2s;}
+.ann-nav:hover{opacity:1;}
+@media(max-width:480px){.ann-bar{font-size:11px;padding:9px 0;}.ann-slides{min-width:200px;}}
 
 .site-header{background:#fff;border-bottom:1px solid #e8e4de;transition:box-shadow .3s, border-color .3s;}
 .site-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09);border-color:transparent;}
