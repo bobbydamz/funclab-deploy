@@ -44,7 +44,48 @@ a{text-decoration:none;color:inherit;}
 .page-hero h1{font-size:42px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;}
 .page-hero p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto;}
 .shop-wrap{max-width:1200px;margin:0 auto;padding:60px 40px;}
+.collection-wrap{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start;}
+.sidebar{position:sticky;top:100px;}
+.filter-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.filter-header h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.filter-clear-all{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#999;border:none;background:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+.filter-clear-all:hover{color:#1a1a1a;}
+.filter-group{border-top:1px solid #e8e4de;padding:18px 0;}
+.filter-group-title{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;user-select:none;}
+.filter-group-title .chevron{font-size:12px;transition:transform .25s;}
+.filter-group-title.open .chevron{transform:rotate(180deg);}
+.filter-options{padding-top:14px;display:none;}
+.filter-options.open{display:block;}
+.filter-option{display:flex;align-items:center;gap:10px;padding:5px 0;}
+.filter-option input[type="checkbox"]{width:15px;height:15px;accent-color:#1a1a1a;cursor:pointer;flex-shrink:0;}
+.filter-option label{font-size:13px;color:#444;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;}
+.filter-option label .count{color:#aaa;font-size:12px;}
+.price-range-wrap{padding-top:14px;}
+.price-display{font-size:13px;color:#666;margin-bottom:12px;}
+.price-inputs{display:flex;gap:10px;align-items:center;}
+.price-inputs input[type="number"]{width:78px;border:1px solid #d0ccc6;padding:7px 10px;font-family:'Assistant',sans-serif;font-size:13px;color:#1a1a1a;outline:none;}
+.price-inputs span{font-size:13px;color:#999;}
+.active-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.filter-chip{display:inline-flex;align-items:center;gap:6px;background:#f7f4f0;border:1px solid #d0ccc6;padding:5px 12px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.filter-chip:hover{background:#e8e4de;}
+.filter-chip .x{font-size:14px;line-height:1;color:#999;}
+.sort-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #e8e4de;flex-wrap:wrap;gap:12px;}
+.product-count{font-size:13px;color:#666;}
+.sort-select-wrap{display:flex;align-items:center;gap:10px;}
+.sort-label{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#666;}
+.sort-select{border:1px solid #d0ccc6;padding:8px 32px 8px 12px;font-family:'Assistant',sans-serif;font-size:13px;color:#1a1a1a;background:#fff;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+.mob-filter-btn{display:none;align-items:center;gap:8px;border:1px solid #d0ccc6;background:#fff;padding:10px 20px;font-family:'Assistant',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;margin-bottom:16px;}
+.mob-filter-drawer{position:fixed;inset:0;z-index:400;display:flex;opacity:0;visibility:hidden;transition:all .3s;}
+.mob-filter-drawer.open{opacity:1;visibility:visible;}
+.mob-filter-bg{position:absolute;inset:0;background:rgba(0,0,0,.4);}
+.mob-filter-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;max-height:80vh;overflow-y:auto;padding:24px 24px 40px;transform:translateY(100%);transition:transform .35s cubic-bezier(.76,0,.24,1);}
+.mob-filter-drawer.open .mob-filter-panel{transform:translateY(0);}
+.mob-filter-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.mob-filter-header h3{font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.mob-filter-close{background:none;border:none;font-size:24px;cursor:pointer;color:#666;}
+@media(max-width:900px){.collection-wrap{grid-template-columns:1fr;}.sidebar{display:none;}.mob-filter-btn{display:flex;}}
 .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.product-card.hidden{display:none;}
 .product-card{background:#fff;border:1px solid #e8e4de;transition:transform .2s,box-shadow .2s;}
 .product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
 .product-img-wrap{position:relative;overflow:hidden;background:#f7f4f0;aspect-ratio:4/5;}
@@ -260,9 +301,95 @@ header{
   <p>Clean, science-backed supplements — formulated for real results.</p>
 </div>
 
+<!-- MOBILE FILTER DRAWER -->
+<div class="mob-filter-drawer" id="mobFilterDrawer">
+  <div class="mob-filter-bg" onclick="closeMobFilter()"></div>
+  <div class="mob-filter-panel">
+    <div class="mob-filter-header">
+      <h3>Filter</h3>
+      <button class="mob-filter-close" onclick="closeMobFilter()">✕</button>
+    </div>
+    <div class="filter-group" style="border-top:none;">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Availability <span class="chevron">▲</span></div>
+      <div class="filter-options open" id="mob-fg-stock">
+        <label class="filter-option"><input type="checkbox" value="in" onchange="applyFilters()"><label>In Stock</label></label>
+        <label class="filter-option"><input type="checkbox" value="out" onchange="applyFilters()"><label>Out of Stock</label></label>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Price <span class="chevron">▲</span></div>
+      <div class="filter-options open">
+        <div class="price-range-wrap">
+          <div class="price-display" id="mob-priceDisplay">Price: Rs. 1,800 – Rs. 5,500</div>
+          <div class="price-inputs">
+            <span>₹</span>
+            <input type="number" id="mob-priceMin" value="1800" min="1800" max="5500" placeholder="From" onchange="syncPriceInputs('mob')">
+            <span>–</span>
+            <input type="number" id="mob-priceMax" value="5500" min="1800" max="5500" placeholder="To" onchange="syncPriceInputs('mob')">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="shop-wrap">
-  <div class="products-grid">
-    <div class="product-card" data-pid="1">
+  <div class="collection-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="filter-header">
+        <h2>Filter</h2>
+        <button class="filter-clear-all" onclick="clearAllFilters()">Clear all</button>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Availability <span class="chevron">▲</span></div>
+        <div class="filter-options open" id="fg-stock">
+          <label class="filter-option"><input type="checkbox" value="in" onchange="applyFilters()"><label>In Stock</label></label>
+          <label class="filter-option"><input type="checkbox" value="out" onchange="applyFilters()"><label>Out of Stock</label></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-group-title open" onclick="toggleFilterGroup(this)">Price <span class="chevron">▲</span></div>
+        <div class="filter-options open">
+          <div class="price-range-wrap">
+            <div class="price-display" id="priceDisplay">Price: Rs. 1,800 – Rs. 5,500</div>
+            <div class="price-inputs">
+              <span>₹</span>
+              <input type="number" id="priceMin" value="1800" min="1800" max="5500" placeholder="From" onchange="syncPriceInputs('')">
+              <span>–</span>
+              <input type="number" id="priceMax" value="5500" min="1800" max="5500" placeholder="To" onchange="syncPriceInputs('')">
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <button class="mob-filter-btn" onclick="openMobFilter()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filter &amp; Sort
+      </button>
+
+      <div class="active-filters" id="activeFilters"></div>
+
+      <div class="sort-bar">
+        <span class="product-count" id="productCountLabel">9 products</span>
+        <div class="sort-select-wrap">
+          <span class="sort-label">Sort by</span>
+          <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
+            <option value="featured">Featured</option>
+            <option value="relevant">Most Relevant</option>
+            <option value="best-selling">Best Selling</option>
+            <option value="price-low">Price, low to high</option>
+            <option value="price-high">Price, high to low</option>
+          </select>
+        </div>
+      </div>
+
+  <div class="products-grid" id="productsGrid">
+    <div class="product-card" data-pid="1" data-price="2800" data-stock="in" data-reviews="7" data-index="0">
       <div class="product-img-wrap">
         <a href="/b-complex.html"><img src="/product-b-complex.png" alt="B-Complex" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="b-complex"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -282,7 +409,7 @@ header{
         <button class="add-btn" onclick="addToCart(1,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="5">
+    <div class="product-card" data-pid="5" data-price="3000" data-stock="in" data-reviews="22" data-index="1">
       <div class="product-img-wrap">
         <a href="/multivitamins.html"><img src="/product-multivitamins.png" alt="Multivitamins" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="multivitamins"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -302,7 +429,7 @@ header{
         <button class="add-btn" onclick="addToCart(5,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="3">
+    <div class="product-card" data-pid="3" data-price="2200" data-stock="in" data-reviews="8" data-index="2">
       <div class="product-img-wrap">
         <a href="/iron-vitamin-c.html"><img src="/product-iron-vitamin-c.png" alt="Iron + Vitamin C" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="iron-vitamin-c"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -322,7 +449,7 @@ header{
         <button class="add-btn" onclick="addToCart(3,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="4">
+    <div class="product-card" data-pid="4" data-price="3500" data-stock="in" data-reviews="6" data-index="3">
       <div class="product-img-wrap">
         <a href="/moringa-mushroom.html"><img src="/product-moringa-mushroom.png" alt="Moringa + Mushroom Lions Mane" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="moringa-mushroom"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -342,7 +469,7 @@ header{
         <button class="add-btn" onclick="addToCart(4,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="2">
+    <div class="product-card" data-pid="2" data-price="1800" data-stock="in" data-reviews="16" data-index="4">
       <div class="product-img-wrap">
         <a href="/biotin.html"><img src="/product-biotin.png" alt="Biotin" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="biotin"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -362,7 +489,7 @@ header{
         <button class="add-btn" onclick="addToCart(2,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="8">
+    <div class="product-card" data-pid="8" data-price="2500" data-stock="in" data-reviews="11" data-index="5">
       <div class="product-img-wrap">
         <a href="/vitamin-d3-k2.html"><img src="/product-vitamin-d3-k2.png" alt="Vitamin D-3 + K2" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="vitamin-d3-k2"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -382,7 +509,7 @@ header{
         <button class="add-btn" onclick="addToCart(8,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="6">
+    <div class="product-card" data-pid="6" data-price="3800" data-stock="in" data-reviews="9" data-index="6">
       <div class="product-img-wrap">
         <a href="/omega-3-algal.html"><img src="/product-omega-3-algal.png" alt="Omega-3 (Algal)" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="omega-3-algal"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -402,7 +529,7 @@ header{
         <button class="add-btn" onclick="addToCart(6,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="7">
+    <div class="product-card" data-pid="7" data-price="4500" data-stock="in" data-reviews="14" data-index="7">
       <div class="product-img-wrap">
         <a href="/plant-protein.html"><img src="/product-plant-protein.png" alt="Plant Protein" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="plant-protein"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -422,7 +549,7 @@ header{
         <button class="add-btn" onclick="addToCart(7,this)">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card" data-pid="9">
+    <div class="product-card" data-pid="9" data-price="5500" data-stock="in" data-reviews="18" data-index="8">
       <div class="product-img-wrap">
         <a href="/whey-protein.html"><img src="/product-whey-protein.png" alt="Whey Protein" loading="lazy"></a>
         <button class="wish-heart" aria-label="Add to wishlist" onclick="toggleWishlist(this, event)" data-slug="whey-protein"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
@@ -441,7 +568,10 @@ header{
         </div>
         <button class="add-btn" onclick="addToCart(9,this)">Add to Cart</button>
       </div>
-    </div></div>
+    </div>
+  </div>
+    </main>
+  </div>
 </div>
 
 <div id="site-footer-mount"></div>
@@ -507,6 +637,102 @@ document.addEventListener('DOMContentLoaded', () => {
     if (wishlist.some(w => w.userId === user.id && w.productId === slug)) btn.classList.add('active');
   });
 });
+
+// ── FILTER & SORT ─────────────────────────────────────────────────────────
+const PRICE_MIN = 1800, PRICE_MAX = 5500;
+
+function toggleFilterGroup(el) { el.classList.toggle('open'); el.nextElementSibling.classList.toggle('open'); }
+
+function openMobFilter() { document.getElementById('mobFilterDrawer').classList.add('open'); }
+function closeMobFilter() { document.getElementById('mobFilterDrawer').classList.remove('open'); }
+
+function syncPriceInputs(from) {
+  const min = document.getElementById(from ? from + '-priceMin' : 'priceMin').value;
+  const max = document.getElementById(from ? from + '-priceMax' : 'priceMax').value;
+  document.getElementById('priceMin').value = min;
+  document.getElementById('priceMax').value = max;
+  document.getElementById('mob-priceMin').value = min;
+  document.getElementById('mob-priceMax').value = max;
+  updatePriceDisplay();
+}
+
+function updatePriceDisplay() {
+  const min = document.getElementById('priceMin').value || PRICE_MIN;
+  const max = document.getElementById('priceMax').value || PRICE_MAX;
+  const text = `Price: Rs. ${parseInt(min).toLocaleString('en-IN')} – Rs. ${parseInt(max).toLocaleString('en-IN')}`;
+  document.getElementById('priceDisplay').textContent = text;
+  document.getElementById('mob-priceDisplay').textContent = text;
+  applyFilters();
+}
+
+function getCheckedValues(groupId) {
+  return [...document.querySelectorAll(`#${groupId} input:checked`)].map(c => c.value);
+}
+
+function applyFilters() {
+  const stockChecks = [...new Set([...getCheckedValues('fg-stock'), ...getCheckedValues('mob-fg-stock')])];
+  const min = parseInt(document.getElementById('priceMin').value) || PRICE_MIN;
+  const max = parseInt(document.getElementById('priceMax').value) || PRICE_MAX;
+  let count = 0;
+  document.querySelectorAll('.product-card').forEach(card => {
+    const stockMatch = stockChecks.length === 0 || stockChecks.includes(card.dataset.stock);
+    const price = parseInt(card.dataset.price);
+    const priceMatch = price >= min && price <= max;
+    const show = stockMatch && priceMatch;
+    card.classList.toggle('hidden', !show);
+    if (show) count++;
+  });
+  document.getElementById('productCountLabel').textContent = count + ' product' + (count !== 1 ? 's' : '');
+  renderChips(stockChecks, min, max);
+}
+
+function renderChips(stockChecks, min, max) {
+  const c = document.getElementById('activeFilters');
+  c.innerHTML = '';
+  const labels = { in: 'In Stock', out: 'Out of Stock' };
+  stockChecks.forEach(v => {
+    const chip = document.createElement('div');
+    chip.className = 'filter-chip';
+    chip.innerHTML = `${labels[v]} <span class="x">×</span>`;
+    chip.onclick = () => {
+      document.querySelectorAll('#fg-stock input, #mob-fg-stock input').forEach(i => { if (i.value === v) i.checked = false; });
+      applyFilters();
+    };
+    c.appendChild(chip);
+  });
+  if (min > PRICE_MIN || max < PRICE_MAX) {
+    const chip = document.createElement('div');
+    chip.className = 'filter-chip';
+    chip.innerHTML = `Rs. ${min.toLocaleString('en-IN')} – Rs. ${max.toLocaleString('en-IN')} <span class="x">×</span>`;
+    chip.onclick = () => {
+      ['priceMin', 'mob-priceMin'].forEach(id => document.getElementById(id).value = PRICE_MIN);
+      ['priceMax', 'mob-priceMax'].forEach(id => document.getElementById(id).value = PRICE_MAX);
+      updatePriceDisplay();
+    };
+    c.appendChild(chip);
+  }
+}
+
+function clearAllFilters() {
+  document.querySelectorAll('#fg-stock input, #mob-fg-stock input').forEach(i => i.checked = false);
+  ['priceMin', 'mob-priceMin'].forEach(id => document.getElementById(id).value = PRICE_MIN);
+  ['priceMax', 'mob-priceMax'].forEach(id => document.getElementById(id).value = PRICE_MAX);
+  updatePriceDisplay();
+}
+
+function sortProducts(method) {
+  const grid = document.getElementById('productsGrid');
+  const cards = [...grid.querySelectorAll('.product-card')];
+  cards.sort((a, b) => {
+    if (method === 'best-selling') return parseInt(b.dataset.reviews) - parseInt(a.dataset.reviews);
+    if (method === 'price-low') return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+    if (method === 'price-high') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+    // "featured" and "relevant" both fall back to the original curated order -
+    // there's no real relevance signal (like a search query) to rank by here.
+    return parseInt(a.dataset.index) - parseInt(b.dataset.index);
+  });
+  cards.forEach(c => grid.appendChild(c));
+}
 </script>
 
 <script>
