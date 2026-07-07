@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+}
+
+enum PaymentMethod {
+  RAZORPAY
+  COD
+}
+
+enum CouponType {
+  PERCENT
+  FLAT
+  SHIPPING
+}
+
+model User {
+  id           String         @id @default(cuid())
+  firstName    String
+  lastName     String?
+  email        String         @unique
+  phone        String?
+  passwordHash String
+  role         Role           @default(CUSTOMER)
+  createdAt    DateTime       @default(now())
+  orders       Order[]
+  wishlist     WishlistItem[]
+}
+
+model Product {
+  id            Int            @id @default(autoincrement())
+  slug          String         @unique
+  name          String
+  price         Int
+  compareAtPrice Int?
+  image         String
+  rating        Decimal?       @db.Decimal(2, 1)
+  reviewCount   Int            @default(0)
+  benefitTags   String[]
+  description   String         @default("")
+  benefits      String[]
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  orderItems    OrderItem[]
+  wishlistedBy  WishlistItem[]
+}
+
+model Order {
+  id                String        @id @default(cuid())
+  orderNumber       String        @unique
+  userId            String?
+  user              User?         @relation(fields: [userId], references: [id])
+  guestEmail        String?
+  subtotal          Int
+  shipping          Int
+  discount          Int
+  total             Int
+  couponCode        String?
+  status            OrderStatus   @default(PENDING)
+  paymentStatus     PaymentStatus @default(UNPAID)
+  paymentMethod     PaymentMethod
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  customerName      String
+  email             String
+  phone             String
+  addressLine1      String
+  addressLine2      String?
+  city              String
+  state             String
+  pincode           String
+  notes             String?
+  createdAt         DateTime      @default(now())
+  items             OrderItem[]
+
+  @@index([userId])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  variantId String?
+  name      String
+  price     Int
+  qty       Int
+}
+
+model Coupon {
+  id        String     @id @default(cuid())
+  code      String     @unique
+  type      CouponType
+  value     Int
+  active    Boolean    @default(true)
+  expiresAt DateTime?
+  createdAt DateTime   @default(now())
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}

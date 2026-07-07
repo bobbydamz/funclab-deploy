@@ -1,0 +1,338 @@
+.page-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+.page-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  margin-bottom: 48px;
+  letter-spacing: -0.01em;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e8e4de;
+  margin-bottom: 48px;
+  overflow-x: auto;
+}
+.cat-tab {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.cat-tab.active,
+.cat-tab:hover {
+  color: #1a1a1a;
+  border-bottom-color: #1a1a1a;
+}
+
+.featured-article {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  border-bottom: 1px solid #e8e4de;
+  padding-bottom: 56px;
+  margin-bottom: 56px;
+  cursor: pointer;
+}
+.featured-article:hover .fa-thumb img {
+  transform: scale(1.04);
+}
+.fa-thumb {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #f7f4f0;
+}
+.fa-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.fa-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #1a1a1a;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+.fa-tag.tag-hydration {
+  background: #3a7ca5;
+}
+.fa-tag.tag-protein {
+  background: #2d6a4f;
+}
+.fa-title {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  color: #1a1a1a;
+  transition: color 0.2s;
+}
+.featured-article:hover .fa-title {
+  color: #c9a96e;
+}
+.fa-meta {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+.fa-excerpt {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.fa-readmore {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.fa-readmore:hover {
+  color: #c9a96e;
+}
+.fa-readmore svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+.fa-readmore:hover svg {
+  transform: translateX(3px);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 28px;
+  margin-bottom: 56px;
+}
+.article-card {
+  cursor: pointer;
+  transition: transform 0.3s;
+  display: block;
+}
+.article-card:hover {
+  transform: translateY(-3px);
+}
+.article-card:hover .ac-title {
+  color: #c9a96e;
+}
+.ac-thumb {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #f7f4f0;
+  margin-bottom: 16px;
+}
+.ac-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.article-card:hover .ac-thumb img {
+  transform: scale(1.04);
+}
+.ac-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #1a1a1a;
+  padding: 3px 8px;
+  margin-bottom: 8px;
+}
+.ac-tag.tag-hydration {
+  background: #3a7ca5;
+}
+.ac-tag.tag-protein {
+  background: #2d6a4f;
+}
+.ac-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+  transition: color 0.2s;
+}
+.ac-meta {
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+.ac-excerpt {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ac-readmore {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+.ac-readmore:hover {
+  color: #c9a96e;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding-top: 16px;
+}
+.page-btn {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e8e4de;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0 12px;
+}
+.page-btn:hover,
+.page-btn.active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #fff;
+}
+.page-btn.next-btn {
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.blog-cta {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 64px 40px;
+  margin-top: 80px;
+  text-align: center;
+}
+.blog-cta h2 {
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.blog-cta p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 28px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.blog-cta-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-btn-primary {
+  background: #c9a96e;
+  color: #1a1a1a;
+  border: none;
+  padding: 13px 28px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cta-btn-primary:hover {
+  background: #b8944f;
+}
+.cta-btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  padding: 13px 28px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cta-btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 1024px) {
+  .page-wrap {
+    padding: 48px 24px 60px;
+  }
+  .featured-article {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-cta {
+    padding: 48px 24px;
+  }
+}
+@media (max-width: 500px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-cta-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+}
