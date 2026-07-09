@@ -1,0 +1,197 @@
+.purpose-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.purpose-banner img {
+  width: 100%;
+  display: block;
+}
+
+.intro-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+.intro-section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+.intro-section p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 18px;
+}
+.intro-section p:last-child {
+  margin-bottom: 0;
+}
+.intro-section p strong {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.formula-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  border-top: 1px solid #e8e4de;
+}
+.formula-block.reverse {
+  direction: rtl;
+}
+.formula-block.reverse > * {
+  direction: ltr;
+}
+.formula-img {
+  overflow: hidden;
+  background: #f0ece6;
+  position: relative;
+}
+.formula-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.formula-block:hover .formula-img img {
+  transform: scale(1.03);
+}
+.formula-text {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.formula-text h3 {
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.formula-text p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 16px;
+}
+.formula-text p:last-of-type {
+  margin-bottom: 0;
+}
+.formula-text p strong {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+.formula-tagline {
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: #f7f4f0;
+  border-left: 3px solid #1a1a1a;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+.formula-more {
+  display: none;
+}
+.formula-more.open {
+  display: block;
+}
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 2px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.read-more-btn:hover {
+  color: #c9a96e;
+  border-bottom-color: #c9a96e;
+}
+.read-more-btn .arrow {
+  transition: transform 0.3s;
+  font-size: 16px;
+  line-height: 1;
+}
+.read-more-btn.open .arrow {
+  transform: rotate(180deg);
+}
+
+.closing-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  text-align: center;
+  border-top: 1px solid #e8e4de;
+}
+.closing-section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.closing-section p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 14px;
+}
+.closing-section p strong {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.bottom-banner {
+  width: 100%;
+}
+.bottom-banner img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .formula-text {
+    padding: 56px 48px;
+  }
+}
+@media (max-width: 800px) {
+  .formula-block,
+  .formula-block.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    min-height: auto;
+  }
+  .formula-img {
+    height: 380px;
+  }
+  .formula-text {
+    padding: 48px 32px;
+  }
+  .intro-section,
+  .closing-section {
+    padding: 56px 24px;
+  }
+}
+@media (max-width: 500px) {
+  .formula-img {
+    height: 280px;
+  }
+  .formula-text {
+    padding: 40px 24px;
+  }
+}
