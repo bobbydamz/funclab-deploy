@@ -1,8 +1,18 @@
 import { prisma } from "./prisma";
-import type { Prisma } from "@prisma/client";
+import type { Prisma, Product } from "@prisma/client";
 
-export function getProductBySlug(slug: string) {
-  return prisma.product.findUnique({ where: { slug, active: true } });
+// Prisma's Decimal is a class instance, not a plain object, so it can't cross the
+// Server -> Client Component boundary. Every product read from the DB gets its rating
+// converted to a plain number before leaving this module.
+export type SerializedProduct = Omit<Product, "rating"> & { rating: number | null };
+
+function serializeProduct(p: Product): SerializedProduct {
+  return { ...p, rating: p.rating === null ? null : p.rating.toNumber() };
+}
+
+export async function getProductBySlug(slug: string): Promise<SerializedProduct | null> {
+  const product = await prisma.product.findUnique({ where: { slug, active: true } });
+  return product ? serializeProduct(product) : null;
 }
 
 export type ProductFilters = {
@@ -12,7 +22,7 @@ export type ProductFilters = {
   sort?: "featured" | "price-asc" | "price-desc" | "best-selling" | "relevant";
 };
 
-export function getAllProducts(filters: ProductFilters = {}) {
+export async function getAllProducts(filters: ProductFilters = {}): Promise<SerializedProduct[]> {
   const where: Prisma.ProductWhereInput = { active: true };
   if (filters.minPrice !== undefined || filters.maxPrice !== undefined) {
     where.price = {};
@@ -38,7 +48,8 @@ export function getAllProducts(filters: ProductFilters = {}) {
       orderBy = { id: "asc" };
   }
 
-  return prisma.product.findMany({ where, orderBy });
+  const products = await prisma.product.findMany({ where, orderBy });
+  return products.map(serializeProduct);
 }
 
 /**
@@ -48,11 +59,11 @@ export function getAllProducts(filters: ProductFilters = {}) {
  * per-product recommendation. Reproducing that exact static behavior here rather than
  * inventing a new "similar products" algorithm that wasn't part of the original design.
  */
-export async function getRelatedProducts(currentSlug: string) {
+export async function getRelatedProducts(currentSlug: string): Promise<SerializedProduct[]> {
   const cluster = await prisma.product.findMany({
     where: { active: true },
     orderBy: { id: "asc" },
     take: 4,
   });
-  return cluster.filter((p) => p.slug !== currentSlug).slice(0, 3);
+  return cluster.filter((p) => p.slug !== currentSlug).slice(0, 3).map(serializeProduct);
 }

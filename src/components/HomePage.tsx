@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { Product } from "@prisma/client";
+import type { SerializedProduct as Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 import ScrollReveal from "@/components/ScrollReveal";
 

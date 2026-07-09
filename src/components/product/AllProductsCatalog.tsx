@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { Product } from "@prisma/client";
+import type { SerializedProduct as Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 
 const PRICE_MIN = 1800;

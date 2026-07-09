@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Product } from "@prisma/client";
+import type { SerializedProduct as Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 
 export default function RelatedProducts({ products }: { products: Product[] }) {
