@@ -852,9 +852,29 @@ footer {
   font-size: 13px;
   color: #888;
 }
-.product-rating .stars {
-  color: #c9a96e;
-  font-size: 14px;
+.product-rating .rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.product-rating .rating-pill svg {
+  width: 10px;
+  height: 10px;
+  fill: #f4b942;
+}
+.product-rating .rating-max {
+  font-weight: 400;
+  opacity: 0.7;
+}
+.product-rating .rating-count {
+  font-size: 11px;
+  color: #999;
 }
 .product-price-row {
   display: flex;
