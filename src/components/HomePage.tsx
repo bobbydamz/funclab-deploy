@@ -24,11 +24,11 @@ const HERO_SLIDES = [
     caption: "Simple solutions for a healthier you.",
   },
   {
-    img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?fm=jpg&q=95&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0",
+    img: "/yoga-practice-pose-stockcake.jpg",
     caption: "Functional. Simple. Purposeful.",
   },
   {
-    img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1920&q=85&fit=crop",
+    img: "/African.jpg",
     caption: "Rooted in function. Designed for real life.",
   },
 ];
