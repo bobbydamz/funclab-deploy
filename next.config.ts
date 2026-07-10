@@ -48,6 +48,10 @@ const nextConfig: NextConfig = {
         destination: `/${slug}`,
         permanent: true,
       })),
+      // There's no separate admin login screen -- /account is the one shared login
+      // form for every account, customer or admin. This just gives admins a URL
+      // that matches what they'd expect to type.
+      { source: "/admin/login", destination: "/account", permanent: true },
     ];
   },
 };
