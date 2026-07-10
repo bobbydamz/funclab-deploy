@@ -5,6 +5,12 @@ import Link from "next/link";
 import type { SerializedProduct as Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 
+const STAR_ICON = (
+  <svg viewBox="0 0 24 24">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
+  </svg>
+);
+
 export default function RelatedProducts({ products }: { products: Product[] }) {
   const { add } = useCart();
   const [addedId, setAddedId] = useState<number | null>(null);
@@ -32,6 +38,14 @@ export default function RelatedProducts({ products }: { products: Product[] }) {
                 </Link>
               </div>
               <div className="product-info">
+                <div className="product-rating">
+                  <span className="rating-pill">
+                    {STAR_ICON}
+                    {p.rating?.toString()}
+                    <span className="rating-max">/5</span>
+                  </span>
+                  <span className="rating-count">({p.reviewCount})</span>
+                </div>
                 <div className="product-name">
                   <Link href={`/${p.slug}`}>{p.name}</Link>
                 </div>
