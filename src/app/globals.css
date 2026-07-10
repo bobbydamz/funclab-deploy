@@ -1001,6 +1001,12 @@ footer {
 .related-section .product-info {
   padding: 16px;
 }
+.related-section .product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
 .related-section .product-name {
   font-size: 14px;
   font-weight: 600;
