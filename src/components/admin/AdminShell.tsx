@@ -1,8 +1,12 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import type { CurrentUser } from "@/lib/auth";
+
+const HEALTH_CHECK_INTERVAL_MS = 30_000;
+type ApiStatus = "checking" | "connected" | "error";
 
 const NAV = [
   {
@@ -31,12 +35,46 @@ const NAV = [
 export default function AdminShell({ user, children }: { user: CurrentUser; children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [apiStatus, setApiStatus] = useState<ApiStatus>("checking");
+  const checkingRef = useRef(false);
+
+  const checkHealth = useCallback(async () => {
+    if (checkingRef.current) return;
+    checkingRef.current = true;
+    setApiStatus("checking");
+    try {
+      const res = await fetch("/api/admin/health", { cache: "no-store" });
+      setApiStatus(res.ok ? "connected" : "error");
+    } catch {
+      setApiStatus("error");
+    } finally {
+      checkingRef.current = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    // Standard fetch-on-mount-then-poll idiom: checkHealth only calls setApiStatus after
+    // an await, so nothing runs synchronously here -- the linter can't see past that
+    // boundary and flags it as if it were a direct setState call in the effect body.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    checkHealth();
+    const interval = setInterval(checkHealth, HEALTH_CHECK_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [checkHealth]);
 
   async function handleSignOut() {
     await fetch("/api/auth/logout", { method: "POST" });
     router.push("/account");
     router.refresh();
   }
+
+  async function handleRefresh() {
+    router.refresh();
+    checkHealth();
+  }
+
+  const statusLabel =
+    apiStatus === "connected" ? "API connected" : apiStatus === "error" ? "API disconnected" : "Checking API…";
 
   const title = NAV.flatMap((s) => s.items).find((i) => i.href === pathname)?.text ?? "Dashboard";
   const initial = user.firstName?.[0]?.toUpperCase() ?? "A";
@@ -84,9 +122,9 @@ export default function AdminShell({ user, children }: { user: CurrentUser; chil
         <div className="topbar">
           <div className="page-title">{title}</div>
           <div className="topbar-right">
-            <div className="status-dot" />
-            <span className="status-label">API connected</span>
-            <button className="refresh-btn" onClick={() => router.refresh()}>
+            <div className={`status-dot${apiStatus !== "connected" ? ` ${apiStatus}` : ""}`} />
+            <span className="status-label">{statusLabel}</span>
+            <button className="refresh-btn" onClick={handleRefresh}>
               ↻ Refresh
             </button>
             <button className="btn btn-outline btn-sm" onClick={handleSignOut}>
