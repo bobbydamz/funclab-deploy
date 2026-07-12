@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import PasswordInput from "@/components/PasswordInput";
 
 type Tab = "login" | "register";
 
@@ -116,7 +117,7 @@ export default function AuthScreen() {
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input type="password" value={loginPw} onChange={(e) => setLoginPw(e.target.value)} placeholder="••••••••" />
+            <PasswordInput value={loginPw} onChange={(e) => setLoginPw(e.target.value)} placeholder="••••••••" />
           </div>
           <a href="/forgot-password" className="forgot-link">Forgot password?</a>
           <button className="submit-btn" onClick={doLogin} disabled={loginBusy}>
@@ -153,11 +154,11 @@ export default function AuthScreen() {
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input type="password" value={regPw} onChange={(e) => setRegPw(e.target.value)} placeholder="Minimum 8 characters" />
+            <PasswordInput value={regPw} onChange={(e) => setRegPw(e.target.value)} placeholder="Minimum 8 characters" />
           </div>
           <div className="form-group">
             <label>Confirm Password</label>
-            <input type="password" value={regPw2} onChange={(e) => setRegPw2(e.target.value)} placeholder="••••••••" />
+            <PasswordInput value={regPw2} onChange={(e) => setRegPw2(e.target.value)} placeholder="••••••••" />
           </div>
           <button className="submit-btn" onClick={doRegister} disabled={regBusy}>
             {regBusy ? "Creating account…" : "Create Account"}

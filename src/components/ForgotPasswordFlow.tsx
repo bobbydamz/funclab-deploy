@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import PasswordInput from "@/components/PasswordInput";
 
 type Step = 1 | 2 | 3;
 
@@ -131,8 +132,7 @@ export default function ForgotPasswordFlow() {
             </div>
             <div className="form-group">
               <label>New Password</label>
-              <input
-                type="password"
+              <PasswordInput
                 value={newPw}
                 onChange={(e) => setNewPw(e.target.value)}
                 placeholder="Minimum 8 characters"
@@ -140,8 +140,7 @@ export default function ForgotPasswordFlow() {
             </div>
             <div className="form-group">
               <label>Confirm New Password</label>
-              <input
-                type="password"
+              <PasswordInput
                 value={newPw2}
                 onChange={(e) => setNewPw2(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && doReset()}
