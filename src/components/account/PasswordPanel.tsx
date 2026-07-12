@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PasswordInput from "@/components/PasswordInput";
 
 export default function PasswordPanel() {
   const [oldPw, setOldPw] = useState("");
@@ -51,15 +52,15 @@ export default function PasswordPanel() {
         {error && <div className="form-error" style={{ display: "block" }}>{error}</div>}
         <div className="form-group">
           <label>Current Password</label>
-          <input type="password" value={oldPw} onChange={(e) => setOldPw(e.target.value)} placeholder="••••••••" />
+          <PasswordInput value={oldPw} onChange={(e) => setOldPw(e.target.value)} placeholder="••••••••" />
         </div>
         <div className="form-group">
           <label>New Password</label>
-          <input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder="Minimum 8 characters" />
+          <PasswordInput value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder="Minimum 8 characters" />
         </div>
         <div className="form-group">
           <label>Confirm New Password</label>
-          <input type="password" value={newPw2} onChange={(e) => setNewPw2(e.target.value)} placeholder="••••••••" />
+          <PasswordInput value={newPw2} onChange={(e) => setNewPw2(e.target.value)} placeholder="••••••••" />
         </div>
         <button className="profile-save" onClick={changePassword} disabled={saving}>
           {saving ? "Updating..." : "Update Password"}

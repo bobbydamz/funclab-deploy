@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import PasswordInput from "@/components/PasswordInput";
 
 export default function AdminLoginScreen() {
   const router = useRouter();
@@ -60,8 +61,7 @@ export default function AdminLoginScreen() {
             </div>
             <div className="form-group" style={{ marginBottom: 22 }}>
               <label>Password</label>
-              <input
-                type="password"
+              <PasswordInput
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
