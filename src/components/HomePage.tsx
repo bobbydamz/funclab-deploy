@@ -21,14 +21,17 @@ const HEART_ICON = (
 const HERO_SLIDES = [
   {
     img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop",
+    mobileImg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85&fit=crop",
     caption: "Simple solutions for a healthier you.",
   },
   {
     img: "/hero-yoga-sunset.png",
+    mobileImg: "/hero-yoga-sunset-mobile.png",
     caption: "Functional. Simple. Purposeful.",
   },
   {
     img: "/hero-runner-sunset.png",
+    mobileImg: "/hero-runner-sunset-mobile.png",
     caption: "Rooted in function. Designed for real life.",
   },
 ];
@@ -212,8 +215,10 @@ function HeroSlider() {
       <div className="hero-slides" id="heroSlides" ref={wrapRef}>
         {HERO_SLIDES.map((s, i) => (
           <div className={`hero-slide${i === active ? " active" : ""}`} key={s.caption}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={s.img} alt={s.caption} />
+            <picture>
+              <source media="(max-width: 767px)" srcSet={s.mobileImg} />
+              <img src={s.img} alt={s.caption} />
+            </picture>
             <div className="hero-caption">
               <h2>{s.caption}</h2>
               <Link href="/all-products" className="hero-shop-btn">
