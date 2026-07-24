@@ -43,7 +43,8 @@ export default function AdminLoginScreen() {
     <div className="admin-root">
       <div className="login-screen">
         <div className="login-box">
-          <div className="login-logo">BioHAK Wellness</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-white.png" alt="BioHAK Wellness" className="login-logo" />
           <div className="login-title">Admin Dashboard</div>
           <div className="login-sub">Sign in to manage your store</div>
           {error && <div className="login-error">{error}</div>}
