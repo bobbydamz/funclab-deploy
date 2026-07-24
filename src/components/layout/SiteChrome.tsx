@@ -7,6 +7,7 @@ import MobileMenu from "./MobileMenu";
 import Footer from "./Footer";
 import SplashScreen from "./SplashScreen";
 import BackToTop from "./BackToTop";
+import ChatWidget from "./ChatWidget";
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       {children}
       <Footer />
       <BackToTop />
+      <ChatWidget />
     </>
   );
 }
