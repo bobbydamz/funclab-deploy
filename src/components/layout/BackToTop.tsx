@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const SHOW_AFTER_PX = 500;
+const SHOW_AFTER_PX = 300;
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
