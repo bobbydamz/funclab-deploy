@@ -1,8 +1,13 @@
 /* ─── HERO SLIDESHOW ─── */
+/* Height is capped at 680px on tall screens, but shrinks to fit shorter viewports so the
+   "Shop Now" button (near the bottom of the hero) is always visible on first load without
+   scrolling -- 152px accounts for the announcement bar (~44px) + header (88px) above it,
+   plus a small buffer so the hero doesn't touch the very edge of the viewport. */
 .hero {
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: min(680px, calc(100vh - 152px));
   max-height: 680px;
 }
 .hero-slides {
@@ -14,7 +19,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  height: 680px;
+  height: min(680px, calc(100vh - 152px));
   max-height: 680px;
 }
 .hero-slide img {
