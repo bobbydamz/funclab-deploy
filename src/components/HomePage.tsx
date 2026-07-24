@@ -589,15 +589,15 @@ export default function HomePage({ products }: { products: Product[] }) {
         <div className="insta-wrap">
           <h2 className="section-title reveal">Straight From The Grid</h2>
           <div className="insta-handle reveal">
-            <a href="https://www.instagram.com/thefunclab/" target="_blank" rel="noreferrer">
-              @thefunclab
+            <a href="https://www.instagram.com/biohakwellness/" target="_blank" rel="noreferrer">
+              @biohakwellness
             </a>
           </div>
           <div className="insta-grid reveal">
             {INSTA_IMAGES.map((src) => (
               <a
                 className="insta-cell"
-                href="https://www.instagram.com/thefunclab/"
+                href="https://www.instagram.com/biohakwellness/"
                 target="_blank"
                 rel="noreferrer"
                 key={src}
