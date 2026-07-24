@@ -25,12 +25,12 @@ const HERO_SLIDES = [
     caption: "Simple solutions for a healthier you.",
   },
   {
-    img: "/hero-yoga-sunset.png",
+    img: "/hero-yoga-sunset-wide.png",
     mobileImg: "/hero-yoga-sunset-mobile.png",
     caption: "Functional. Simple. Purposeful.",
   },
   {
-    img: "/hero-runner-sunset.png",
+    img: "/hero-runner-sunset-wide.png",
     mobileImg: "/hero-runner-sunset-mobile.png",
     caption: "Rooted in function. Designed for real life.",
   },
