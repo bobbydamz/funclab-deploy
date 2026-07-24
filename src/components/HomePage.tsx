@@ -20,7 +20,7 @@ const HEART_ICON = (
 
 const HERO_SLIDES = [
   {
-    img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1920&q=85&fit=crop",
+    img: "/hero-lift-wide.png",
     mobileImg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85&fit=crop",
     caption: "Simple solutions for a healthier you.",
   },
