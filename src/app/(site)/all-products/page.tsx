@@ -3,6 +3,10 @@ import { getAllProducts } from "@/lib/products";
 import AllProductsCatalog from "@/components/product/AllProductsCatalog";
 import "./all-products.css";
 
+// Reads live product data from Postgres -- see (site)/page.tsx for why this can't be
+// statically generated at build time.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "All Products – BioHAK Wellness",
   description:
