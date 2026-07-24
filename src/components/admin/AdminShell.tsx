@@ -83,7 +83,8 @@ export default function AdminShell({ user, children }: { user: CurrentUser; chil
     <div className="admin-root">
       <aside className="sidebar">
         <div className="sidebar-logo">
-          <div className="brand">BioHAK Wellness</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-white.png" alt="BioHAK Wellness" className="brand" />
           <div className="sub">Admin Panel</div>
         </div>
         <nav className="sidebar-nav">

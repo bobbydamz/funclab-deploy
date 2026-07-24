@@ -40,11 +40,9 @@
   border-bottom: 1px solid var(--border);
 }
 .sidebar-logo .brand {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
+  display: block;
+  height: 28px;
+  width: auto;
 }
 .sidebar-logo .sub {
   font-size: 11px;
@@ -585,12 +583,10 @@
   padding: 40px;
 }
 .login-logo {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 4px;
+  display: block;
+  height: 32px;
+  width: auto;
+  margin-bottom: 18px;
 }
 .login-title {
   font-size: 22px;
