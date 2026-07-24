@@ -6,6 +6,7 @@ import SearchOverlay from "./SearchOverlay";
 import MobileMenu from "./MobileMenu";
 import Footer from "./Footer";
 import SplashScreen from "./SplashScreen";
+import BackToTop from "./BackToTop";
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -30,6 +31,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
       {children}
       <Footer />
+      <BackToTop />
     </>
   );
 }
