@@ -52,6 +52,48 @@ export async function getAllProducts(filters: ProductFilters = {}): Promise<Seri
   return products.map(serializeProduct);
 }
 
+// Admin-only reads/writes -- unlike the storefront functions above, these deliberately do
+// NOT filter on active:true, since admins need to see and edit inactive products too.
+
+export async function getAllProductsAdmin(): Promise<SerializedProduct[]> {
+  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
+  return products.map(serializeProduct);
+}
+
+export async function getProductByIdAdmin(id: number): Promise<SerializedProduct | null> {
+  const product = await prisma.product.findUnique({ where: { id } });
+  return product ? serializeProduct(product) : null;
+}
+
+export type ProductInput = {
+  slug: string;
+  name: string;
+  price: number;
+  compareAtPrice: number | null;
+  image: string;
+  description: string;
+  benefits: string[];
+  benefitTags: string[];
+  rating: number | null;
+  reviewCount: number;
+  stock: number;
+  active: boolean;
+};
+
+export async function createProduct(data: ProductInput) {
+  const product = await prisma.product.create({ data });
+  return serializeProduct(product);
+}
+
+export async function updateProduct(id: number, data: Partial<ProductInput>) {
+  const product = await prisma.product.update({ where: { id }, data });
+  return serializeProduct(product);
+}
+
+export async function deleteProduct(id: number): Promise<void> {
+  await prisma.product.delete({ where: { id } });
+}
+
 /**
  * The original site's per-product-page "You May Also Like" section always referenced the
  * same small cluster of the first 4 catalog products (b-complex/biotin/iron-vitamin-c/

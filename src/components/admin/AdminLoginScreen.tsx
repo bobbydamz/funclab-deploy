@@ -43,8 +43,13 @@ export default function AdminLoginScreen() {
     <div className="admin-root">
       <div className="login-screen">
         <div className="login-box">
+          {/* Two logos, theme-swapped by CSS -- the dark-text version is illegible once the
+              dark theme (toggled from inside the dashboard, but also applied here) turns
+              this card dark. See .login-logo-light/.login-logo-dark in admin.css. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-transparent.png" alt="BioHAK Wellness" className="login-logo" />
+          <img src="/logo-transparent.png" alt="BioHAK Wellness" className="login-logo login-logo-light" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-white.png" alt="BioHAK Wellness" className="login-logo login-logo-dark" />
           <div className="login-title">Admin Dashboard</div>
           <div className="login-sub">Sign in to manage your store</div>
           {error && <div className="login-error">{error}</div>}
