@@ -10,12 +10,20 @@ import {
   Tooltip,
   BarChart,
   Bar,
+  Cell,
 } from "recharts";
 
 const ACCENT = "#4bb4b4";
 const ACCENT_DARK = "#0f5252";
 const MUTED = "#6b6b66";
 const BORDER = "#e8e4de";
+
+const STATUS_COLOR: Record<string, string> = {
+  Pending: "#c9a96e",
+  Confirmed: "#3d7fc7",
+  Shipped: "#b8790f",
+  Delivered: "#2d7a4f",
+};
 
 function CurrencyTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
   if (!active || !payload?.length) return null;
@@ -86,6 +94,32 @@ export function TopProductsChart({ data }: { data: { name: string; qty: number }
           itemStyle={{ color: "#fff" }}
         />
         <Bar dataKey="qty" fill={ACCENT} radius={[0, 4, 4, 0]} />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
+
+export function OrderStatusChart({ data }: { data: { status: string; count: number }[] }) {
+  if (data.every((d) => d.count === 0)) {
+    return <div className="empty">No orders yet.</div>;
+  }
+  return (
+    <ResponsiveContainer width="100%" height={220}>
+      <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke={BORDER} vertical={false} />
+        <XAxis dataKey="status" tick={{ fontSize: 11, fill: MUTED }} axisLine={{ stroke: BORDER }} tickLine={false} />
+        <YAxis tick={{ fontSize: 11, fill: MUTED }} axisLine={false} tickLine={false} width={30} allowDecimals={false} />
+        <Tooltip
+          cursor={{ fill: "rgba(75,180,180,0.08)" }}
+          contentStyle={{ background: "#1a1a1a", border: "none", borderRadius: 6, fontSize: 12 }}
+          labelStyle={{ color: "#fff" }}
+          itemStyle={{ color: "#fff" }}
+        />
+        <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+          {data.map((d) => (
+            <Cell key={d.status} fill={STATUS_COLOR[d.status] ?? ACCENT} />
+          ))}
+        </Bar>
       </BarChart>
     </ResponsiveContainer>
   );
