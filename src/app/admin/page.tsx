@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { RevenueChart, TopProductsChart } from "@/components/admin/AnalyticsCharts";
 
 export const metadata: Metadata = { title: "Dashboard — Admin" };
 
@@ -11,21 +12,46 @@ const STATUS_BADGE: Record<string, string> = {
   DELIVERED: "badge-green",
 };
 
+const REVENUE_CHART_DAYS = 14;
+
 function fmtDate(d: Date) {
   return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 }
 
 export default async function AdminDashboardPage() {
-  const [orderCount, revenueAgg, customerCount, activeCouponCount, recentOrders, newCustomers, activeCoupons] =
-    await Promise.all([
-      prisma.order.count(),
-      prisma.order.aggregate({ _sum: { total: true }, where: { paymentStatus: "PAID" } }),
-      prisma.user.count({ where: { role: "CUSTOMER" } }),
-      prisma.coupon.count({ where: { active: true } }),
-      prisma.order.findMany({ take: 6, orderBy: { createdAt: "desc" } }),
-      prisma.user.findMany({ take: 6, orderBy: { createdAt: "desc" }, where: { role: "CUSTOMER" } }),
-      prisma.coupon.findMany({ take: 6, where: { active: true }, orderBy: { createdAt: "desc" } }),
-    ]);
+  const chartRangeStart = new Date();
+  chartRangeStart.setHours(0, 0, 0, 0);
+  chartRangeStart.setDate(chartRangeStart.getDate() - (REVENUE_CHART_DAYS - 1));
+
+  const [
+    orderCount,
+    revenueAgg,
+    customerCount,
+    activeCouponCount,
+    recentOrders,
+    newCustomers,
+    activeCoupons,
+    ordersInRange,
+    topProductsAgg,
+  ] = await Promise.all([
+    prisma.order.count(),
+    prisma.order.aggregate({ _sum: { total: true }, where: { paymentStatus: "PAID" } }),
+    prisma.user.count({ where: { role: "CUSTOMER" } }),
+    prisma.coupon.count({ where: { active: true } }),
+    prisma.order.findMany({ take: 6, orderBy: { createdAt: "desc" } }),
+    prisma.user.findMany({ take: 6, orderBy: { createdAt: "desc" }, where: { role: "CUSTOMER" } }),
+    prisma.coupon.findMany({ take: 6, where: { active: true }, orderBy: { createdAt: "desc" } }),
+    prisma.order.findMany({
+      where: { createdAt: { gte: chartRangeStart }, paymentStatus: "PAID" },
+      select: { createdAt: true, total: true },
+    }),
+    prisma.orderItem.groupBy({
+      by: ["name"],
+      _sum: { qty: true },
+      orderBy: { _sum: { qty: "desc" } },
+      take: 5,
+    }),
+  ]);
 
   const pendingCount = await prisma.order.count({ where: { status: "PENDING" } });
 
@@ -35,6 +61,25 @@ export default async function AdminDashboardPage() {
     { label: "Customers", value: customerCount.toLocaleString("en-IN") },
     { label: "Active Coupons", value: activeCouponCount.toLocaleString("en-IN") },
   ];
+
+  // Bucket revenue by day so every day in the range renders even with zero orders,
+  // instead of a chart that skips gaps.
+  const revenueByDay = new Map<string, number>();
+  for (let i = 0; i < REVENUE_CHART_DAYS; i++) {
+    const d = new Date(chartRangeStart);
+    d.setDate(d.getDate() + i);
+    revenueByDay.set(d.toISOString().slice(0, 10), 0);
+  }
+  for (const o of ordersInRange) {
+    const key = o.createdAt.toISOString().slice(0, 10);
+    if (revenueByDay.has(key)) revenueByDay.set(key, (revenueByDay.get(key) ?? 0) + o.total);
+  }
+  const revenueSeries = [...revenueByDay.entries()].map(([key, revenue]) => ({
+    label: new Date(key).toLocaleDateString("en-IN", { day: "numeric", month: "short" }),
+    revenue,
+  }));
+
+  const topProducts = topProductsAgg.map((p) => ({ name: p.name, qty: p._sum.qty ?? 0 }));
 
   return (
     <>
@@ -48,6 +93,25 @@ export default async function AdminDashboardPage() {
             )}
           </div>
         ))}
+      </div>
+
+      <div className="two-col">
+        <div>
+          <div className="section-header">
+            <span className="section-title">Revenue — Last {REVENUE_CHART_DAYS} Days</span>
+          </div>
+          <div className="card">
+            <RevenueChart data={revenueSeries} />
+          </div>
+        </div>
+        <div>
+          <div className="section-header">
+            <span className="section-title">Top Products</span>
+          </div>
+          <div className="card">
+            <TopProductsChart data={topProducts} />
+          </div>
+        </div>
       </div>
 
       <div className="two-col">
@@ -79,7 +143,11 @@ export default async function AdminDashboardPage() {
                   ) : (
                     recentOrders.map((o) => (
                       <tr key={o.id}>
-                        <td className="mono">{o.orderNumber}</td>
+                        <td className="mono">
+                          <Link href={`/admin/orders/${o.id}`} style={{ color: "var(--accent-dark)" }}>
+                            {o.orderNumber}
+                          </Link>
+                        </td>
                         <td>{o.customerName}</td>
                         <td className="mono">Rs. {o.total.toLocaleString("en-IN")}</td>
                         <td>

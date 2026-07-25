@@ -31,6 +31,33 @@
 
   --sidebar-w: 240px;
 }
+
+/* Dark theme -- redeclares the same custom property names under a data-theme attribute
+   on <html>, so every component below keeps using var(--bg) etc. unchanged and just
+   picks up whichever palette is active. Sidebar vars are omitted here on purpose: the
+   sidebar is already near-black in light mode, so it doesn't need its own dark variant. */
+:root[data-theme="dark"] {
+  --bg: #14171a;
+  --bg2: #1b1e22;
+  --bg3: #23272c;
+  --border: #2c3136;
+  --text: #ecebe7;
+  --muted: #93968f;
+
+  --accent: #4bb4b4;
+  --accent-dark: #7fd6d6;
+  --accent-tint: rgba(75, 180, 180, 0.18);
+
+  --green: #6fe0a3;
+  --green-bg: rgba(45, 122, 79, 0.25);
+  --red: #ff8a8a;
+  --red-bg: rgba(224, 92, 92, 0.2);
+  --blue: #7ab8f5;
+  --blue-bg: rgba(61, 127, 199, 0.22);
+  --orange: #f0b955;
+  --orange-bg: rgba(244, 185, 66, 0.22);
+}
+
 .admin-root {
   font-family: "DM Sans", sans-serif;
   background: var(--bg);
@@ -583,6 +610,151 @@
   }
 }
 
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.cmdk-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cmdk-trigger:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.cmdk-trigger kbd {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-family: inherit;
+  color: var(--muted);
+}
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.5);
+  z-index: 998;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+}
+.cmdk-box {
+  width: 560px;
+  max-width: calc(100vw - 40px);
+  max-height: 60vh;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cmdk-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.cmdk-input-row input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--text);
+  font-family: inherit;
+}
+.cmdk-input-row kbd {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.cmdk-results {
+  overflow-y: auto;
+  padding: 8px;
+}
+.cmdk-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.cmdk-group {
+  margin-bottom: 6px;
+}
+.cmdk-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 10px 4px;
+}
+.cmdk-result {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cmdk-result.active {
+  background: var(--accent-tint);
+}
+.cmdk-result-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.cmdk-result-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .cmdk-trigger span {
+    display: none;
+  }
+}
+
 .login-screen {
   position: fixed;
   inset: 0;
@@ -609,6 +781,15 @@
   height: 32px;
   width: auto;
   margin-bottom: 18px;
+}
+.login-logo-dark {
+  display: none;
+}
+:root[data-theme="dark"] .login-logo-light {
+  display: none;
+}
+:root[data-theme="dark"] .login-logo-dark {
+  display: block;
 }
 .login-title {
   font-size: 22px;

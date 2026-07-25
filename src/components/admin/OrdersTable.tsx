@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 type Order = {
   id: string;
@@ -95,7 +96,11 @@ export default function OrdersTable({ orders, activeFilter }: { orders: Order[];
               ) : (
                 rows.map((o) => (
                   <tr key={o.id}>
-                    <td className="mono">{o.orderNumber}</td>
+                    <td className="mono">
+                      <Link href={`/admin/orders/${o.id}`} style={{ color: "var(--accent-dark)" }}>
+                        {o.orderNumber}
+                      </Link>
+                    </td>
                     <td>{o.customerName}</td>
                     <td>{o.itemCount}</td>
                     <td className="mono">Rs. {o.total.toLocaleString("en-IN")}</td>
