@@ -417,6 +417,48 @@ button {
   color: #666;
   cursor: pointer;
 }
+.search-results {
+  margin-top: 20px;
+  max-height: 50vh;
+  overflow-y: auto;
+  border-top: 1px solid #e8e4de;
+}
+.search-results-status {
+  padding: 20px 0;
+  font-size: 14px;
+  color: #999;
+}
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e8e4de;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.search-result:hover {
+  opacity: 0.65;
+}
+.search-result img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: #f7f4f0;
+}
+.search-result-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+.search-result-price {
+  font-size: 13px;
+  color: #666;
+  flex-shrink: 0;
+}
 @media (max-width: 480px) {
   .search-form {
     padding: 0 16px;
