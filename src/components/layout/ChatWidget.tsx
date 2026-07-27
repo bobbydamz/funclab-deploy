@@ -29,8 +29,24 @@ export default function ChatWidget() {
   }, [messages]);
 
   useEffect(() => {
+    // Pop the chat open shortly after each fresh visit, unless the visitor already
+    // dismissed it this session -- sessionStorage (not localStorage) so it greets them
+    // again on their next visit, but doesn't nag on every page within one session.
+    if (sessionStorage.getItem("bh_chat_dismissed")) return;
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  function close() {
+    setOpen(false);
+    sessionStorage.setItem("bh_chat_dismissed", "1");
+  }
+
+  useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -90,7 +106,7 @@ export default function ChatWidget() {
       <button
         type="button"
         className="chat-fab"
-        onClick={() => (open ? setOpen(false) : handleOpen())}
+        onClick={() => (open ? close() : handleOpen())}
         aria-label={open ? "Close chat" : "Chat with us"}
       >
         {SPARKLE_ICON}
@@ -100,7 +116,7 @@ export default function ChatWidget() {
         <div className="chat-panel">
           <div className="chat-panel-header">
             <span>BioHAK Assistant</span>
-            <button type="button" className="chat-close" onClick={() => setOpen(false)} aria-label="Close chat">
+            <button type="button" className="chat-close" onClick={close} aria-label="Close chat">
               &times;
             </button>
           </div>
