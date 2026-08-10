@@ -525,15 +525,15 @@ export default function HomePage({ products }: { products: Product[] }) {
           </div>
           <div className="feature-img reveal d2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-indian-man.jpg" alt="Strength training" />
+            <img src="/feature-man-yoga.jpg" alt="Strength training" />
           </div>
           <div className="feature-img reveal d3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-african-woman.jpg" alt="Active lifestyle" />
+            <img src="/feature-woman-gym.jpg" alt="Active lifestyle" />
           </div>
           <div className="feature-img reveal d4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-indian-woman.jpg" alt="Wellness" />
+            <img src="/feature-woman-dumbbell.jpg" alt="Wellness" />
           </div>
         </div>
         <div className="feature-strip-cta reveal">
