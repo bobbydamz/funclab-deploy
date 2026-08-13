@@ -282,7 +282,7 @@ export default function AllProductsCatalog({ products }: { products: Product[] }
                   : null;
                 return (
                   <div className="product-card" key={p.id}>
-                    <div className="product-img-wrap">
+                    <div className="product-thumb">
                       <Link href={`/${p.slug}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={p.image} alt={p.name} loading="lazy" />
@@ -295,7 +295,12 @@ export default function AllProductsCatalog({ products }: { products: Product[] }
                         {HEART_ICON}
                       </button>
                     </div>
-                    <div className="product-info">
+                    <div className="product-body">
+                      <div className="product-title">
+                        <Link href={`/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                          {p.name}
+                        </Link>
+                      </div>
                       <div className="product-rating">
                         <span className="rating-pill">
                           {STAR_ICON}
@@ -311,21 +316,18 @@ export default function AllProductsCatalog({ products }: { products: Product[] }
                           </span>
                         ))}
                       </div>
-                      <div className="product-name">
-                        <Link href={`/${p.slug}`}>{p.name}</Link>
-                      </div>
-                      <div className="product-price">
-                        <span className="price-now">₹{p.price.toLocaleString("en-IN")}</span>
+                      <div className="price-row">
+                        <span className="price-sale">Rs. {p.price.toLocaleString("en-IN")}.00</span>
                         {p.compareAtPrice && (
-                          <span className="price-was">₹{p.compareAtPrice.toLocaleString("en-IN")}</span>
+                          <span className="price-compare">Rs. {p.compareAtPrice.toLocaleString("en-IN")}.00</span>
                         )}
-                        {pct !== null && <span className="price-save">{pct}% off</span>}
+                        {pct !== null && <span className="price-save">Save {pct}%</span>}
                       </div>
                       <button
-                        className={`add-btn${addedSlug === p.slug ? " added" : ""}`}
+                        className={`atc-btn${addedSlug === p.slug ? " done" : ""}`}
                         onClick={() => addToCart(p)}
                       >
-                        {addedSlug === p.slug ? "✓ Added" : "Add to Cart"}
+                        {addedSlug === p.slug ? "✓ Added!" : "Add To Cart"}
                       </button>
                     </div>
                   </div>
