@@ -22,17 +22,17 @@ const HERO_SLIDES = [
   {
     img: "/hero-lift-wide.png",
     mobileImg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=85&fit=crop",
-    caption: "Simple solutions for a healthier you.",
+    caption: "Performance today. Health for tomorrow.",
   },
   {
     img: "/hero-yoga-sunset-wide.png",
     mobileImg: "/hero-yoga-sunset-mobile.png",
-    caption: "Functional. Simple. Purposeful.",
+    caption: "Invest in your biology.",
   },
   {
     img: "/hero-runner-sunset-wide.png",
     mobileImg: "/hero-runner-sunset-mobile.png",
-    caption: "Rooted in function. Designed for real life.",
+    caption: "Know what you take. Know why you take it.",
   },
 ];
 
@@ -494,24 +494,20 @@ export default function HomePage({ products }: { products: Product[] }) {
       <section className="about-section reveal">
         <h2 className="section-title">What is BioHAK Wellness?</h2>
         <p>
-          <strong>Rooted in function. Designed for real life.</strong>
+          <strong>Precision nutrition for life performance.</strong>
         </p>
         <p>
-          In a world of complicated supplements and wellness trends, BioHAK Wellness stands for something simple —
-          function over fluff. We create products that serve a clear purpose: to give your body what it needs to
-          function at its best.
+          BioHAK Wellness is a premium nutrition brand for ambitious people who want to perform better today and
+          build a healthier future. We combine science, transparency and thoughtful design to make better nutrition
+          simple — and trustworthy.
         </p>
         <p>
-          Our protein powders are made to deliver maximum high quality protein per scoop. Our omega-3-algal are
-          loaded with essential sodium and minerals to truly hydrate.
+          Every formula starts with a question: what does your body actually need? Then we answer it with clear
+          ingredients, meaningful doses and honest information — nothing hidden, nothing wasted.
         </p>
+        <p>Know what you take. Know why you take it. Trust what&apos;s inside.</p>
         <p>
-          Every ingredient is there for a reason — clean, effective, and easy to understand. At BioHAK Wellness,
-          we&apos;re all about functional ingredients, natural formulations and honest information. No fillers. No
-          shortcuts.
-        </p>
-        <p>
-          <strong>Functional. Purposeful. Simple.</strong>
+          <strong>Invest in your biology.</strong>
         </p>
       </section>
 
