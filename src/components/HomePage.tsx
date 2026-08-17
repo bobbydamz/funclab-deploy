@@ -66,47 +66,47 @@ const TAB_COPY: Record<string, { title: string; pitch: string }> = {
   "whey-protein": {
     title: "Whey Protein",
     pitch:
-      "Crafted for performance with uncompromising purity. 29–30g of fast-absorbing protein per scoop, with no added sugar, no gums, and no artificial sweeteners. Enhanced with digestive enzymes for easy absorption and gut comfort.",
+      "Built for people who train hard and expect more from what they put in their body. 29–30g of fast-absorbing protein per scoop, with no added sugar, no gums, and no artificial sweeteners. Enhanced with digestive enzymes for easy absorption and gut comfort.",
   },
   "plant-protein": {
     title: "Plant Protein",
     pitch:
-      "27–28g of protein per scoop from 98% pea protein and 2% rice protein for a complete amino acid profile. Vegan, gut-friendly, and free from fillers, gums, and artificial additives. One of the cleanest plant proteins available.",
+      "A complete amino acid profile, without compromise. 27–28g of protein per scoop from 98% pea protein and 2% rice protein. Vegan, gut-friendly, and free from fillers, gums, and artificial additives — one of the cleanest plant proteins available.",
   },
   "omega-3-algal": {
     title: "Algal Omega-3",
     pitch:
-      "Plant-sourced DHA and EPA omega-3 from algae — vegan, sustainable, and as effective as fish oil. With added Vitamin E for enhanced absorption. One capsule a day for heart, brain, and eye health.",
+      "The same benefits as fish oil, without the fish. Plant-sourced DHA and EPA omega-3 from algae — vegan, sustainable, and just as effective. With added Vitamin E for enhanced absorption. One capsule a day for heart, brain, and eye health.",
   },
   multivitamins: {
     title: "Daily Multivitamin",
     pitch:
-      "100% RDA of core vitamins plus Zinc, Copper, and Selenium in one daily tablet. Covers the nutritional gaps most Indians face — formulated for men and women with clean, bioavailable ingredients. No fillers, no excess.",
+      "Built to close the nutritional gaps most Indian diets leave behind. 100% RDA of core vitamins plus Zinc, Copper, and Selenium in one daily tablet — formulated for men and women with clean, bioavailable ingredients. No fillers, no excess.",
   },
   "vitamin-d3-k2": {
     title: "Vitamin D3 + K2",
     pitch:
-      "2000 IU Vitamin D3 paired with 100mcg K2 (MK-7) — the most bioavailable form. D3 builds immunity and bone density; K2 directs calcium to bones and away from arteries. 60 capsules, once daily.",
+      "Two nutrients that work better together. 2000 IU Vitamin D3 paired with 100mcg K2 (MK-7) — the most bioavailable form. D3 builds immunity and bone density; K2 directs calcium to bones and away from arteries. 60 capsules, once daily.",
   },
   "b-complex": {
     title: "Vitamin B-Complex",
     pitch:
-      "A complete B vitamin formula — B1 through B12 — in one tablet. Supports energy metabolism, nervous system function, and red blood cell formation. 120 tablets for a full 4-month supply.",
+      "Steady energy, not a spike. A complete B vitamin formula — B1 through B12 — in one tablet. Supports energy metabolism, nervous system function, and red blood cell formation. 120 tablets for a full 4-month supply.",
   },
   biotin: {
     title: "Biotin 5,000 mcg",
     pitch:
-      "High-potency biotin for stronger hair, healthier nails, and radiant skin. 5,000 mcg per capsule — the clinically effective dose for visible results. 60 capsules, free from artificial additives.",
+      "For hair, nails, and skin that show the difference. High-potency biotin at 5,000 mcg per capsule — the clinically effective dose for visible results. 60 capsules, free from artificial additives.",
   },
   "iron-vitamin-c": {
     title: "Iron + Vitamin C",
     pitch:
-      "Iron supplementation paired with 100mg Vitamin C for dramatically improved absorption. Addresses one of India's most prevalent deficiencies — particularly important for women, athletes, and vegetarians.",
+      "One of India's most common deficiencies, addressed properly. Iron paired with 100mg Vitamin C for dramatically improved absorption — particularly important for women, athletes, and vegetarians.",
   },
   "moringa-mushroom": {
     title: "Lions Mane Moringa + Mushroom",
     pitch:
-      "A powerful blend of Lion's Mane mushroom and Moringa for vitality, cognitive support, and longevity. Rich in antioxidants and adaptogens — supporting mental clarity, immunity, and sustained energy.",
+      "Ancient ingredients, precisely combined. Lion's Mane mushroom and Moringa for vitality, cognitive support, and longevity — rich in antioxidants and adaptogens, supporting mental clarity, immunity, and sustained energy.",
   },
 };
 
