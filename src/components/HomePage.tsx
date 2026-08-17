@@ -112,25 +112,29 @@ const TAB_COPY: Record<string, { title: string; pitch: string }> = {
 
 const WHY_ITEMS = [
   {
-    paths: ["M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z", "M16 24l6 6 10-12"],
-    title: "Simple, Effective Formulas",
-    desc: "We believe less is more. Every ingredient is carefully selected and backed by purpose — no fillers, no fluff. Just clean, functional blends that deliver best-in-class results.",
-  },
-  {
-    paths: ["M24 4l4 8 9 1.3-6.5 6.3 1.5 9L24 24l-8 4.6 1.5-9L11 13.3l9-1.3z", "M24 34v10M18 40h12"],
-    title: "Performance-First Philosophy",
-    desc: "At BioHAK Wellness, functionality leads the way. Our products are designed with one goal: to perform. That means maximum impact, minimal compromise.",
-  },
-  {
-    paths: ["M24 12v24M4 24c5 5 10 8 20 8s15-3 20-8"],
-    ellipse: true,
-    title: "Gut-Friendly by Design",
-    desc: "Say goodbye to bloating and heaviness. Our protein blends include digestive enzymes that support smooth digestion — so you get all the power, none of the discomfort.",
+    paths: ["M24 8a16 16 0 100 32 16 16 0 100-32z", "M24 16a8 8 0 100 16 8 8 0 100-16z", "M24 22a2 2 0 100 4 2 2 0 100-4z"],
+    title: "Radical Precision",
+    desc: "We're precise in everything we make — clear ingredients, meaningful doses and formulas built with real purpose. No fillers, no fluff, nothing without a reason to be there.",
   },
   {
     paths: ["M24 4l16 6v12c0 10-7 18-16 22C17 40 8 32 8 22V10z", "M17 24l5 5 9-10"],
-    title: "No-Nonsense Transparency",
-    desc: "We don't hide behind proprietary blends or fancy jargon. What you see is what you get — clean labels, clear benefits, and full ingredient transparency you can trust.",
+    title: "Absolute Integrity",
+    desc: "We say what's true and stand behind it. Honest claims, full regulatory compliance and zero shortcuts — even when it would be easier to cut a corner.",
+  },
+  {
+    paths: ["M24 6L6 16l18 10 18-10z", "M6 24l18 10 18-10", "M6 32l18 10 18-10"],
+    title: "Aesthetic Utility",
+    desc: "Good nutrition should be easy to trust and easy to use. We design every product and label to help you actually understand what's inside and why it matters.",
+  },
+  {
+    paths: ["M24 40C10 30 4 22 4 15c0-6 5-10 10-10 5 0 8 3 10 7 2-4 5-7 10-7 5 0 10 4 10 10 0 7-6 15-20 25z"],
+    title: "Human Understanding",
+    desc: "You're not a data point. We build around real lives, real routines and real goals — because nutrition only works when it fits the life you're actually living.",
+  },
+  {
+    paths: ["M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z", "M16 24l6 6 10-12"],
+    title: "Earned Trust",
+    desc: "Trust isn't a tagline — it's built one batch, one order, one honest answer at a time. We earn it through consistency, not promises.",
   },
 ];
 
@@ -566,7 +570,6 @@ export default function HomePage({ products }: { products: Product[] }) {
             <div className={`why-item reveal d${i + 1}`} key={item.title}>
               <div className="why-icon">
                 <svg viewBox="0 0 48 48" fill="none" stroke="#4bb4b4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                  {item.ellipse && <ellipse cx="24" cy="24" rx="20" ry="12" />}
                   {item.paths.map((d) => (
                     <path key={d} d={d} />
                   ))}
