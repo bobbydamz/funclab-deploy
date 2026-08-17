@@ -125,8 +125,8 @@ export default function ChatWidget() {
             {messages.length === 0 ? (
               <div className="chat-greeting">
                 <p>
-                  Hey! Looking for the right wellness pick for you? I&apos;m here to help you find exactly what your
-                  body needs.
+                  Hey — know what you take, know why you take it. Tell me what you&apos;re after and I&apos;ll point
+                  you to the right pick.
                 </p>
                 <div className="chat-quick-actions">
                   <button type="button" onClick={() => inputRef.current?.focus()}>
