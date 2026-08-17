@@ -624,8 +624,8 @@
 }
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
   margin-top: 42px;
 }
 .why-item {
@@ -661,6 +661,11 @@
   font-size: 13px;
   color: #5c5651;
   line-height: 1.8;
+}
+@media (max-width: 1100px) {
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media (max-width: 900px) {
   .why-grid {
