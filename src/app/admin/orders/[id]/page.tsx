@@ -151,7 +151,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
           <div className="card" style={{ marginBottom: 16, fontSize: 13, display: "flex", flexDirection: "column", gap: 6 }}>
             <div>
               <span style={{ color: "var(--muted)" }}>Method: </span>
-              {order.paymentMethod === "COD" ? "Cash on Delivery" : "Razorpay"}
+              {order.paymentMethod === "COD" ? "Cash on Delivery" : order.paymentMethod === "PAYSTACK" ? "Paystack" : "Razorpay"}
             </div>
             {order.razorpayOrderId && (
               <div className="mono" style={{ fontSize: 11, color: "var(--muted)" }}>

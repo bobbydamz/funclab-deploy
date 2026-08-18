@@ -14,7 +14,7 @@ export default async function AdminPaymentsPage({
   const { status } = await searchParams;
   const filter = STATUS_FILTERS.includes((status ?? "") as (typeof STATUS_FILTERS)[number]) ? status ?? "" : "";
 
-  const [orders, paidAgg, unpaidAgg, razorpayCount, codCount] = await Promise.all([
+  const [orders, paidAgg, unpaidAgg, razorpayCount, paystackCount, codCount] = await Promise.all([
     prisma.order.findMany({
       where: filter ? { paymentStatus: filter as "UNPAID" | "PAID" } : undefined,
       orderBy: { createdAt: "desc" },
@@ -22,6 +22,7 @@ export default async function AdminPaymentsPage({
     prisma.order.aggregate({ _sum: { total: true }, where: { paymentStatus: "PAID" } }),
     prisma.order.aggregate({ _sum: { total: true }, where: { paymentStatus: "UNPAID" } }),
     prisma.order.count({ where: { paymentMethod: "RAZORPAY" } }),
+    prisma.order.count({ where: { paymentMethod: "PAYSTACK" } }),
     prisma.order.count({ where: { paymentMethod: "COD" } }),
   ]);
 
@@ -29,6 +30,7 @@ export default async function AdminPaymentsPage({
     { label: "Collected", value: `Rs. ${(paidAgg._sum.total ?? 0).toLocaleString("en-IN")}` },
     { label: "Outstanding", value: `Rs. ${(unpaidAgg._sum.total ?? 0).toLocaleString("en-IN")}` },
     { label: "Razorpay Orders", value: razorpayCount.toLocaleString("en-IN") },
+    { label: "Paystack Orders", value: paystackCount.toLocaleString("en-IN") },
     { label: "COD Orders", value: codCount.toLocaleString("en-IN") },
   ];
 

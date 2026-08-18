@@ -10,7 +10,7 @@ type Order = {
   customerName: string;
   itemCount: number;
   total: number;
-  paymentMethod: "RAZORPAY" | "COD";
+  paymentMethod: "RAZORPAY" | "PAYSTACK" | "COD";
   paymentStatus: "UNPAID" | "PAID";
   status: "PENDING" | "CONFIRMED" | "SHIPPED" | "DELIVERED";
   createdAt: string;
@@ -118,7 +118,7 @@ export default function OrdersTable({ orders, activeFilter }: { orders: Order[];
                         ))}
                       </select>
                       <span style={{ fontSize: 11, color: "var(--muted)", marginLeft: 6 }}>
-                        {o.paymentMethod === "COD" ? "COD" : "Razorpay"}
+                        {o.paymentMethod === "COD" ? "COD" : o.paymentMethod === "PAYSTACK" ? "Paystack" : "Razorpay"}
                       </span>
                     </td>
                     <td>

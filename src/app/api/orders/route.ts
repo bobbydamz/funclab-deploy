@@ -16,7 +16,7 @@ const schema = z.object({
     )
     .min(1),
   couponCode: z.string().trim().optional(),
-  paymentMethod: z.enum(["razorpay", "cod"]),
+  paymentMethod: z.enum(["razorpay", "paystack", "cod"]),
   customerName: z.string().trim().min(1),
   email: z.string().trim().toLowerCase().email(),
   phone: z.string().trim().min(1),
@@ -98,7 +98,8 @@ export async function POST(req: Request) {
       couponCode,
       status: "PENDING",
       paymentStatus: "UNPAID",
-      paymentMethod: data.paymentMethod === "cod" ? "COD" : "RAZORPAY",
+      paymentMethod:
+        data.paymentMethod === "cod" ? "COD" : data.paymentMethod === "paystack" ? "PAYSTACK" : "RAZORPAY",
       customerName: data.customerName,
       email: data.email,
       phone: data.phone,
@@ -123,6 +124,28 @@ export async function POST(req: Request) {
 
   if (data.paymentMethod === "cod") {
     return NextResponse.json({ order });
+  }
+
+  if (data.paymentMethod === "paystack") {
+    // Paystack Inline creates the transaction itself when the popup opens client-side --
+    // unlike Razorpay there's no server-side "create order" call needed first, just a
+    // unique reference to tie the popup back to this order. Reused as-is from the
+    // order number since it's already unique and Paystack-safe (alphanumeric + "-").
+    //
+    // NOTE: amount is passed through as totals.total (currently INR-denominated, no
+    // currency conversion) -- real NGN pricing is a separate decision still pending.
+    await prisma.order.update({ where: { id: order.id }, data: { paystackReference: orderNumber } });
+
+    return NextResponse.json({
+      order,
+      paystack: {
+        reference: orderNumber,
+        amount: totals.total * 100, // kobo
+        currency: "NGN",
+        email: data.email,
+        publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+      },
+    });
   }
 
   // Razorpay path: create the counterpart order on Razorpay's side and hand the client

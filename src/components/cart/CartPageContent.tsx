@@ -18,6 +18,7 @@ function fmtMoney(n: number) {
 declare global {
   interface Window {
     Razorpay: new (options: Record<string, unknown>) => { open: () => void };
+    PaystackPop: { setup: (options: Record<string, unknown>) => { openIframe: () => void } };
   }
 }
 
@@ -46,7 +47,7 @@ export default function CartPageContent() {
   const [state, setState] = useState("");
   const [pincode, setPincode] = useState("");
   const [notes, setNotes] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState<"razorpay" | "cod">("razorpay");
+  const [paymentMethod, setPaymentMethod] = useState<"razorpay" | "paystack" | "cod">("razorpay");
 
   function showToast(msg: string, ok = true) {
     clearTimeout(toastTimer.current);
@@ -126,6 +127,39 @@ export default function CartPageContent() {
         return;
       }
 
+      if (paymentMethod === "paystack") {
+        // Paystack Inline: the popup creates the transaction itself, so there's nothing to
+        // "open" from a pre-created order like Razorpay -- just hand it the reference and
+        // verify server-side once it reports success.
+        const handler = window.PaystackPop.setup({
+          key: data.paystack.publicKey,
+          email: data.paystack.email,
+          amount: data.paystack.amount,
+          currency: data.paystack.currency,
+          ref: data.paystack.reference,
+          callback: (response: { reference: string }) => {
+            (async () => {
+              const verifyRes = await fetch("/api/payments/paystack/verify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ reference: response.reference }),
+              });
+              if (verifyRes.ok) {
+                finishOrder(data.order.orderNumber);
+              } else {
+                setCheckoutError(
+                  "Payment verification failed. Please contact support with your order number: " + data.order.orderNumber
+                );
+                setPlacingOrder(false);
+              }
+            })();
+          },
+          onClose: () => setPlacingOrder(false),
+        });
+        handler.openIframe();
+        return;
+      }
+
       // Razorpay path: open the Checkout.js widget; only mark the order paid once
       // /api/payments/razorpay/verify confirms the signature server-side.
       const rzp = new window.Razorpay({
@@ -176,6 +210,7 @@ export default function CartPageContent() {
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
+      <Script src="https://js.paystack.co/v1/inline.js" strategy="lazyOnload" />
 
       <div className="page-wrap">
         <div className="page-heading">Your Cart</div>
@@ -471,6 +506,22 @@ export default function CartPageContent() {
                     style={{ width: "auto" }}
                   />
                   Razorpay (UPI / Card / Net Banking)
+                </label>
+                <label
+                  style={{
+                    display: "flex", alignItems: "center", gap: 10, padding: "12px 14px",
+                    border: paymentMethod === "paystack" ? "1.5px solid #1a1a1a" : "1.5px solid #e8e4de",
+                    cursor: "pointer", fontSize: 13, fontWeight: 600,
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="payment"
+                    checked={paymentMethod === "paystack"}
+                    onChange={() => setPaymentMethod("paystack")}
+                    style={{ width: "auto" }}
+                  />
+                  Paystack (Card / Bank Transfer / USSD)
                 </label>
                 <label
                   style={{
