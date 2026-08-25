@@ -9,7 +9,7 @@ type Payment = {
   orderNumber: string;
   customerName: string;
   total: number;
-  paymentMethod: "RAZORPAY" | "COD";
+  paymentMethod: "RAZORPAY" | "PAYSTACK" | "COD";
   paymentStatus: "UNPAID" | "PAID";
   razorpayPaymentId: string | null;
   createdAt: string;
@@ -95,7 +95,7 @@ export default function PaymentsTable({
                     <td className="mono">Rs. {p.total.toLocaleString("en-IN")}</td>
                     <td>
                       <span className={`badge ${p.paymentMethod === "COD" ? "badge-muted" : "badge-blue"}`}>
-                        {p.paymentMethod === "COD" ? "COD" : "Razorpay"}
+                        {p.paymentMethod === "COD" ? "COD" : p.paymentMethod === "PAYSTACK" ? "Paystack" : "Razorpay"}
                       </span>
                     </td>
                     <td>
