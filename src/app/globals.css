@@ -765,8 +765,8 @@ footer {
   left: 24px;
   bottom: 92px;
   z-index: 500;
-  width: min(360px, calc(100vw - 48px));
-  max-height: min(520px, calc(100vh - 140px));
+  width: min(305px, calc(100vw - 48px));
+  max-height: min(433px, calc(100vh - 140px));
   display: flex;
   flex-direction: column;
   background: #1a1a1a;
