@@ -43,7 +43,7 @@ export default async function WhiteCapPreviewPage() {
                   src={`/whitecap-preview/product-${p.slug}.png`}
                   alt={`${p.name} (white cap preview)`}
                   loading="lazy"
-                  style={produced ? undefined : { filter: "blur(6px)", opacity: 0.5 }}
+                  style={produced ? undefined : { filter: "blur(14px)", opacity: 0.5 }}
                 />
                 {!produced && (
                   <div
