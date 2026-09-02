@@ -8,6 +8,8 @@ import { useCart } from "@/context/CartContext";
 
 const PRICE_MIN = 1800;
 const PRICE_MAX = 5500;
+// Not in production yet -- show blurred with a "Coming Soon" badge instead of the real photo.
+const COMING_SOON_SLUGS = new Set(["whey-protein", "plant-protein"]);
 const STAR_ICON = (
   <svg viewBox="0 0 24 24">
     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
@@ -280,13 +282,46 @@ export default function AllProductsCatalog({ products }: { products: Product[] }
                 const pct = p.compareAtPrice
                   ? Math.round(((p.compareAtPrice - p.price) / p.compareAtPrice) * 100)
                   : null;
+                const comingSoon = COMING_SOON_SLUGS.has(p.slug);
                 return (
                   <div className="product-card" key={p.id}>
                     <div className="product-thumb">
                       <Link href={`/${p.slug}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={p.image} alt={p.name} loading="lazy" />
+                        <img
+                          src={p.image}
+                          alt={p.name}
+                          loading="lazy"
+                          style={comingSoon ? { filter: "blur(14px)", opacity: 0.5 } : undefined}
+                        />
                       </Link>
+                      {comingSoon && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            inset: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            pointerEvents: "none",
+                          }}
+                        >
+                          <span
+                            style={{
+                              background: "rgba(26, 26, 26, 0.8)",
+                              color: "#fff",
+                              fontWeight: 700,
+                              fontSize: 13,
+                              letterSpacing: "0.06em",
+                              textTransform: "uppercase",
+                              padding: "7px 16px",
+                              borderRadius: 999,
+                            }}
+                          >
+                            Coming Soon
+                          </span>
+                        </div>
+                      )}
                       <button
                         className={`wish-heart${wishlisted.has(p.id) ? " active" : ""}`}
                         aria-label="Add to wishlist"
@@ -316,18 +351,22 @@ export default function AllProductsCatalog({ products }: { products: Product[] }
                           </span>
                         ))}
                       </div>
-                      <div className="price-row">
-                        <span className="price-sale">Rs. {p.price.toLocaleString("en-IN")}.00</span>
-                        {p.compareAtPrice && (
-                          <span className="price-compare">Rs. {p.compareAtPrice.toLocaleString("en-IN")}.00</span>
-                        )}
-                        {pct !== null && <span className="price-save">Save {pct}%</span>}
-                      </div>
+                      {!comingSoon && (
+                        <div className="price-row">
+                          <span className="price-sale">Rs. {p.price.toLocaleString("en-IN")}.00</span>
+                          {p.compareAtPrice && (
+                            <span className="price-compare">Rs. {p.compareAtPrice.toLocaleString("en-IN")}.00</span>
+                          )}
+                          {pct !== null && <span className="price-save">Save {pct}%</span>}
+                        </div>
+                      )}
                       <button
                         className={`atc-btn${addedSlug === p.slug ? " done" : ""}`}
                         onClick={() => addToCart(p)}
+                        disabled={comingSoon}
+                        style={comingSoon ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
                       >
-                        {addedSlug === p.slug ? "✓ Added!" : "Add To Cart"}
+                        {comingSoon ? "Coming Soon" : addedSlug === p.slug ? "✓ Added!" : "Add To Cart"}
                       </button>
                     </div>
                   </div>
