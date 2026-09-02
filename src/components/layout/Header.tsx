@@ -56,13 +56,15 @@ export default function Header({
       <header className={`site-header${scrolled ? " scrolled" : ""}`} id="siteHeader">
         <div className="header-wrap">
           <div className="logo-outer" style={{ display: "flex", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo-transparent.png"
-              alt="BioHAK Wellness"
-              className="nav-logo"
-              style={{ height: 52, width: "auto", objectFit: "contain" }}
-            />
+            <Link href="/" aria-label="BioHAK Wellness home" style={{ display: "flex", alignItems: "center" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-transparent.png"
+                alt="BioHAK Wellness"
+                className="nav-logo"
+                style={{ height: 52, width: "auto", objectFit: "contain" }}
+              />
+            </Link>
           </div>
 
           <nav className="main-nav">
