@@ -8,17 +8,31 @@ import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = [{ href: "/", label: "Home" }];
 
-const SHOP_LINKS = [
-  { href: "/all-products", label: "All Products" },
-  { href: "/b-complex", label: "B-Complex" },
-  { href: "/biotin", label: "Biotin" },
-  { href: "/iron-vitamin-c", label: "Iron + Vitamin C" },
-  { href: "/moringa-mushroom", label: "Moringa + Mushroom Lions Mane" },
-  { href: "/multivitamins", label: "Multivitamins" },
-  { href: "/omega-3-algal", label: "Omega-3 (Algal)" },
-  { href: "/plant-protein", label: "Plant Protein" },
-  { href: "/vitamin-d3-k2", label: "Vitamin D-3 + K2" },
-  { href: "/whey-protein", label: "Whey Protein" },
+const SHOP_CATEGORIES = [
+  {
+    category: "Protein",
+    links: [
+      { href: "/whey-protein", label: "Whey Protein" },
+      { href: "/plant-protein", label: "Plant Protein" },
+    ],
+  },
+  {
+    category: "Vitamins & Minerals",
+    links: [
+      { href: "/multivitamins", label: "Multivitamins" },
+      { href: "/vitamin-d3-k2", label: "Vitamin D-3 + K2" },
+      { href: "/b-complex", label: "B-Complex" },
+      { href: "/biotin", label: "Biotin" },
+      { href: "/iron-vitamin-c", label: "Iron + Vitamin C" },
+    ],
+  },
+  {
+    category: "Wellness & Recovery",
+    links: [
+      { href: "/omega-3-algal", label: "Omega-3 (Algal)" },
+      { href: "/moringa-mushroom", label: "Moringa + Mushroom Lions Mane" },
+    ],
+  },
 ];
 
 const ABOUT_LINKS = [
@@ -88,12 +102,20 @@ export default function Header({
               </div>
             </div>
             <div className="nav-item">
-              <Link href="#">Shop</Link>
+              <Link href="/all-products">Shop</Link>
               <div className="nav-dropdown">
-                {SHOP_LINKS.map((link) => (
-                  <Link key={link.href} href={link.href}>
-                    {link.label}
-                  </Link>
+                <Link href="/all-products" style={{ fontWeight: 800 }}>
+                  All Products
+                </Link>
+                {SHOP_CATEGORIES.map((group) => (
+                  <div key={group.category}>
+                    <div className="nav-dropdown-label">{group.category}</div>
+                    {group.links.map((link) => (
+                      <Link key={link.href} href={link.href}>
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>

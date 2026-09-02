@@ -264,6 +264,14 @@ button {
 .nav-dropdown a:last-child {
   border-bottom: none;
 }
+.nav-dropdown-label {
+  padding: 12px 20px 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted, #8a817b);
+}
 .nav-dropdown a:hover {
   background: linear-gradient(90deg, rgba(75, 180, 180, 0.08), transparent);
   color: var(--ink) !important;
