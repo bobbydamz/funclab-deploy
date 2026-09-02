@@ -2,21 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import type { SerializedProduct as Product } from "@/lib/products";
-import { useCart } from "@/context/CartContext";
 import ScrollReveal from "@/components/ScrollReveal";
-
-const STAR_ICON = (
-  <svg viewBox="0 0 24 24">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
-  </svg>
-);
-const HEART_ICON = (
-  <svg viewBox="0 0 24 24" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-  </svg>
-);
 
 const HERO_SLIDES = [
   {
@@ -34,20 +21,6 @@ const HERO_SLIDES = [
     mobileImg: "/hero-runner-sunset-mobile.png",
     caption: "Know what you take. Know why you take it.",
   },
-];
-
-// Curated order for the "Shop Our Products" grid — matches the original homepage's
-// hand-picked merchandising order, not the alphabetical order products.ts returns by default.
-const GRID_ORDER = [
-  "b-complex",
-  "multivitamins",
-  "iron-vitamin-c",
-  "moringa-mushroom",
-  "biotin",
-  "vitamin-d3-k2",
-  "omega-3-algal",
-  "plant-protein",
-  "whey-protein",
 ];
 
 const TAB_ORDER = [
@@ -258,119 +231,6 @@ function HeroSlider() {
   );
 }
 
-function ProductsGrid({ products }: { products: Product[] }) {
-  const { add } = useCart();
-  const router = useRouter();
-  const [wishlisted, setWishlisted] = useState<Set<number>>(new Set());
-  const [addedSlug, setAddedSlug] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch("/api/wishlist")
-      .then((r) => (r.ok ? r.json() : []))
-      .then((items: { productId: number }[]) => setWishlisted(new Set(items.map((i) => i.productId))))
-      .catch(() => {});
-  }, []);
-
-  const ordered = GRID_ORDER.map((slug) => products.find((p) => p.slug === slug)).filter(
-    (p): p is Product => Boolean(p)
-  );
-
-  async function toggleWishlist(productId: number) {
-    const meRes = await fetch("/api/auth/me");
-    if (!meRes.ok) {
-      sessionStorage.setItem("funclab_redirect_after_login", "/");
-      router.push("/account");
-      return;
-    }
-    const isWishlisted = wishlisted.has(productId);
-    if (isWishlisted) {
-      await fetch(`/api/wishlist/${productId}`, { method: "DELETE" });
-      setWishlisted((prev) => {
-        const next = new Set(prev);
-        next.delete(productId);
-        return next;
-      });
-    } else {
-      await fetch("/api/wishlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId }),
-      });
-      setWishlisted((prev) => new Set(prev).add(productId));
-    }
-  }
-
-  function addToCart(p: Product) {
-    add({ id: p.id, name: p.name, price: p.price, image: p.image, slug: p.slug });
-    setAddedSlug(p.slug);
-    setTimeout(() => setAddedSlug(null), 2000);
-  }
-
-  return (
-    <section className="products-section">
-      <div className="products-wrap">
-        <h2 className="section-title reveal">Shop Our Products</h2>
-        <div className="products-grid">
-          {ordered.map((p, i) => {
-            const pct = p.compareAtPrice
-              ? Math.round(((p.compareAtPrice - p.price) / p.compareAtPrice) * 100)
-              : null;
-            return (
-              <div className={`product-card reveal d${(i % 4) + 1}`} key={p.id}>
-                <div className="product-thumb">
-                  <Link href={`/${p.slug}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.image} alt={p.name} />
-                  </Link>
-                  <button
-                    className={`wish-heart${wishlisted.has(p.id) ? " active" : ""}`}
-                    aria-label="Add to wishlist"
-                    onClick={() => toggleWishlist(p.id)}
-                  >
-                    {HEART_ICON}
-                  </button>
-                </div>
-                <div className="product-body">
-                  <div className="product-title">
-                    <Link href={`/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-                      {p.name}
-                    </Link>
-                  </div>
-                  <div className="product-rating">
-                    <span className="rating-pill">
-                      {STAR_ICON}
-                      {p.rating?.toString()}
-                      <span className="rating-max">/5</span>
-                    </span>
-                    <span className="rating-count">({p.reviewCount})</span>
-                  </div>
-                  <div className="tag-row">
-                    {p.benefitTags.map((t) => (
-                      <span className="tag-pill" key={t}>
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="price-row">
-                    <span className="price-sale">Rs. {p.price.toLocaleString("en-IN")}.00</span>
-                    {p.compareAtPrice && (
-                      <span className="price-compare">Rs. {p.compareAtPrice.toLocaleString("en-IN")}.00</span>
-                    )}
-                    {pct !== null && <span className="price-save">Save {pct}%</span>}
-                  </div>
-                  <button className={`atc-btn${addedSlug === p.slug ? " done" : ""}`} onClick={() => addToCart(p)}>
-                    {addedSlug === p.slug ? "✓ Added!" : "Add To Cart"}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function OurProductsTabs({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
 
@@ -493,7 +353,6 @@ export default function HomePage({ products }: { products: Product[] }) {
     <div className="home">
       <ScrollReveal />
       <HeroSlider />
-      <ProductsGrid products={products} />
 
       <section className="about-section reveal">
         <h2 className="section-title">What is BioHAK Wellness?</h2>
