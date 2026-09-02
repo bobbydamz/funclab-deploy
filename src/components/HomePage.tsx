@@ -87,27 +87,55 @@ const WHY_ITEMS = [
   {
     paths: ["M24 8a16 16 0 100 32 16 16 0 100-32z", "M24 16a8 8 0 100 16 8 8 0 100-16z", "M24 22a2 2 0 100 4 2 2 0 100-4z"],
     title: "Radical Precision",
-    desc: "We're precise in everything we make — clear ingredients, meaningful doses and formulas built with real purpose. No fillers, no fluff, nothing without a reason to be there.",
+    lede: "Every ingredient has a purpose.",
+    desc: [
+      "We create ",
+      { bold: true, text: "science-backed wellness supplements with purposeful ingredients" },
+      ", meaningful doses and clear formulations. Nothing unnecessary, nothing added just to fill the label.",
+    ],
   },
   {
     paths: ["M24 4l16 6v12c0 10-7 18-16 22C17 40 8 32 8 22V10z", "M17 24l5 5 9-10"],
     title: "Absolute Integrity",
-    desc: "We say what's true and stand behind it. Honest claims, full regulatory compliance and zero shortcuts — even when it would be easier to cut a corner.",
+    lede: "We believe in doing things right.",
+    desc: [
+      "We are honest about our ",
+      { bold: true, text: "supplement ingredients, formulations and benefits" },
+      ". No shortcuts, no exaggerated claims—just clear information you can trust.",
+    ],
   },
   {
     paths: ["M24 6L6 16l18 10 18-10z", "M6 24l18 10 18-10", "M6 32l18 10 18-10"],
     title: "Aesthetic Utility",
-    desc: "Good nutrition should be easy to trust and easy to use. We design every product and label to help you actually understand what's inside and why it matters.",
+    lede: "Good design should make wellness easier.",
+    desc: [
+      "From our ",
+      { bold: true, text: "wellness supplement packaging" },
+      " to product information, everything is designed to be clear, useful and easy to understand.",
+    ],
   },
   {
     paths: ["M24 40C10 30 4 22 4 15c0-6 5-10 10-10 5 0 8 3 10 7 2-4 5-7 10-7 5 0 10 4 10 10 0 7-6 15-20 25z"],
     title: "Human Understanding",
-    desc: "You're not a data point. We build around real lives, real routines and real goals — because nutrition only works when it fits the life you're actually living.",
+    lede: "Wellness should fit your life.",
+    desc: [
+      "We create ",
+      { bold: true, text: "daily wellness products" },
+      " around real people, real routines and real needs—so taking better care of your health feels simple.",
+    ],
   },
   {
     paths: ["M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z", "M16 24l6 6 10-12"],
     title: "Earned Trust",
-    desc: "Trust isn't a tagline — it's built one batch, one order, one honest answer at a time. We earn it through consistency, not promises.",
+    lede: "Trust is built every day.",
+    desc: [
+      "We earn it through ",
+      {
+        bold: true,
+        text: "quality nutrition, transparent ingredients, science-backed formulations and consistent customer experiences",
+      },
+      " that give you a reason to choose BioHAK Wellness again.",
+    ],
   },
 ];
 
@@ -237,7 +265,7 @@ function OurProductsTabs({ products }: { products: Product[] }) {
   return (
     <section className="our-products">
       <div className="our-products-wrap">
-        <h2 className="section-title reveal">Our Products</h2>
+        <h2 className="section-title">Our Products</h2>
         <div className="prod-tabs">
           {TAB_ORDER.map((slug, i) => (
             <button
@@ -354,47 +382,31 @@ export default function HomePage({ products }: { products: Product[] }) {
       <ScrollReveal />
       <HeroSlider />
 
-      <section className="about-section reveal">
+      <OurProductsTabs products={products} />
+
+      <section className="about-section">
         <h2 className="section-title">What is BioHAK Wellness?</h2>
         <p>
-          <strong>Precision nutrition for life performance.</strong>
+          <strong>
+            BioHAK Wellness is a modern wellness brand that makes science-backed supplements simple, clear and easy
+            to fit into everyday life.
+          </strong>
         </p>
         <p>
-          BioHAK Wellness is a premium nutrition brand for ambitious people who want to perform better today and
-          build a healthier future. We combine science, transparency and thoughtful design to make better nutrition
-          simple — and trustworthy.
+          We create thoughtfully formulated supplements with{" "}
+          <strong>purposeful ingredients, meaningful doses and minimal unnecessary excipients</strong>. We believe
+          you should know <strong>what you are taking, why it is there and how to use it</strong>.
         </p>
         <p>
-          Every formula starts with a question: what does your body actually need? Then we answer it with clear
-          ingredients, meaningful doses and honest information — nothing hidden, nothing wasted.
+          From daily vitamins and minerals to targeted wellness support, BioHAK Wellness is designed for people who
+          want to take better care of their health without making wellness complicated.
         </p>
-        <p>Know what you take. Know why you take it. Trust what&apos;s inside.</p>
         <p>
-          <strong>Invest in your biology.</strong>
+          <strong>Clean. Science-backed. Simple. Everyday.</strong>
         </p>
       </section>
 
-      <OurProductsTabs products={products} />
-
       <div className="feature-strip">
-        <div className="feature-strip-grid">
-          <div className="feature-img reveal d1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-african-man.jpg" alt="Training" />
-          </div>
-          <div className="feature-img reveal d2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-man-yoga.jpg" alt="Strength training" />
-          </div>
-          <div className="feature-img reveal d3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-woman-gym.jpg" alt="Active lifestyle" />
-          </div>
-          <div className="feature-img reveal d4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/feature-woman-dumbbell.jpg" alt="Wellness" />
-          </div>
-        </div>
         <div className="feature-strip-cta reveal">
           <Link href="/all-products" className="view-all-btn">
             SHOP NOW
@@ -435,7 +447,16 @@ export default function HomePage({ products }: { products: Product[] }) {
                 </svg>
               </div>
               <div className="why-title">{item.title}</div>
-              <div className="why-desc">{item.desc}</div>
+              <div className="why-desc">
+                <p>
+                  <strong>{item.lede}</strong>
+                </p>
+                <p>
+                  {item.desc.map((seg, i) =>
+                    typeof seg === "string" ? <span key={i}>{seg}</span> : <strong key={i}>{seg.text}</strong>
+                  )}
+                </p>
+              </div>
             </div>
           ))}
         </div>
