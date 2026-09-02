@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { SerializedProduct as Product } from "@/lib/products";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const HERO_SLIDES = [
@@ -22,66 +21,6 @@ const HERO_SLIDES = [
     caption: "Know what you take. Know why you take it.",
   },
 ];
-
-const TAB_ORDER = [
-  "whey-protein",
-  "plant-protein",
-  "omega-3-algal",
-  "multivitamins",
-  "vitamin-d3-k2",
-  "b-complex",
-  "biotin",
-  "iron-vitamin-c",
-  "moringa-mushroom",
-];
-
-const TAB_COPY: Record<string, { title: string; pitch: string }> = {
-  "whey-protein": {
-    title: "Whey Protein",
-    pitch:
-      "Built for people who train hard and expect more from what they put in their body. 29–30g of fast-absorbing protein per scoop, with no added sugar, no gums, and no artificial sweeteners. Enhanced with digestive enzymes for easy absorption and gut comfort.",
-  },
-  "plant-protein": {
-    title: "Plant Protein",
-    pitch:
-      "A complete amino acid profile, without compromise. 27–28g of protein per scoop from 98% pea protein and 2% rice protein. Vegan, gut-friendly, and free from fillers, gums, and artificial additives — one of the cleanest plant proteins available.",
-  },
-  "omega-3-algal": {
-    title: "Algal Omega-3",
-    pitch:
-      "The same benefits as fish oil, without the fish. Plant-sourced DHA and EPA omega-3 from algae — vegan, sustainable, and just as effective. With added Vitamin E for enhanced absorption. One capsule a day for heart, brain, and eye health.",
-  },
-  multivitamins: {
-    title: "Daily Multivitamin",
-    pitch:
-      "Built to close the nutritional gaps most Indian diets leave behind. 100% RDA of core vitamins plus Zinc, Copper, and Selenium in one daily tablet — formulated for men and women with clean, bioavailable ingredients. No fillers, no excess.",
-  },
-  "vitamin-d3-k2": {
-    title: "Vitamin D3 + K2",
-    pitch:
-      "Two nutrients that work better together. 2000 IU Vitamin D3 paired with 100mcg K2 (MK-7) — the most bioavailable form. D3 builds immunity and bone density; K2 directs calcium to bones and away from arteries. 60 capsules, once daily.",
-  },
-  "b-complex": {
-    title: "Vitamin B-Complex",
-    pitch:
-      "Steady energy, not a spike. A complete B vitamin formula — B1 through B12 — in one tablet. Supports energy metabolism, nervous system function, and red blood cell formation. 120 tablets for a full 4-month supply.",
-  },
-  biotin: {
-    title: "Biotin 5,000 mcg",
-    pitch:
-      "For hair, nails, and skin that show the difference. High-potency biotin at 5,000 mcg per capsule — the clinically effective dose for visible results. 60 capsules, free from artificial additives.",
-  },
-  "iron-vitamin-c": {
-    title: "Iron + Vitamin C",
-    pitch:
-      "One of India's most common deficiencies, addressed properly. Iron paired with 100mg Vitamin C for dramatically improved absorption — particularly important for women, athletes, and vegetarians.",
-  },
-  "moringa-mushroom": {
-    title: "Lions Mane Moringa + Mushroom",
-    pitch:
-      "Ancient ingredients, precisely combined. Lion's Mane mushroom and Moringa for vitality, cognitive support, and longevity — rich in antioxidants and adaptogens, supporting mental clarity, immunity, and sustained energy.",
-  },
-};
 
 const WHY_ITEMS = [
   {
@@ -231,50 +170,6 @@ function HeroSlider() {
   );
 }
 
-function OurProductsTabs({ products }: { products: Product[] }) {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="our-products">
-      <div className="our-products-wrap">
-        <h2 className="section-title reveal">Our Products</h2>
-        <div className="prod-tabs">
-          {TAB_ORDER.map((slug, i) => (
-            <button
-              key={slug}
-              className={`prod-tab${i === active ? " active" : ""}`}
-              onClick={() => setActive(i)}
-            >
-              {TAB_COPY[slug].title}
-            </button>
-          ))}
-        </div>
-        <div className="prod-panels">
-          {TAB_ORDER.map((slug, i) => {
-            const product = products.find((p) => p.slug === slug);
-            const copy = TAB_COPY[slug];
-            return (
-              <div className={`prod-panel${i === active ? " active" : ""}`} key={slug}>
-                <div className="panel-text">
-                  <h3>{copy.title}</h3>
-                  <p>{copy.pitch}</p>
-                  <Link href={`/${slug}`} className="shop-link">
-                    Shop now
-                  </Link>
-                </div>
-                <div className="panel-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={product?.image ?? `/product-${slug}.png`} alt={copy.title} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function TestimonialsSlider() {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const idxRef = useRef(0);
@@ -348,7 +243,7 @@ function TestimonialsSlider() {
   );
 }
 
-export default function HomePage({ products }: { products: Product[] }) {
+export default function HomePage() {
   return (
     <div className="home">
       <ScrollReveal />
@@ -373,8 +268,6 @@ export default function HomePage({ products }: { products: Product[] }) {
           <strong>Invest in your biology.</strong>
         </p>
       </section>
-
-      <OurProductsTabs products={products} />
 
       <div className="feature-strip">
         <div className="feature-strip-grid">
