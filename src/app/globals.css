@@ -264,13 +264,68 @@ button {
 .nav-dropdown a:last-child {
   border-bottom: none;
 }
-.nav-dropdown-label {
-  padding: 12px 20px 4px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+.nav-category-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted, #8a817b);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease;
+}
+.nav-category-row:last-child {
+  border-bottom: none;
+}
+.nav-category-row:hover {
+  background: linear-gradient(90deg, rgba(75, 180, 180, 0.08), transparent);
+}
+.nav-category-arrow {
+  font-size: 14px;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+.nav-subdropdown {
+  position: absolute;
+  left: 100%;
+  top: -1px;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(19, 19, 19, 0.06);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.nav-category-row:hover .nav-subdropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.nav-subdropdown a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s ease, padding-left 0.15s ease;
+}
+.nav-subdropdown a:last-child {
+  border-bottom: none;
+}
+.nav-subdropdown a:hover {
+  background: linear-gradient(90deg, rgba(75, 180, 180, 0.08), transparent);
+  padding-left: 24px;
 }
 .nav-dropdown a:hover {
   background: linear-gradient(90deg, rgba(75, 180, 180, 0.08), transparent);
