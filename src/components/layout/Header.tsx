@@ -102,19 +102,20 @@ export default function Header({
               </div>
             </div>
             <div className="nav-item">
-              <Link href="/all-products">Shop</Link>
+              <Link href="/all-products">Shop by Categories</Link>
               <div className="nav-dropdown">
-                <Link href="/all-products" style={{ fontWeight: 800 }}>
-                  All Products
-                </Link>
+                <Link href="/all-products">All Products</Link>
                 {SHOP_CATEGORIES.map((group) => (
-                  <div key={group.category}>
-                    <div className="nav-dropdown-label">{group.category}</div>
-                    {group.links.map((link) => (
-                      <Link key={link.href} href={link.href}>
-                        {link.label}
-                      </Link>
-                    ))}
+                  <div className="nav-category-row" key={group.category}>
+                    <span>{group.category}</span>
+                    <span className="nav-category-arrow">›</span>
+                    <div className="nav-subdropdown">
+                      {group.links.map((link) => (
+                        <Link key={link.href} href={link.href}>
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
